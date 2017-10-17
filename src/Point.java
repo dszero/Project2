@@ -1,6 +1,6 @@
 /**
  * This is the point object class
- * @author Shan Ding (dszer) David
+ * @author Shan Ding (dszer); David Thames (davidct)
  * @version 10.16.2017
  *
  */
