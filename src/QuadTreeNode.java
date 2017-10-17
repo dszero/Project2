@@ -5,14 +5,14 @@
  * @author Shan Ding (dszero); David Thames (davidct)
  *
  */
-public abstract class QuadTreeNode 
+public abstract class QuadTreeNode< T extends Comparable2D<? super T> >
 {
-	public boolean insert(Point point)
+	public boolean insert(T obj)
 	{
 		return false;
 	}
 	
-	public boolean remove(Point point)
+	public boolean remove(T obj)
 	{
 		return false;
 	}
@@ -29,7 +29,7 @@ public abstract class QuadTreeNode
 	
 	public boolean duplicates()
 	{
-		reuturn false;
+		return false;
 	}
 	
 	public static boolean isLeaf(QuadTreeNode node)

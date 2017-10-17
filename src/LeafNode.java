@@ -6,7 +6,7 @@
  * @version 10.16.2017
  *
  */
-public class LeafNode extends QuadTreeNode{
+public class LeafNode< T extends Comparable2D<? super T> > extends QuadTreeNode<T>{
 	
 	/**
 	 * initialize the variables
@@ -18,6 +18,8 @@ public class LeafNode extends QuadTreeNode{
 //	{
 //		this.point = point;
 //	}
+	
+	
 	
 	public LeafNode(Point point)
 	{

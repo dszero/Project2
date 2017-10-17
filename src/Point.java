@@ -4,7 +4,7 @@
  * @version 10.16.2017
  *
  */
-public class Point {
+public class Point implements Comparable2D<Point> {
 	/**
 	 * initialize the variables
 	 */
@@ -49,6 +49,18 @@ public class Point {
 	public int getY()
 	{
 		return y;
+	}
+
+	@Override
+	public Direction compareTo(Point o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Direction compareTo(int otherX, int otherY) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

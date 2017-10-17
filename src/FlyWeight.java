@@ -4,6 +4,11 @@
  * @version 10.16.2017
  *
  */
-public class FlyWeight extends QuadTreeNode{
-
+public class FlyWeight< T extends Comparable2D<? super T> > extends QuadTreeNode<T> {
+	@Override
+	boolean remove(T obj) {
+		return false;
+	}
+	
+	
 }

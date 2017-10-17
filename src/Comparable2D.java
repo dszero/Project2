@@ -1,25 +1,19 @@
 
-public class Comparable2D {
-	int x = 0;
-	int y = 0;
+public interface Comparable2D<T> {
 	
 	/**
 	 * Get the x position of this object
 	 * 
 	 * @return x position
 	 */
-	int getX() {
-		return 0;
-	}
+	int getX();
 	
 	/**
 	 * Get the y position of this object
 	 * 
 	 * @return y position
 	 */
-	int getY() {
-		return 0;
-	}
+	int getY();
 	
 	
 	/**
@@ -28,9 +22,7 @@ public class Comparable2D {
 	 * @param obj - object to compare with this object
 	 * @return direction based on x & y of both objects
 	 */
-	Direction compareTo(Object obj) {
-		return null;
-	}
+	Direction compareTo(T o);
 	
 	/**
 	 * Compare x and y coordinates
@@ -39,7 +31,5 @@ public class Comparable2D {
  	 * @param otherY - y coordinate to compare against
 	 * @return direction from the point (otherX, otherY)
 	 */
-	Direction compareTo(int otherX, int otherY) {
-		return null;
-	}
+	Direction compareTo(int otherX, int otherY);
 }
