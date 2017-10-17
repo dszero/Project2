@@ -14,10 +14,10 @@ public class LeafNode extends QuadTreeNode{
 	private Point point;
 	private int count;
 	
-	public LeafNode(Point point1, Point point2, Point point3)
-	{
-		this.point = point;
-	}
+//	public LeafNode(Point point1, Point point2, Point point3)
+//	{
+//		this.point = point;
+//	}
 	
 	public LeafNode(Point point)
 	{

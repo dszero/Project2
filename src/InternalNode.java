@@ -5,7 +5,18 @@
  *
  */
 public class InternalNode extends QuadTreeNode{
+	
+	
+	public InternalNode();
 
+		
 
+	public boolean insert(Point point)
+	{
+		
+		
+	}
+	
+	
 
 }

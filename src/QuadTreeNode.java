@@ -27,6 +27,11 @@ public abstract class QuadTreeNode
 		return false;
 	}
 	
+	public boolean duplicates()
+	{
+		reuturn false;
+	}
+	
 	public static boolean isLeaf(QuadTreeNode node)
 	{
 		if (node.getClass() == LeafNode.class)
