@@ -46,8 +46,11 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 */
 	@Override
 	public boolean remove(int x, int y, T obj) {
-		
-		return false;
+		Direction dir = obj.compareTo(x, y);
+		QuadTreeNode<T> child = this.getBranch(dir);
+		boolean out = child.remove(getBranchX(x, dir), getBranchY(y, dir), obj);
+		//TODO: Check Decomposition
+		return out;
 	}
 
 	/**
@@ -61,8 +64,11 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 */
 	@Override
 	public boolean remove(int x, int y, int objX, int objY) {
-
-		return false;
+		Direction dir = getDirection(x, y, objX, objY);
+		QuadTreeNode<T> child = this.getBranch(dir);
+		boolean out = child.remove(getBranchX(x, dir), getBranchY(y, dir), objX, objY);
+		//TODO: Check Decomposition
+		return out;
 	}
 
 
