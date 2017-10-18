@@ -45,7 +45,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param y - lower bound square
 	 * @return a linked list of objects contained in the bounded region
 	 */
-	public boolean regionsearch(int x, int y, int w, int h);
+	public boolean regionsearch(int x, int y, int objX, int objY, int objW, int objH);
 	
 	/**
 	 * Find all objects with duplicate locations

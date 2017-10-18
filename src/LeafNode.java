@@ -72,7 +72,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return a linked list of objects contained in the bounded region
 	 */
 	@Override
-	public boolean regionsearch(int x, int y, int w, int h) {
+	public boolean regionsearch(int x, int y, int objX, int objY, int objW, int objH) {
 
 		return false;
 	}

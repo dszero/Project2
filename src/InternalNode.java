@@ -80,9 +80,17 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return a linked list of objects contained in the bounded region
 	 */
 	@Override
-	public boolean regionsearch(int objX, int objY, int objW, int objH) {
-		
-		return false;
+	public LinkedList<T> regionsearch(int x, int y, 
+			int objX, int objY, int objW, int objH) {
+		if((objX < x && (objX + objW) > x) || (objY < y && (objY + objH) > y)) {
+			//TODO: search region
+			return false;
+		}
+		Direction dir = getDirection(x, y, objX, objY);
+		QuadTreeNode<T> child = this.getBranch(dir);
+		return child.regionsearch(
+				getBranchX(x, dir), getBranchY(y, dir), 
+				objX, objY, objW, objH);
 	}
 
 
@@ -92,9 +100,15 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return a linked list of coordinates with duplicates
 	 */
 	@Override
-	public boolean duplicates() {
-
-		return false;
+	public LinkedList<T> duplicates() {
+		LinkedList<T> list = new LinkedList<T>();
+		
+		list.append(this.NW.duplicates());
+		list.append(this.NE.duplicates());
+		list.append(this.SW.duplicates());
+		list.append(this.SE.duplicates());
+		
+		return list;
 	}
 	
 	/**
