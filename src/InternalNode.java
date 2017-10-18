@@ -30,8 +30,9 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 */
 	@Override
 	public boolean insert(int x, int y, T obj) {
-
-		return false;
+		Direction dir = obj.compareTo(x, y);
+		QuadTreeNode<T> child = this.getBranch(dir);
+		return child.insert(getBranchX(x, dir), getBranchY(y, dir), obj);
 	}
 
 
@@ -106,7 +107,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @param direc - direction to search in
 	 * @return branch corresponding to direction
 	 */
-	public QuadTreeNode<T> getBranch(Direction direc) {
+	private QuadTreeNode<T> getBranch(Direction direc) {
 		switch(direc){
 			case NW:
 				return NW;
@@ -122,6 +123,46 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	}
 	
 	/**
+	 * Get the x mid-point of the given branch
+	 * 
+	 * @param x - current x mid-point
+	 * @param dir - direction of branch
+	 * @return eastern midpoint if direction is east,
+	 * otherwise western midpoint
+	 */
+	private int getBranchX(int x, Direction dir) {
+		switch(dir) {
+		case NW:
+		case SW:
+			return x / 2;
+		case NE:
+		case SE:
+		default:
+			return x + (x / 2);	
+		}
+	}
+	
+	/**
+	 * Get the y mid-point of the given branch
+	 * 
+	 * @param y - current y mid-point
+	 * @param dir - direction of branch
+	 * @return norther midpoint if direction is north,
+	 * otherwise southern midpoint
+	 */
+	private int getBranchY(int y, Direction dir) {
+		switch(dir) {
+		case NW:
+		case NE:
+			return y / 2;
+		case SW:
+		case SE:
+		default:
+			return y + (y / 2);	
+		}
+	}
+	
+	/**
 	 * Get the quadrant object coordinates are located in relative to the source coordinates
 	 * 
 	 * @param x - source x position 
@@ -130,7 +171,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @param objY - y position of object
 	 * @return direction of object from source
 	 */
-	public static Direction getDirection(int x, int y, int objX, int objY) {
+	private Direction getDirection(int x, int y, int objX, int objY) {
 		if(x < objX) {
 			if(y < objY) {
 				return Direction.SW;
