@@ -5,40 +5,60 @@
  * @author Shan Ding (dszero); David Thames (davidct)
  *
  */
-public abstract class QuadTreeNode< T extends Comparable2D<? super T> >
+public interface QuadTreeNode< T extends Comparable2D<? super T> >
 {
-	public boolean insert(T obj)
-	{
-		return false;
-	}
+	/**
+	 * Insert object into QuadTree
+	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param obj - object to insert
+	 * @return true if inserted, false if duplicate
+	 */
+	public boolean insert(int x, int y, T obj);
 	
-	public boolean remove(T obj)
-	{
-		return false;
-	}
+	/**
+	 * Remove object from QuadTree
+	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param obj - object to remove
+	 * @return true if removed, false if not found
+	 */
+	public boolean remove(int x, int y, T obj);
 	
-	public boolean remove(int x, int y)
-	{
-		return false;
-	}
+	/**
+	 * Remove object at given coordinates from children leaves
+	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param x - x coordinate of object
+	 * @param y - y coordinate of object
+	 * @return true if removed, false if not found
+	 */
+	public boolean remove(int x, int y, int objX, int objY);
 	
-	public boolean regionsearch(int x, int y, int w, int h)
-	{
-		return false;
-	}
+	/**
+	 * Find all nodes in region bounded by the given square
+	 * 
+	 * @param x - upper bound square
+	 * @param y - lower bound square
+	 * @return a linked list of objects contained in the bounded region
+	 */
+	public boolean regionsearch(int x, int y, int w, int h);
 	
-	public boolean duplicates()
-	{
-		return false;
-	}
+	/**
+	 * Find all objects with duplicate locations
+	 * 
+	 * @return a linked list of coordinates with duplicates
+	 */
+	public boolean duplicates();
 	
-	public static boolean isLeaf(QuadTreeNode node)
-	{
-		if (node.getClass() == LeafNode.class)
-		{
-			return true;
-		}
-		return false;
-	}
+	/**
+	 * Determine if object is leaf node
+	 * 
+	 * @return true if leaf, false if internal
+	 */
+	public boolean isLeaf();
 
 }

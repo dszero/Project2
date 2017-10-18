@@ -6,55 +6,96 @@
  * @version 10.16.2017
  *
  */
-public class LeafNode< T extends Comparable2D<? super T> > extends QuadTreeNode<T>{
+public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNode<T>{
+	
+	private LinkedList<T> items;
 	
 	/**
-	 * initialize the variables
+	 * Create new flyweight leaf node
 	 */
-	private Point point;
-	private int count;
-	
-//	public LeafNode(Point point1, Point point2, Point point3)
-//	{
-//		this.point = point;
-//	}
-	
-	
-	
-	public LeafNode(Point point)
+	public LeafNode()
 	{
-		this.point = point;
+		
 	}
 	
-//	/**
-//	 * override the interface function
-//	 * since this is the leafnode class
-//	 * this function should return true
-//	 */
-//	@Override
-//	public boolean isLeaf() {
-//		return true;
-//	}
-//	/**
-//	 * override the interface function
-//	 * get the x coordinate of the point that has been 
-//	 * stored in the leaf node
-//	 */
-//	@Override
-//	public int getX()
-//	{
-//		return point.getX();
-//	}
-//	
-//	/**
-//	 * override the interface function
-//	 * get the y coordinate of the point that has been 
-//	 * stored in the leaf node
-//	 */
-//	@Override
-//	public int getY()
-//	{
-//		return point.getY();
-//	}
+	/**
+	 * Create leaf node containing one object
+	 * 
+	 * @param point
+	 */
+	public LeafNode(T obj)
+	{
+		
+	}
 
+	/**
+	 * Insert object into leaf node or split into multiple leaves
+	 * 
+	 * @param obj - object to insert
+	 * @return true if inserted, false if it is a duplicate
+	 */
+	@Override
+	public boolean insert(T obj) {
+
+		return false;
+	}
+
+	/**
+	 * Remove object from leaf node
+	 * 
+	 * @param obj - object to remove
+	 * @return true if removed, false if not found
+	 */
+	@Override
+	public boolean remove(T obj) {
+
+		return false;
+	}
+
+	/**
+	 * Remove object at given coordinates from leaf node
+	 * 
+	 * @param x - x coordinate of object
+	 * @param y - y coordinate of object
+	 */
+	@Override
+	public boolean remove(int x, int y) {
+
+		return false;
+	}
+
+	/**
+	 * Find all nodes in region bounded by the given square
+	 * 
+	 * @param x - upper bound square
+	 * @param y - lower bound square
+	 * @return a linked list of objects contained in the bounded region
+	 */
+	@Override
+	public boolean regionsearch(int x, int y, int w, int h) {
+
+		return false;
+	}
+
+	/**
+	 * Find all objects with duplicate locations
+	 * 
+	 * @return a linked list of coordinates with duplicates
+	 */
+	@Override
+	public boolean duplicates() {
+
+		return false;
+	}
+	
+	/**
+	 * Indicate this is a leaf node
+	 * 
+	 * @return true
+	 */
+	@Override
+	public boolean isLeaf() {
+		return true;
+	}
+	
 }
