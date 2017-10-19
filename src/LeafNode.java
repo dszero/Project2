@@ -51,8 +51,9 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public boolean remove(T obj) {
-
-		return false;
+		boolean removed = false;
+		//TODO: Iterate through linked list, remove node when found 
+		return removed;
 	}
 
 	/**
@@ -63,7 +64,8 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public boolean remove(int x, int y) {
-
+		boolean removed = false;
+		//TODO: Iterate through linked list, remove node when found 
 		return false;
 	}
 
@@ -129,5 +131,4 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		return newNode;
 		
 	}
-	
 }

@@ -52,7 +52,9 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		Direction dir = obj.compareTo(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
 		boolean out = child.remove(getBranchX(x, dir), getBranchY(y, dir), obj);
-		//TODO: Check Decomposition
+		if(child.getClass().equals(LeafNode.class)) {
+			setBranch(dir, ((LeafNode<T>) child).combine(getBranchX(x, dir), getBranchY(y, dir));
+		}	
 		return out;
 	}
 
@@ -232,6 +234,57 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 				return Direction.NE;
 			}
 		}
+	}
+	
+	/**
+	 * If the leaf does not meet the decomposition rule, decompose it
+	 * 
+	 * @return this node if it does not need to be decomposed or a decomposed internal node if it does
+	 */
+	public QuadTreeNode<T> combine(int x, int y) {
+		for(Direction dir : Direction.values()) {
+			if(!getBranch(dir).getClass().equals(LeafNode.class)) {
+				return this;
+			}
+		}
+		
+		LinkedList items = this.allChildren();
+		
+		
+		//Check decomposition rule
+		boolean sameLoc = true;
+		for(T i : items) {
+			if(i.compareTo(items.get(0)) != 0) {
+				sameLoc = false;
+			}
+		}
+		if(!sameLoc && items.length() > 3) {
+			return this;
+		}
+		
+		//decompose
+		LeafNode<T> newNode = new LeafNode<T>();
+		for(T i : items) {
+			newNode.insert(x, y, i);
+		}
+		return newNode;
+		
+	}
+	
+	/**
+	 * Get all child items of this region
+	 * 
+	 * @return linked list of items
+	 */
+	@Override
+	private LinkedList<T> allChildren() {
+		LinkedList<T> list = new LinkedList<T>();
+		
+		for(Direction dir : Direction.values()) {
+			list.append(getBranch(dir));
+		}
+		
+		return list;
 	}
 	
 	
