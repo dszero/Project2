@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * This is the leaf node class
  * will implement the prquadtree interface
@@ -35,9 +37,10 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return true if inserted, false if it is a duplicate
 	 */
 	@Override
-	public boolean insert(T obj) {
-
-		return false;
+	public boolean insert(int x, int y, T obj) {
+		items.append();
+		//TODO: Check for duplicates
+		return true;
 	}
 
 	/**
@@ -96,6 +99,35 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	@Override
 	public boolean isLeaf() {
 		return true;
+	}
+	
+	/**
+	 * If the leaf does not meet the decomposition rule, decompose it
+	 * 
+	 * @return this node if it does not need to be decomposed or a decomposed internal node if it does
+	 */
+	public QuadTreeNode decompose(int x, int y) {
+		//Check decomposition rule
+		if(items.length() < 4) {
+			return this;
+		}
+		boolean sameLoc = true;
+		for(T i : items) {
+			if(i.compareTo(items.get(0)) != 0) {
+				sameLoc = false;
+			}
+		}
+		if(sameLoc) {
+			return this;
+		}
+		
+		//decompose
+		InternalNode<T> newNode = new InternalNode<T>();
+		for(T i : items) {
+			newNode.insert(x, y, i);
+		}
+		return newNode;
+		
 	}
 	
 }

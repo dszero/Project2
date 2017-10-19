@@ -33,6 +33,9 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		Direction dir = obj.compareTo(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
 		return child.insert(getBranchX(x, dir), getBranchY(y, dir), obj);
+		if(child.getClass().equals(LeafNode.class)) {
+			setBranch(dir, ((LeafNode<T>) child).decompose(getBranchX(x, dir), getBranchY(y, dir));
+		}	
 	}
 
 
@@ -137,6 +140,27 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 				return SE;
 			case SW:
 				return SW;
+			default:
+				return null;
+		}
+	}
+	
+	/**
+	 * Return the branch corresponding to the given direction
+	 * 
+	 * @param direc - direction to search in
+	 * @return branch corresponding to direction
+	 */
+	private QuadTreeNode<T> setBranch(Direction direc, QuadTreeNode obj) {
+		switch(direc){
+			case NW:
+				this.NW = obj;
+			case NE:
+				this.NE = obj;
+			case SE:
+				this.SE = obj;
+			case SW:
+				this.SW = obj;
 			default:
 				return null;
 		}
