@@ -1,3 +1,5 @@
+import java.io.File;
+
 /**
  * Database will parse the inpur file and receive the commands 
  * and call functions from both BST and Quadtree 
@@ -7,5 +9,15 @@
  */
 public class Database 
 {
+	private File file;
 
+	public Database(File file)
+	{
+		this.file = file;
+	}
+	
+	public void Exec()
+	{
+		
+	}
 }
