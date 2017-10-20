@@ -7,7 +7,8 @@ public class DLinkedList
 	/**
 	 * initialize the variables
 	 */
-	private Node head, tail; 
+	private Node head;
+	private Node tail;
 	private int listSize; //size of the linked list
 	private boolean identicalPoints; //true if all the points in the 
 											//list have the same location coordinates
@@ -16,21 +17,22 @@ public class DLinkedList
 	 */
 	public DLinkedList()
 	{
-		
+		head = new Node();
+		tail = new Node();
 		head.next = tail;
 		tail.prev = head;
 		identicalPoints = true;
 		listSize = 0;
 	}
-	/**
-	 * check if the linked list is empty
-	 * @return true if list size is 0, 
-	 * 			otherwise, return false
-	 */
-	public boolean isEmpty()
-	{
-		return listSize == 0;
-	}
+//	/**
+//	 * check if the linked list is empty
+//	 * @return true if list size is 0, 
+//	 * 			otherwise, return false
+//	 */
+//	public boolean isEmpty()
+//	{
+//		return listSize == 0;
+//	}
 	
 	/**
 	 * get the current size of the list
@@ -39,6 +41,15 @@ public class DLinkedList
 	public int getLIstSize()
 	{
 		return listSize;
+	}
+	
+	/**
+	 * get the boolean identicalPoints
+	 * @return identicalPoints
+	 */
+	public boolean getIdenticalPoints()
+	{
+		return identicalPoints;
 	}
 	
 	/**
@@ -63,7 +74,7 @@ public class DLinkedList
 	
 		if (listSize >= 3) //identicalPoints is true
 		{
-			if (!identicalPoints && checkIdentical(newNode))
+			if (identicalPoints == true && checkIdentical(newNode))
 			{
 				added = true;
 			}
@@ -86,6 +97,7 @@ public class DLinkedList
 			addToFront(newNode);
 			listSize++;
 		}
+		
 		return added;
 			
 	}
@@ -121,6 +133,7 @@ public class DLinkedList
 		head.next = newNode;
 		
 	}
+	
 	/**
 	 * check if there are points that have been stored in the nodes
 	 * have the same name as the parameter string
@@ -148,7 +161,7 @@ public class DLinkedList
 	}
 	
 	/**
-	 * remove nodes in the llnked list that have the same x and y coordinates 
+	 * remove nodes in the linked list that have the same x and y coordinates 
 	 * as the passed in parameters
 	 * if the list size is greater than three, which means every points that 
 	 * have been stored in this list all have the same locations coordinates
@@ -195,9 +208,28 @@ public class DLinkedList
 		/**
 		 * initialize node class variables
 		 */
-		private Node prev, next;//Set the previous and next references of nodes
+		private Node prev;//Set the previous and next references of nodes
+		public Node next;
 		private Point point; //The object that will be stored in the node
+	
 	}
+	
+	/**
+	 * print out all the points in the list
+	 */
+	public String toString()
+	{
+		String str = "";
+		Node current = head.next;
+		for (int i= 0; i < listSize; i++)
+		{
+			str = str + "(" + current.point.getName() + ", "
+					+ current.point.getX() + ", " + 
+					current.point.getY() + ")";
+		}
+		return str;
+	}
+	
 	
 
 
