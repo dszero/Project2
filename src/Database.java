@@ -5,6 +5,7 @@
  * @version 10.16.2017
  *
  */
-public class Database {
+public class Database 
+{
 
 }
