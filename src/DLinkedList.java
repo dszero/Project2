@@ -7,7 +7,7 @@ public class DLinkedList
 	/**
 	 * initialize the variables
 	 */
-	private Node head;
+	Node head;
 	private Node tail;
 	private int listSize; //size of the linked list
 	private boolean identicalPoints; //true if all the points in the 
@@ -19,20 +19,12 @@ public class DLinkedList
 	{
 		head = new Node();
 		tail = new Node();
-		head.next = tail;
-		tail.prev = head;
+		head.setNext(tail);
+		tail.setPrev(head);
 		identicalPoints = true;
 		listSize = 0;
 	}
-//	/**
-//	 * check if the linked list is empty
-//	 * @return true if list size is 0, 
-//	 * 			otherwise, return false
-//	 */
-//	public boolean isEmpty()
-//	{
-//		return listSize == 0;
-//	}
+
 	
 	/**
 	 * get the current size of the list
@@ -68,13 +60,10 @@ public class DLinkedList
 	public boolean add(Point point) 
 	{
 		boolean added = false;
-		Node newNode = new Node();
-		newNode.point = point;
 		
-	
 		if (listSize >= 3) //identicalPoints is true
 		{
-			if (identicalPoints == true && checkIdentical(newNode))
+			if (identicalPoints == true && checkIdentical(point))
 			{
 				added = true;
 			}
@@ -85,7 +74,7 @@ public class DLinkedList
 		}
 		else
 		{
-			if (!checkIdentical(newNode))
+			if (!checkIdentical(point))
 			{
 				identicalPoints = false;
 			}
@@ -94,12 +83,11 @@ public class DLinkedList
 		
 		if (added == true)
 		{
-			addToFront(newNode);
+			addToFront(point);
 			listSize++;
 		}
 		
-		return added;
-			
+		return added;			
 	}
 	
 	/**
@@ -111,10 +99,10 @@ public class DLinkedList
 	 * 			with the point that is stored in the first node in the list;
 	 * 			otherwise, return false.
 	 */
-	public boolean checkIdentical(Node newNode)
+	public boolean checkIdentical(Point point)
 	{
-		if (newNode.point.getX() == head.next.point.getX() &&
-				newNode.point.getY() == head.next.point.getY())
+		if (point.getX() == head.next().point().getX() &&
+				point.getY() == head.next().point().getY())
 		{
 			return true;
 		}
@@ -125,13 +113,15 @@ public class DLinkedList
 	 * add a new node to the front of the list
 	 * @param point that needs to be stored in the new node
 	 */
-	public void addToFront(Node newNode)
+	public Node addToFront(Point point)
 	{
-		head.next.prev = newNode;
-		newNode.next = head.next;
-		newNode.prev = head;
-		head.next = newNode;
-		
+		Node newNode = new Node();
+		newNode.setPoint(point);
+		newNode.setPrev(head);
+		newNode.setNext(head.next());
+		head.next().setPrev(newNode);
+		head.setNext(newNode);
+		return newNode;
 	}
 	
 	/**
@@ -145,17 +135,18 @@ public class DLinkedList
 	public boolean remove(String name)
 	{
 		boolean removed = false;
-		Node current = head.next;
+		Node current = head.next();
 		while (current != tail)
 		{
-			if (current.point.getName().equals(name))
+			if (current.point().getName().equals(name))
 			{
-				current.prev.next = current.next;
-				current.next.prev = current.prev;
+				//System.out.println(current.point().getName());
+				current.prev().setNext(current.next());
+				current.next().setPrev(current.prev());
+				removed = true;
+				listSize--;
 			}
-			current = current.next;
-			removed = true;
-			listSize--;
+			current = current.next();			
 		}
 		return removed;
 	}
@@ -173,62 +164,50 @@ public class DLinkedList
 	public boolean remove(int x, int y)
 	{
 		boolean removed = false;
+		Point tempPoint = new Point("Test", x, y);
 		//every point in this linked list has the same x and y coordinates
-		if (identicalPoints) 
+		if (identicalPoints && checkIdentical(tempPoint)) 
 		{
-			head.next = tail;
-			tail.prev = head;
+			head.setNext(tail);
+			tail.setPrev(head);
 			removed = true;
 			listSize = 0;
 		}
 		else
 		{
-			Node current = head.next;
+			Node current = head.next();
 			for (int i = 0; i < listSize; i++)
 			{
-				if (current.point.getX() == x && current.point.getY() == y)
+				if (current.point().getX() == x && current.point().getY() == y)
 				{
-					current.prev.next = current.next;
-					current.next.prev = current.prev;
+					current.prev().setNext(current.next());
+					current.next().setPrev(current.prev());
 					removed = true;
 					listSize--;
 				}
-				current = current.next;
+				current = current.next();
 			}
 		}
 		return removed;
 	}
 
-	/**
-	 * this is an inner node class for doubly linked list
-	 * which gives the references of the list
-	 */
-	private class Node
-	{
-		/**
-		 * initialize node class variables
-		 */
-		private Node prev;//Set the previous and next references of nodes
-		public Node next;
-		private Point point; //The object that will be stored in the node
 	
-	}
 	
 	/**
 	 * print out all the points in the list
 	 */
-	public String toString()
-	{
-		String str = "";
-		Node current = head.next;
-		for (int i= 0; i < listSize; i++)
-		{
-			str = str + "(" + current.point.getName() + ", "
-					+ current.point.getX() + ", " + 
-					current.point.getY() + ")";
-		}
-		return str;
-	}
+//	public String toString()
+//	{
+//		String str = "";
+//		Node current = head.next;
+//		for (int i= 0; i < listSize; i++)
+//		{
+//			str = str + "(" + current.point.getName() + ", "
+//					+ current.point.getX() + ", " + 
+//					current.point.getY() + ")";
+//		}
+//		return str;
+//	}
 	
 	
 
