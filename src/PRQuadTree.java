@@ -46,6 +46,20 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	}
 	
 	/**
+	 * Remove object as given x, y coordinates
+	 * 
+	 * @param x - x coordinate of obj to remove
+	 * @param y - y coordinate of obj to remove
+	 * @return true if removed false if not
+	 */
+	public boolean remove(int xObj, int yObj) {
+		if(elem == null || root == null) {
+			return false;
+		}
+		return root.remove(centerX(), centerY(), xObj, yObj);
+	}
+	
+	/**
 	 * Find item in tree
 	 * 
 	 * @param elem - object to find
@@ -56,6 +70,20 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 			return null;
 		}
 		return root.find(centerX(), centerY(), elem);
+	}
+	
+	/**
+	 * Find item in tree by x, y coordinates
+
+	 * @param x - x coordinate of obj to find
+	 * @param y - y coordinate of obj to find
+	 * @return object if found, null if not
+	 */
+	public T find(int objX, int objY) {
+		if(xMin > objX  || objX < xMax || yMin > objY  || objY < yMax || root == null) {
+			return null;
+		}
+		return root.find(centerX(), centerY(), objX, objY);
 	}
 	
 	/**

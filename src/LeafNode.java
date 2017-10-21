@@ -159,12 +159,24 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 			newNode.insert(x, y, i);
 		}
 		return newNode;
-		
 	}
 
 	@Override
 	public DLinkedList<T> allChildren() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public T find(int x, int y, int objX, int objY) {
+		T objToReturn = null;
+		
+		for(T item : items) {
+			if(item.compareX(objX) == 0 && item.compareY(objY) == 0) {
+				objToReturn = item;
+			}
+		}
+		
+		return objToReturn;
 	}
 }
