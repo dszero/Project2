@@ -17,11 +17,11 @@ public class Point implements Comparable2D<Point> {
 	 * @param x coordinate of  the point object
 	 * @param y coordinate of the point object
 	 */
-	public Point(String name, int x, int y)
+	public Point(String name, int newX, int newY)
 	{
 		this.name = name;
-		this.x = x;
-		this.y = y;
+		this.x = newX;
+		this.y = newY;
 	}
 	
 	/**
@@ -50,17 +50,73 @@ public class Point implements Comparable2D<Point> {
 	{
 		return y;
 	}
-
-	@Override
-	public Direction compareTo(Point o) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public boolean equals(Object o) {
+		if(o != null && o instanceof Point) {
+			Point oP = (Point) o;
+			return name == oP.getName() && this.equals2D(oP);
+		}
+		return false;
 	}
 
 	@Override
-	public Direction compareTo(int otherX, int otherY) {
-		// TODO Auto-generated method stub
-		return null;
+	public int compareTo(Point o) {
+		return name.compareTo(o.getName());
+	}
+
+	@Override
+	public Direction compare2D(Point o) {
+		if(o.compareX(x) > 0) {
+			if(o.compareY(y) > 0) {
+				return Direction.SW;
+			}
+			else { 
+				return Direction.SE;
+			}
+		}
+		else { 
+			if(o.compareX(x) > 0) { 
+				return Direction.NW;
+			}
+			else {
+				return Direction.NE;
+			}
+		}
+	}
+
+	@Override
+	public int compareX(int otherX) {
+		return x - otherX;
+	}
+
+	@Override
+	public int compareY(int otherY) {
+		return y - otherY;
+	}
+
+	@Override
+	public Direction compare2D(int otherX, int otherY) {
+		if(x < otherX) {
+			if(y < otherY) {
+				return Direction.SW;
+			}
+			else { 
+				return Direction.SE;
+			}
+		}
+		else { 
+			if(y < otherY) { 
+				return Direction.NW;
+			}
+			else {
+				return Direction.NE;
+			}
+		}
+	}
+
+	@Override
+	public boolean equals2D(Point o) {
+		return o.compareX(x) == 0 && o.compareY(y) == 0;
 	}
 
 }
