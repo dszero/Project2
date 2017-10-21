@@ -12,21 +12,24 @@ import java.util.Scanner;
 public class Database 
 {
 	private File file;
-	private PRQuadTree quadtree;
-	private BST bst;
+	private PRQuadTree<Point> quadtree;
+	private BST<Point> bst;
 
 	/**
 	 * initialize the constructor of the database
 	 * @param file will be passed in and parsed
 	 */
-	public Database(File file)
+	public Database(File file, PRQuadTree<Point> quadtree, BST<Point> bst)
 	{
-		this.file = file;
-		quadtree = new PRQuadTree();
-		bst = new BST();
-		
+		this.file = file;		
+		this.quadtree = quadtree;
+		this.bst = bst;
 	}
 	
+	/**
+	 * parse file and execute all the valid commands in the files
+	 * @throws FileNotFoundException if file is not found 
+	 */
 	public void parse() throws FileNotFoundException
 	{
 		Scanner scanner = new Scanner(file);
@@ -34,6 +37,8 @@ public class Database
 		while (scanner.hasNextLine())
 		{
 			String[] line = parseLine(scanner.nextLine());
+			
+			//check if the array is null, if 
 			if (line != null)
 			{
 				if (line[0].equals("insert"))//Point Rejected: (r_r, -1, -20)
@@ -43,9 +48,10 @@ public class Database
 					int y = Integer.parseInt(line[3]);
 					String pointInfo = "(" + name + ", " + x + ", " + y +")";
 					String result = null;
-					if (bst.insert(name, x, y))
+					Point point = new Point(name, x, y);
+					
+					if (quadtree.insert(point) && bst.insert(point))
 					{
-						quadtree.insert(name, x, y);
 						result = "Point Inserted: " + pointInfo;
 					}
 					else//if it is a invalid point
