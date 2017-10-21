@@ -108,10 +108,10 @@ public class PointTest extends TestCase {
 	 * test the equals method
 	 */
 	public void testEquals() {
-		assertTrue(point.equals2D(pointE));
-		assertFalse(point.equals2D(pointNE1));
+		assertTrue(point.equals(pointE));
+		assertFalse(point.equals(pointNE1));
 		
-		assertFalse(point.equals2D(pointEXY));
-		assertFalse(point.equals2D(pointEName));
+		assertFalse(point.equals(pointEXY));
+		assertFalse(point.equals(pointEName));
 	}
 }

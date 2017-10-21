@@ -66,8 +66,8 @@ public class Point implements Comparable2D<Point> {
 
 	@Override
 	public Direction compare2D(Point o) {
-		if(o.compareX(x) > 0) {
-			if(o.compareY(y) > 0) {
+		if(o.compareY(y) < 0) {
+			if(o.compareX(x) > 0) {
 				return Direction.SW;
 			}
 			else { 
@@ -96,8 +96,8 @@ public class Point implements Comparable2D<Point> {
 
 	@Override
 	public Direction compare2D(int otherX, int otherY) {
-		if(x < otherX) {
-			if(y < otherY) {
+		if(y > otherY) {
+			if(x < otherX) {
 				return Direction.SW;
 			}
 			else { 
@@ -105,7 +105,7 @@ public class Point implements Comparable2D<Point> {
 			}
 		}
 		else { 
-			if(y < otherY) { 
+			if(x < otherX) { 
 				return Direction.NW;
 			}
 			else {
