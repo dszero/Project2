@@ -32,7 +32,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	public boolean insert(int x, int y, T obj) {
 		boolean out = false;
 		
-		Direction dir = obj.compareTo(x, y);
+		Direction dir = obj.compare2D(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
 		
 		out = child.insert(getBranchX(x, dir), getBranchY(y, dir), obj);
@@ -55,12 +55,14 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 */
 	@Override
 	public boolean remove(int x, int y, T obj) {
-		Direction dir = obj.compareTo(x, y);
+		Direction dir = obj.compare2D(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
 		boolean out = child.remove(getBranchX(x, dir), getBranchY(y, dir), obj);
-		if(child.getClass().equals(LeafNode.class)) {
-			setBranch(dir, ((LeafNode<T>) child).combine(getBranchX(x, dir), getBranchY(y, dir));
+		
+		if(child.getClass().equals(InternalNode.class)) {
+			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX(x, dir), getBranchY(y, dir)));
 		}	
+		
 		return out;
 	}
 
@@ -78,7 +80,11 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		Direction dir = getDirection(x, y, objX, objY);
 		QuadTreeNode<T> child = this.getBranch(dir);
 		boolean out = child.remove(getBranchX(x, dir), getBranchY(y, dir), objX, objY);
-		//TODO: Check Decomposition
+		
+		if(child.getClass().equals(InternalNode.class)) {
+			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX(x, dir), getBranchY(y, dir)));
+		}	
+		
 		return out;
 	}
 
@@ -260,7 +266,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		//Check decomposition rule
 		boolean sameLoc = true;
 		for(T i : items) {
-			if(i.compareTo(items.get(0)) != 0) {
+			if(!i.equals2D(items.get(0))) {
 				sameLoc = false;
 			}
 		}

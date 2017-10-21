@@ -45,14 +45,14 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param y - lower bound square
 	 * @return a linked list of objects contained in the bounded region
 	 */
-	public boolean regionsearch(int x, int y, int objX, int objY, int objW, int objH);
+	public DLinkedList<T> regionsearch(int x, int y, int objX, int objY, int objW, int objH);
 	
 	/**
 	 * Find all objects with duplicate locations
 	 * 
 	 * @return a linked list of coordinates with duplicates
 	 */
-	public boolean duplicates();
+	public DLinkedList<T> duplicates();
 	
 	/**
 	 * Determine if object is leaf node
@@ -60,5 +60,12 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @return true if leaf, false if internal
 	 */
 	public boolean isLeaf();
+	
+	/**
+	 * get all children items
+	 * 
+	 * @return all objects contained under this node as a linked list
+	 */
+	public DLinkedList<T> allChildren();
 
 }
