@@ -1,28 +1,29 @@
 
-public interface Comparable2D<T> {
+public interface Comparable2D<T> extends Comparable<T> {
 	
 	/**
-	 * Get the x position of this object
+	 * compare this objects x position with the given position
 	 * 
-	 * @return x position
+	 * @param otherX - x coordinate to compare against
+	 * @return < 0, 0 , or > 0 depending on the order of the two positions
 	 */
-	int getX();
+	int compareX(int otherX);
 	
 	/**
-	 * Get the y position of this object
+	 * compare this objects y position with the given position
 	 * 
-	 * @return y position
+	 * @param otherY - y coordinate to compare against
+	 * @return < 0, 0 , or > 0 depending on the order of the two positions
 	 */
-	int getY();
-	
+	int compareY(int otherY);
 	
 	/**
-	 * Compare to another 2D comparable object
+	 * Compare x and y coordinates to another 2D comparable object
 	 * 
 	 * @param obj - object to compare with this object
 	 * @return direction based on x & y of both objects
 	 */
-	Direction compareTo(T o);
+	Direction compare2D(T o);
 	
 	/**
 	 * Compare x and y coordinates
@@ -31,5 +32,15 @@ public interface Comparable2D<T> {
  	 * @param otherY - y coordinate to compare against
 	 * @return direction from the point (otherX, otherY)
 	 */
-	Direction compareTo(int otherX, int otherY);
+	Direction compare2D(int otherX, int otherY);
+	
+	
+	/**
+	 * Check if objects are at the same position
+	 * 
+	 * @param o - object to compare against
+	 * @return true if same position, false if not
+	 */
+	boolean equals2D(T o);
+	
 }
