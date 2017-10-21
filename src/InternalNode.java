@@ -30,12 +30,18 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 */
 	@Override
 	public boolean insert(int x, int y, T obj) {
+		boolean out = false;
+		
 		Direction dir = obj.compareTo(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
-		return child.insert(getBranchX(x, dir), getBranchY(y, dir), obj);
+		
+		out = child.insert(getBranchX(x, dir), getBranchY(y, dir), obj);
+		
 		if(child.getClass().equals(LeafNode.class)) {
-			setBranch(dir, ((LeafNode<T>) child).decompose(getBranchX(x, dir), getBranchY(y, dir));
+			setBranch(dir, ((LeafNode<T>) child).decompose(getBranchX(x, dir), getBranchY(y, dir)));
 		}	
+		
+		return out;
 	}
 
 
@@ -85,11 +91,11 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return a linked list of objects contained in the bounded region
 	 */
 	@Override
-	public LinkedList<T> regionsearch(int x, int y, 
+	public DLinkedList<T> regionsearch(int x, int y, 
 			int objX, int objY, int objW, int objH) {
 		if((objX < x && (objX + objW) > x) || (objY < y && (objY + objH) > y)) {
 			//TODO: search region
-			return false;
+			return null;
 		}
 		Direction dir = getDirection(x, y, objX, objY);
 		QuadTreeNode<T> child = this.getBranch(dir);
@@ -105,13 +111,13 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return a linked list of coordinates with duplicates
 	 */
 	@Override
-	public LinkedList<T> duplicates() {
-		LinkedList<T> list = new LinkedList<T>();
+	public DLinkedList<T> duplicates() {
+		DLinkedList<T> list = new DLinkedList<T>();
 		
-		list.append(this.NW.duplicates());
-		list.append(this.NE.duplicates());
-		list.append(this.SW.duplicates());
-		list.append(this.SE.duplicates());
+		list.addAll(this.NW.duplicates());
+		list.addAll(this.NE.duplicates());
+		list.addAll(this.SW.duplicates());
+		list.addAll(this.SE.duplicates());
 		
 		return list;
 	}
@@ -153,7 +159,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @param direc - direction to search in
 	 * @return branch corresponding to direction
 	 */
-	private QuadTreeNode<T> setBranch(Direction direc, QuadTreeNode obj) {
+	private QuadTreeNode<T> setBranch(Direction direc, QuadTreeNode<T> obj) {
 		switch(direc){
 			case NW:
 				this.NW = obj;
@@ -248,7 +254,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 			}
 		}
 		
-		LinkedList items = this.allChildren();
+		DLinkedList<T> items = this.allChildren();
 		
 		
 		//Check decomposition rule
@@ -258,7 +264,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 				sameLoc = false;
 			}
 		}
-		if(!sameLoc && items.length() > 3) {
+		if(!sameLoc && items.size() > 3) {
 			return this;
 		}
 		
@@ -277,11 +283,11 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return linked list of items
 	 */
 	@Override
-	private LinkedList<T> allChildren() {
-		LinkedList<T> list = new LinkedList<T>();
+	public DLinkedList<T> allChildren() {
+		DLinkedList<T> list = new DLinkedList<T>();
 		
 		for(Direction dir : Direction.values()) {
-			list.append(getBranch(dir));
+			list.addAll(getBranch(dir).allChildren());
 		}
 		
 		return list;
