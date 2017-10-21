@@ -22,7 +22,14 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @return true if inserted, fakse if not
 	 */
 	public boolean insert(T elem) {
-		return false;
+		if(elem == null) {
+			return false;
+		}
+		if(root == null) {
+			root = new LeafNode(elem);
+			return true;
+		}
+		return root.insert(centerX(), centerY(), elem);
 	}
 	
 	/**
@@ -32,7 +39,10 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @return true if removed, false if not
 	 */
 	public boolean remove(T elem) {
-		return false;
+		if(elem == null || root == null) {
+			return false;
+		}
+		return root.remove(centerX(), centerY(), elem);
 	}
 	
 	/**
@@ -42,14 +52,35 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @return object if found, null if not
 	 */
 	public T find(T elem) {
-		return null;
+		if(elem == null || root == null) {
+			return null;
+		}
+		return root.find(centerX(), centerY(), elem);
 	}
 	
 	/**
 	 * Clear all items from tree
 	 */
 	public void clear() {
-		
+		root = null;
+	}
+	
+	/**
+	 * Find the center x coordinate in the bounds of this tree
+	 * 
+	 * @return x coordinate of center
+	 */
+	private int centerX() {
+		return xMin + ((xMax - xMin) / 2);
+	}
+	
+	/**
+	 * Find the center y coordinate in the bounds of this tree
+	 * 
+	 * @return y coordinate of center
+	 */
+	private int centerY() {
+		return yMin + ((yMax - yMin) / 2);
 	}
 
 

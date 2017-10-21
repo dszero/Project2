@@ -87,6 +87,20 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		
 		return out;
 	}
+	
+	/**
+	 * Find object
+	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param obj - object to find
+	 * @return reference to object in tree if found, null if not found
+	 */
+	public T find(int x, int y, T obj) {
+		Direction dir = obj.compare2D(x, y);
+		QuadTreeNode<T> child = this.getBranch(dir);
+		return child.find(getBranchX(x, dir), getBranchY(y, dir), obj);
+	}
 
 
 	/**
