@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 
 /**
  * This is the leaf node class
@@ -10,14 +9,14 @@ import java.util.LinkedList;
  */
 public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNode<T>{
 	
-	private LinkedList<T> items;
+	private DLinkedList<T> items;
 	
 	/**
 	 * Create new flyweight leaf node
 	 */
 	public LeafNode()
 	{
-		
+		items = new DLinkedList<T>();
 	}
 	
 	/**
@@ -27,7 +26,8 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	public LeafNode(T obj)
 	{
-		
+		items = new DLinkedList<T>();
+		items.add(obj);
 	}
 
 	/**
@@ -38,8 +38,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public boolean insert(int x, int y, T obj) {
-		items.append();
-		//TODO: Check for duplicates
+		items.add(obj);
 		return true;
 	}
 
@@ -50,13 +49,8 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return true if removed, false if not found
 	 */
 	@Override
-	public boolean remove(T obj) {
-		int i = items.find(obj);
-		if(i == -1) {
-			return false;
-		}
-		items.remove(i);
-		return true;
+	public boolean remove(int x, int y, T obj) {
+		return items.remove(obj);
 	}
 
 	/**
@@ -66,7 +60,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @param y - y coordinate of object
 	 */
 	@Override
-	public boolean remove(int x, int y) {
+	public boolean remove(int x, int y, int xObj, int yObj) {
 		boolean removed = false;
 		//TODO: Iterate through linked list, remove node when found 
 		return false;
@@ -80,9 +74,9 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return a linked list of objects contained in the bounded region
 	 */
 	@Override
-	public boolean regionsearch(int x, int y, int objX, int objY, int objW, int objH) {
+	public DLinkedList<T> regionsearch(int x, int y, int objX, int objY, int objW, int objH) {
 
-		return false;
+		return null;
 	}
 
 	/**
@@ -91,9 +85,9 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return a linked list of coordinates with duplicates
 	 */
 	@Override
-	public boolean duplicates() {
+	public DLinkedList<T> duplicates() {
 
-		return false;
+		return null;
 	}
 	
 	/**
@@ -113,7 +107,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	public QuadTreeNode decompose(int x, int y) {
 		//Check decomposition rule
-		if(items.length() < 4) {
+		if(items.size() < 4) {
 			return this;
 		}
 		boolean sameLoc = true;
@@ -133,5 +127,11 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		}
 		return newNode;
 		
+	}
+
+	@Override
+	public DLinkedList<T> allChildren() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
