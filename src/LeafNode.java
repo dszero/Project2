@@ -51,9 +51,12 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public boolean remove(T obj) {
-		boolean removed = false;
-		//TODO: Iterate through linked list, remove node when found 
-		return removed;
+		int i = items.find(obj);
+		if(i == -1) {
+			return false;
+		}
+		items.remove(i);
+		return true;
 	}
 
 	/**
