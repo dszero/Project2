@@ -61,9 +61,15 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public boolean remove(int x, int y, int xObj, int yObj) {
-		boolean removed = false;
-		//TODO: Iterate through linked list, remove node when found 
-		return false;
+		T objToRemove = null;
+		
+		for(T item : items) {
+			if(item.compareX(xObj) == 0 && item.compareY(yObj) == 0) {
+				objToRemove = item;
+			}
+		}
+		
+		return items.remove(objToRemove);
 	}
 
 	/**
@@ -86,8 +92,14 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public DLinkedList<T> duplicates() {
-
-		return null;
+		DLinkedList<T> dup = new DLinkedList<T>();
+		if(items.size() < 4) {
+			//compare all items
+		}
+		else {
+			dup.add(items.get(0));
+		}
+		return dup;
 	}
 	
 	/**
