@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class Database 
 {
 	private File file;
-	private PRQuadTree<?> quadtree;
+	private PRQuadTree quadtree;
 	private BST bst;
 
 	/**
@@ -22,7 +22,7 @@ public class Database
 	public Database(File file)
 	{
 		this.file = file;
-		quadtree = new PRQuadTree<?>();
+		quadtree = new PRQuadTree();
 		bst = new BST();
 		
 	}
@@ -39,8 +39,8 @@ public class Database
 				if (line[0].equals("insert"))//Point Rejected: (r_r, -1, -20)
 				{
 					String name = line[1];
-					int x = PaserInt(line[2]);
-					int y = PaserInt(line[3]);
+					int x = Integer.parseInt(line[2]);
+					int y = Integer.parseInt(line[3]);
 					String pointInfo = "(" + name + ", " + x + ", " + y +")";
 					String result = null;
 					if (bst.insert(name, x, y))
@@ -82,8 +82,8 @@ public class Database
 				}
 				else if (line[0].equals("remove") && line.length == 3)
 				{
-					int x = PaserInt(line[1]);
-					int y = PaserInt(line[2]);
+					int x = Integer.parseInt(line[1]);
+					int y = Integer.parseInt(line[2]);
 					Point point = quadtree.remove(x, y);
 					if (point != null)
 					{
@@ -105,10 +105,7 @@ public class Database
 		scanner.close();
 	}
 	
-	private int PaserInt(String string) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	/**
 	 * parse a line. if line is not empty,
