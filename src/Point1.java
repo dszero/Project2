@@ -15,13 +15,21 @@ public class Point1 {
 	 * 					throws an exception if a file 
 	 * 					with the file name is not found
 	 */
-	public static void main(String fileName) throws FileNotFoundException
+	public static void main(String[] args) throws FileNotFoundException
 	{
-		File file = new File(fileName);
-		BST<Point> bst = new BST<Point>();
-		PRQuadTree<Point> quadtree = new PRQuadTree<Point>(0, 1024, 0, 1024);
-		Database database = new Database(file, quadtree, bst);
-		database.parse();
+		if (args[0] != null)
+		{
+			File file = new File(args[0]);
+			BST<Point> bst = new BST<Point>();
+			PRQuadTree<Point> quadtree = new PRQuadTree<Point>(0, 1024, 0, 1024);
+			Database database = new Database(file, quadtree, bst);
+			database.parse();
+		}
+		else
+		{
+			System.out.println("Invalid File Name");
+		}
+		
 	}
 
 }

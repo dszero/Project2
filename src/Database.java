@@ -152,7 +152,7 @@ public class Database
 	public void dump()
 	{
 		//bst dump
-		System.out.println("BST dump: ");
+		System.out.println("BST dump:");
 		int size = 0;
 		if (!bst.isEmpty())
 		{
@@ -179,7 +179,9 @@ public class Database
 		
 		//quad tree dump
 		System.out.println("QuadTree Dump: ");
-		System.out.println(quadtree.toString());
+		String quadtreeDump = quadtree.toString();
+		System.out.println(quadtreeDump);
+		System.out.println("QuadTree Size: " + (quadtreeDump.split("Node").length - 1));
 	
 	}
 	
