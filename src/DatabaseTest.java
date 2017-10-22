@@ -120,7 +120,40 @@ public class DatabaseTest extends TestCase{
 		assertEquals(bst.getSize(), 6);
 		
 	}
+	
+	/**
+	 * test search by name
+	 */
+	public void testSearchByName()
+	{
+		database.insertion("Jim", 5, 7);
+		database.insertion("Joe", 6, 7);
+		database.insertion("Kil", 10, 9);
+		database.insertion("Jim", 5, 7);
+		database.searchByName("Jim");
+		database.searchByName("pp");
+		assertEquals(4, quadtree.getSize());
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

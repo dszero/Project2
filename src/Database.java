@@ -69,8 +69,7 @@ public class Database
 				}
 				else if (line[0].equals("search"))//search by name
 				{
-					bst.find(line[1]);//Point Found: (r_r, 1, 20)
-					//Point Not Found: r_r
+					searchByName(line[0]);
 				}
 				else if (line[0].equals("remove") && line.length == 2)//remove by name
 				{
@@ -181,7 +180,9 @@ public class Database
 		System.out.println("QuadTree Dump: ");
 		String quadtreeDump = quadtree.toString();
 		System.out.println(quadtreeDump);
-		System.out.println("QuadTree Size: " + (quadtreeDump.split("Node").length - 1));
+		System.out.println("QuadTree Size: " + (quadtreeDump.
+								split("Node").length - 1) + 
+							"QuadTree Nodes Printed.");
 	
 	}
 	
@@ -252,6 +253,37 @@ public class Database
 			}
 		}
 		System.out.println(visitedNode + " Quadtree Nodes Visited");
+	}
+	
+	
+	/**
+	 * search point by name
+	 * @param name of the points
+	 */
+	public void searchByName(String name)
+	{
+		int size = 0;		
+		
+		Iterator<BST<Point>.NodeInfo> bstIterator = bst.iterator(Order.IN);
+		while (bstIterator.hasNext())
+		{
+			BST<Point>.NodeInfo info = bstIterator.next();
+			Point point = info.element;
+			if (point.getName().equals(name))
+			{
+				String pointInfo = name + ", " + point.getX() + ", "
+									+ point.getY() + ")";
+				System.out.println("Point Found: " + pointInfo);
+				size++;
+			}
+		}
+		
+		
+		if (size == 0)
+		{
+			System.out.println("Point Not Found: " + name);
+		}
+		
 	}
 }
 
