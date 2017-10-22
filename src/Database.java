@@ -69,7 +69,7 @@ public class Database
 				}
 				else if (line[0].equals("search"))//search by name
 				{
-					searchByName(line[0]);
+					searchByName(line[1]);
 				}
 				else if (line[0].equals("remove") && line.length == 2)//remove by name
 				{
