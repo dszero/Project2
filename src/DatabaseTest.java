@@ -75,6 +75,7 @@ public class DatabaseTest extends TestCase{
 		
 		database.removeByName("Jim");
 		database.bstDump();
+		System.out.println(quadtree.toString());
 		assertEquals(bst.getSize(), 3);
 		assertEquals(quadtree.getSize(), 3);
 	}

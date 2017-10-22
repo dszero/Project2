@@ -228,7 +228,8 @@ public class Database
 	 */
 	public void regionSearch(int x, int y, int w, int h)
 	{
-		DLinkedList<Point> list = quadtree.regionsearch(x, y, w, h);
+		DLinkedList<Point> list = new DLinkedList<Point>();
+		//quadtree.regionsearch(list, x, y, w, h);
 		System.out.println("Points Intersecting Region: (" + x
 							+ ", " + y + ", " + w + ", " + h + ")");
 		if (list.size() != 0)
