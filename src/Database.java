@@ -132,6 +132,7 @@ public class Database
 		String pointInfo = "(" + name + ", " + x + ", " + y +")";
 		String result = null;
 		//check if inserted point has valid coordinates
+		//System.out.println(quadtree.getXMax());
 		if (x >= 0 && y >= 0 && x < quadtree.getXMax() 
 				&& y < quadtree.getYMax())
 		{
@@ -244,7 +245,7 @@ public class Database
 				                     + point.getY() + ")");  
 			}
 		}
-		System.out.println(visitedNode + "Quadtree Nodes Visited");
+		System.out.println(visitedNode + " Quadtree Nodes Visited");
 	}
 }
 

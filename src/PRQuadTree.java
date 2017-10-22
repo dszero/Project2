@@ -69,6 +69,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 			return null;
 		}
 		T removed = root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
+		
 		if(removed != null) {
 			quadtreeSize--;
 		}
@@ -86,6 +87,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		if(xMin > objX  || objX > xMax || yMin > objY  || objY > yMax) {
 			return null;
 		}
+		System.out.println("not null");
 		quadtreeSize--;
 		return root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
 	}
