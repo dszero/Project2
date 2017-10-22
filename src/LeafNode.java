@@ -120,6 +120,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	/**
 	 * Find all nodes in region bounded by the given square
 	 * 
+	 * @param results - linked list to insert items contained in the region
 	 * @param x - current x position of node
 	 * @param y - current y position of node
 	 * @param w - current width of  node
@@ -128,12 +129,32 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @param objY - lower bound of square
 	 * @param objW - width of region
 	 * @param objH - height of region
-	 * @return a linked list of objects contained in the bounded region
+	 * @return number of nodes visited
 	 */
 	@Override
-	public DLinkedList<T> regionsearch(int x, int y,  int w, int h, int objX, int objY, int objW, int objH) {
-
-		return null;
+	public int regionsearch(DLinkedList<T> results, int x, int y,  int w, int h, int objX, int objY, int objW, int objH) {
+		//if region outside of node
+		if((x - (w / 2)) > objX + objW || 
+				(x + (w / 2)) < objX || 
+				(y - (h / 2)) > objY + objH  ||
+				(y + (h / 2)) < objY) {
+			return 0;
+		}
+		//if region contains node
+		if((x - (w / 2)) > objX && 
+				(x + (w / 2)) < objX + objW && 
+				(y - (h / 2)) > objY && 
+				(y + (h / 2)) < objY + objH) {
+			results.addAll(items);
+			return 1;
+		}
+		//if region intersects node
+		for(T item : items) {
+			if(item.compare2D(objX, objY) == Direction.SE && item.compare2D(objX + objW, objY + objY) == Direction.NW) {
+				results.add(item);
+			}
+		}
+		return 1;
 	}
 
 	/**

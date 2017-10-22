@@ -100,8 +100,8 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @param objH
 	 * @return
 	 */
-	public DLinkedList<T> regionsearch(int objX, int objY, int objW, int objH) {
-		return root.regionsearch(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY, objW, objH);
+	public int regionsearch(DLinkedList<T> results, int objX, int objY, int objW, int objH) {
+		return root.regionsearch(results, centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY, objW, objH);
 	}
 	
 	/**
