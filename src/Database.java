@@ -47,19 +47,7 @@ public class Database
 					String name = line[1];
 					int x = Integer.parseInt(line[2]);
 					int y = Integer.parseInt(line[3]);
-					String pointInfo = "(" + name + ", " + x + ", " + y +")";
-					String result = null;
-					Point point = new Point(name, x, y);
-					
-					if (quadtree.insert(point) && bst.insert(point))
-					{
-						result = "Point Inserted: " + pointInfo;
-					}
-					else//if it is a invalid point
-					{
-						result = "Point Rejected: " + pointInfo;
-					}
-					System.out.println(result);
+					insertion(name, x, y);
 				}
 				else if (line[0].equals("duplicates"))
 				{
@@ -130,6 +118,30 @@ public class Database
 			splitted = line.split("\\s+");
 		}
 		return splitted;
+	}
+	
+	/**
+	 * insert a point to both bst and quadtree
+	 * if it is a valid point object
+	 * @param name of the point
+	 * @param x coordinate of the point
+	 * @param y coordinate of the point
+	 */
+	public void insertion(String name, int x, int y)
+	{
+		String pointInfo = "(" + name + ", " + x + ", " + y +")";
+		String result = null;
+		Point point = new Point(name, x, y);
+		
+		if (quadtree.insert(point) && bst.insert(point))
+		{
+			result = "Point Inserted: " + pointInfo;
+		}
+		else//if it is a invalid point
+		{
+			result = "Point Rejected: " + pointInfo;
+		}
+		System.out.println(result);
 	}
 	
 	/**
@@ -204,7 +216,13 @@ public class Database
 		}
 	}
 	
-	
+	/**
+	 * search point objects in that specific region
+	 * @param x coordinate of the region
+	 * @param y coordinate of the region
+	 * @param w width of the region
+	 * @param h height of the region
+	 */
 	public void regionSearch(int x, int y, int w, int h)
 	{
 		DLinkedList<Point> list = quadtree.regionsearch(x, y, w, h);

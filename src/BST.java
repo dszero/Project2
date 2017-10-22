@@ -250,7 +250,7 @@ public class BST<T extends Comparable<? super T>>
     /**
      * Find element by name starting from given root node
      * 
-     * @param x - element to find
+     * @param name  - name of a element to find
      * @param sRoot - current root node
      * @return return object if found or null if not found
      */
@@ -270,6 +270,8 @@ public class BST<T extends Comparable<? super T>>
             return sRoot.element; // Match
         }
     }
+   
+
 
     /**
      * Insert element into BST
