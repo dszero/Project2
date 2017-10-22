@@ -41,7 +41,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		Direction dir = obj.compare2D(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
 		
-		out = child.insert(getBranchX(x, w, dir), getBranchY(y, h, dir), w/h, h/2, obj);
+		out = child.insert(getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2, obj);
 		
 		if(child.getClass().equals(LeafNode.class)) {
 			setBranch(dir, ((LeafNode<T>) child).decompose(getBranchX(x, w, dir), getBranchY(y, w, dir), w / 2, h / 2));
