@@ -100,8 +100,13 @@ public class Database
 				}
 				else //region search
 				{
+					int x = Integer.parseInt(line[1]);
+					int y = Integer.parseInt(line[2]);
+					int w = Integer.parseInt(line[3]);
+					int h = Integer.parseInt(line[4]);
+					regionSearch(x, y, w, h);
 					
-				}
+ 				}
 			}
 		}
 		scanner.close();
@@ -127,6 +132,9 @@ public class Database
 		return splitted;
 	}
 	
+	/**
+	 * print out a list of current bst 
+	 */
 	public void bstDump()
 	{
 		System.out.println("BST dump: ");
@@ -156,7 +164,10 @@ public class Database
 	}
 	
 	
-	
+	/**
+	 * remove a point with a specific name
+	 * @param name of a point
+	 */
 	public void removeByName(String name)
 	{
 		Point point = bst.find(name);
@@ -171,6 +182,12 @@ public class Database
 		}	
 	}
 	
+	/**
+	 * remove a point with specific coordinates 
+	 * from both bst and quadtree
+	 * @param x coordinate of a point
+	 * @param y coordinate of a point
+	 */
 	public void removeByCoordinates(int x, int y)
 	{
 		Point point = quadtree.find(x, y);
@@ -187,6 +204,25 @@ public class Database
 		}
 	}
 	
+	
+	public void regionSearch(int x, int y, int w, int h)
+	{
+		DLinkedList<Point> list = quadtree.regionsearch(x, y, w, h);
+		System.out.println("Points Intersecting Region: (" + x
+							+ ", " + y + ", " + w + ", " + h + ")");
+		if (list.size() != 0)
+		{
+			Iterator<Point> iterator = list.iterator();
+			while (iterator.hasNext())
+			{
+				Point point = iterator.next();
+				System.out.println("(" + point.getName() + ", " 
+									+ point.getX() + ", " 
+				                     + point.getY() + ")");  
+			}
+		}
+		System.out.println("Quadtree Nodes Visited");
+	}
 }
 
 
