@@ -88,9 +88,9 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Jim", 5, 7);
 		database.insertion("Joe", 6, 7);
 		database.insertion("Kil", 10, 9);
-		database.insertion("Jim", 5, 7);
+		database.insertion("Ji", 5, 7);
 		
-		database.removeByCoordinates(5, 7);
+		//database.removeByCoordinates(5, 7);
 		//database.bstDump();
 		System.out.println(quadtree.toString());
 		//assertEquals(bst.getSize(), 3);
