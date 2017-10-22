@@ -23,6 +23,24 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	}
 	
 	/**
+	 * get the x boundary
+	 * @return xMax
+	 */
+	public int getXMax()
+	{
+		return xMax;
+	}
+	
+	/**
+	 * get the y boundary
+	 * @return yMax
+	 */
+	public int getYMax()
+	{
+		return yMax;
+	}
+	
+	/**
 	 * Insert new item into tree
 	 * 
 	 * @param elem - object to insert

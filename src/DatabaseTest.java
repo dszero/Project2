@@ -90,11 +90,24 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Kil", 10, 9);
 		database.insertion("Ji", 5, 7);
 		
-		//database.removeByCoordinates(5, 7);
+		database.removeByCoordinates(5, 7);
 		//database.bstDump();
 		System.out.println(quadtree.toString());
 		//assertEquals(bst.getSize(), 3);
 		//assertEquals(quadtree.getSize(), 3);
+		
+	}
+	
+	/**
+	 * test region search method
+	 */
+	public void testRegionSearch()
+	{
+		database.insertion("Coke",  0, 0);
+		database.insertion("Coke1",  10, 24);
+		database.insertion("Coke2",  0, 0);
+		database.insertion("Coke3",  0, 0);
+		database.insertion("Coke4",  0, 0);
 		
 	}
 
