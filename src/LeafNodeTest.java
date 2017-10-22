@@ -2,25 +2,32 @@ import junit.framework.TestCase;
 
 public class LeafNodeTest extends TestCase {
 	
-	InternalNode<Point> node;
+	LeafNode<Point> node;
 	Point pNull;
 	Point pMid;
 	Point pNW;
 	Point pNE;
 	Point pSW;
 	Point pSE;
+	Point pDup1;
+	Point pDup2;
+	Point pDup3;
 	
 	/**
 	 * Set up the internal node and test points
 	 */
 	public void setUp() {
-		node = new InternalNode<Point>();
+		node = new LeafNode<Point>();
 		pNull = null;
 		pMid = new Point("Mid", 511, 511);
 		pNW = new Point("NW", 500, 520);
 		pNE = new Point("NE", 520, 520);
 		pSW = new Point("SW", 500, 500);
 		pSE = new Point("SE", 520, 500);
+		
+		pDup1 = new Point("Dup1", 510, 510);
+		pDup2 = new Point("Dup2", 510, 510);
+		pDup3 = new Point("Dup3", 510, 510);
 		
 	}
 	
@@ -90,7 +97,12 @@ public class LeafNodeTest extends TestCase {
 	 * Test the duplicates method
 	 */
 	public void testDuplicates() {
-		
+		node.insert(511, 511, 1000, 1000, pDup1);
+		assertEquals(node.duplicates().size(), 0);
+		node.insert(511, 511, 1000, 1000, pDup2);
+		assertEquals(node.duplicates().size(), 1);
+		node.insert(511, 511, 1000, 1000, pDup3);
+		assertEquals(node.duplicates().size(), 1);
 	}
 	
 	/**

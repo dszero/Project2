@@ -16,6 +16,9 @@ public class InternalNodeTest extends TestCase {
 	Point pNE;
 	Point pSW;
 	Point pSE;
+	Point pDup1;
+	Point pDup2;
+	Point pDup3;
 	
 	/**
 	 * Set up the internal node and test points
@@ -28,6 +31,10 @@ public class InternalNodeTest extends TestCase {
 		pNE = new Point("NE", 520, 520);
 		pSW = new Point("SW", 500, 500);
 		pSE = new Point("SE", 520, 500);
+		
+		pDup1 = new Point("Dup1", 510, 510);
+		pDup2 = new Point("Dup2", 510, 510);
+		pDup3 = new Point("Dup3", 510, 510);
 		
 	}
 	
@@ -97,7 +104,12 @@ public class InternalNodeTest extends TestCase {
 	 * Test the duplicates method
 	 */
 	public void testDuplicates() {
-		
+		node.insert(511, 511, 1000, 1000, pDup1);
+		assertEquals(node.duplicates().size(), 0);
+		node.insert(511, 511, 1000, 1000, pDup2);
+		assertEquals(node.duplicates().size(), 1);
+		node.insert(511, 511, 1000, 1000, pDup3);
+		assertEquals(node.duplicates().size(), 1);
 	}
 	
 	/**

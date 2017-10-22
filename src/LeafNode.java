@@ -168,7 +168,21 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	public DLinkedList<T> duplicates() {
 		DLinkedList<T> dup = new DLinkedList<T>();
 		if(items.size() < 4) {
-			//compare all items
+			T found = null; 
+			for(T item1 : items) {
+				int dupCount = 0;
+				for(T item2 : items) {
+					if(item1.equals2D(item2)) {
+						dupCount++;
+					}
+				}
+				if(dupCount > 1 && found == null) {
+					found = item1;
+				}
+			}
+			dup.add(found);
+			return dup;
+			
 		}
 		else {
 			dup.add(items.get(0));
