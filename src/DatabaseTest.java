@@ -59,7 +59,7 @@ public class DatabaseTest extends TestCase{
 		
 		
 		database.insertion("cool", 4, 5);
-		database.bstDump();
+		database.dump();
 		assertEquals(bst.getSize(), 4);
 		assertEquals(quadtree.getSize(), 4);
 		
@@ -76,7 +76,7 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Jim", 5, 7);
 		
 		database.removeByName("Jim");
-		database.bstDump();
+		database.dump();
 		System.out.println(quadtree.toString());
 		assertEquals(bst.getSize(), 3);
 		assertEquals(quadtree.getSize(), 3);
@@ -93,10 +93,10 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Ji", 5, 7);
 		
 		database.removeByCoordinates(5, 7);
-		//database.bstDump();
-		System.out.println(quadtree.toString());
-		//assertEquals(bst.getSize(), 3);
-		//assertEquals(quadtree.getSize(), 3);
+		database.dump();
+		
+		assertEquals(bst.getSize(), 3);
+		assertEquals(quadtree.getSize(), 3);
 		
 	}
 	
