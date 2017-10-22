@@ -110,8 +110,11 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Coke2",  7, 2);
 		database.insertion("Coke3",  1, 0);
 		database.insertion("Coke4",  5, 6);
+		database.insertion("Coke5",  8, 2);
 		
 		database.regionSearch(0, 0, 8, 2);
+		database.dump();
+		assertEquals(bst.getSize(), 6);
 		
 	}
 
