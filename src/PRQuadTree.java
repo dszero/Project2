@@ -135,6 +135,15 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	public String toString() {
 		return root.toString(centerX(), centerY(), xMax - xMin, yMax - yMin, 0);
 	}
+	
+	/**
+	 * Get dulpicate objects
+	 * 
+	 * @return linked list of objects which have other duplicate positions
+	 */
+	public DLinkedList<T> duplicates() {
+		return root.duplicates();
+	}
 
 
 }
