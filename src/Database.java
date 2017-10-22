@@ -131,12 +131,14 @@ public class Database
 	{
 		String pointInfo = "(" + name + ", " + x + ", " + y +")";
 		String result = null;
-		Point point = new Point(name, x, y);
-		
-		if (quadtree.insert(point) && bst.insert(point))
+		//check if inserted point has valid coordinates
+		if (x >= 0 && y >= 0 && x < 1024 && y < 1024)
 		{
+			Point point = new Point(name, x, y);
+			bst.insert(point);
+			quadtree.insert(point);
 			result = "Point Inserted: " + pointInfo;
-		}
+		}		
 		else//if it is a invalid point
 		{
 			result = "Point Rejected: " + pointInfo;
@@ -206,6 +208,7 @@ public class Database
 		
 		if (point != null)
 		{
+			System.out.println("Here");
 			bst.remove(point);//make sure bst and quadtree remove the same point
 			quadtree.remove(point);
 		}

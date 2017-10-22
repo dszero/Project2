@@ -192,7 +192,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @param h - current height of  node
 	 * @return this node if it does not need to be decomposed or a decomposed internal node if it does
 	 */
-	public QuadTreeNode decompose(int x, int y, int w, int h) {
+	public QuadTreeNode<T> decompose(int x, int y, int w, int h) {
 		//Check decomposition rule
 		if(items.size() < 4) {
 			return this;

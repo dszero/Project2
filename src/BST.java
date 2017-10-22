@@ -184,12 +184,14 @@ public class BST<T extends Comparable<? super T>>
     // BST ---------------------------
 
     private BinaryNode root; // root element of BST
+    private int bstSize;
 
     /**
      * Create new BST
      */
     public BST() {
         root = null;
+        bstSize = 0;
     }
 
     /**
@@ -235,6 +237,18 @@ public class BST<T extends Comparable<? super T>>
             return sRoot.element; // Match
         }
     }
+    
+//    
+//    public DLinkedList<T> nameDuplicates(String name)
+//    {
+//    	DLinkedList<T> list = new DLinkedList<T>();
+//    	T elem = find(name, root);
+//    	while (find(name, root) != null)
+//    	{
+//    		list.add(obj)
+//    	}
+//
+//    }
     
     /**
      * Find element by name in BST
@@ -284,6 +298,7 @@ public class BST<T extends Comparable<? super T>>
 //            return false;
 //        }
         root = insert(x, root);
+        bstSize++;
         return true;
     }
 
@@ -326,6 +341,7 @@ public class BST<T extends Comparable<? super T>>
             return false;
         }
         root = remove(x, root);
+        bstSize--;
         return true;
     }
 
@@ -380,8 +396,17 @@ public class BST<T extends Comparable<? super T>>
      */
     public void clear() {
         root = null;
+        bstSize = 0;
     }
 
+    /**
+     * get the size of bst
+     * @return bstSize
+     */
+    public int getSize()
+    {
+    	return bstSize;
+    }
     
 
     /**

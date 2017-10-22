@@ -2,6 +2,7 @@
 public class PRQuadTree < T extends Comparable2D<? super T> > {
 	private QuadTreeNode<T> root;
 	private int xMin, xMax, yMin, yMax;
+	private int quadtreeSize;
 
 	/**
 	 * Create new PR Quadtree with given bounds
@@ -18,13 +19,14 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		this.yMax = yMax;
 		
 		root = new LeafNode<T>();
+		quadtreeSize = 0;
 	}
 	
 	/**
 	 * Insert new item into tree
 	 * 
 	 * @param elem - object to insert
-	 * @return true if inserted, fakse if not
+	 * @return true if inserted, false if not
 	 */
 	public boolean insert(T elem) {
 		if(elem == null) {
@@ -34,6 +36,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		if(root.getClass().equals(LeafNode.class)) {
 			root = ((LeafNode<T>) root).decompose(centerX(), centerY(), xMax - xMin, yMax - yMin);
 		}
+		quadtreeSize++;
 		return out;
 	}
 	
@@ -47,6 +50,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		if(elem == null) {
 			return false;
 		}
+		quadtreeSize--;
 		return root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
 	}
 	
@@ -61,6 +65,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		if(xMin > objX  || objX > xMax || yMin > objY  || objY > yMax) {
 			return false;
 		}
+		quadtreeSize--;
 		return root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
 	}
 	
@@ -109,6 +114,16 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 */
 	public void clear() {
 		root = new LeafNode<T>();
+		quadtreeSize = 0;
+	}
+	
+	/**
+	 * get the size of quadtree
+	 * @return quadtreeSize
+	 */
+	public int getSize()
+	{
+		return quadtreeSize;
 	}
 	
 	/**
