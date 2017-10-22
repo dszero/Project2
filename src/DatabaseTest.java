@@ -18,7 +18,7 @@ public class DatabaseTest extends TestCase{
 	public void setUp()
 	{
 //		file = new File();
-		quadtree = new PRQuadTree<Point>(0, 0, 32, 32);
+		quadtree = new PRQuadTree<Point>(0, 32, 0, 32);
 		bst = new BST<Point>();
 		database = new Database(file, quadtree, bst);
 	}
@@ -49,7 +49,9 @@ public class DatabaseTest extends TestCase{
 		
 		database.insertion("cool", 4, 5);
 		database.insertion("nice", 6, 4);
-		database.insertion("cool", -3, 5);
+		database.insertion("cool1", -3, 5);
+		database.insertion("cool2", 3, 32);
+		database.insertion("cool3", 32, 5);
 		database.insertion("nice", 0,  0);
 		//database.bstDump();
 		assertEquals(bst.getSize(), 3);
@@ -90,11 +92,26 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Kil", 10, 9);
 		database.insertion("Ji", 5, 7);
 		
-		//database.removeByCoordinates(5, 7);
+		database.removeByCoordinates(5, 7);
 		//database.bstDump();
 		System.out.println(quadtree.toString());
 		//assertEquals(bst.getSize(), 3);
 		//assertEquals(quadtree.getSize(), 3);
+		
+	}
+	
+	/**
+	 * test region search method
+	 */
+	public void testRegionSearch()
+	{
+		database.insertion("Coke",  0, 0);
+		database.insertion("Coke1",  10, 24);
+		database.insertion("Coke2",  7, 2);
+		database.insertion("Coke3",  1, 0);
+		database.insertion("Coke4",  5, 6);
+		
+		database.regionSearch(0, 0, 8, 2);
 		
 	}
 
