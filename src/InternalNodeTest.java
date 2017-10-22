@@ -96,8 +96,56 @@ public class InternalNodeTest extends TestCase {
 	/**
 	 * Test the regionsearch method
 	 */
-	public void testRegionsearch() {
+	public void testRegionsearch()
+	{
+		Point point1 = new Point("search1", 0, 0);
+		Point point2 = new Point("search2", 40, 0);
+		Point point3 = new Point("search3", 0, 40);
+	
+		assertTrue(node.insert(0, 0, 40, 40, point1));
+		assertTrue(node.insert(0, 0, 40, 40, point2));
+		assertTrue(node.insert(0, 0, 40, 40, point3));		
 		
+		DLinkedList<Point> list = new DLinkedList<Point>();
+		int visited = node.regionsearch(list, 0, 0, 40, 40, 0, 0, 20, 20);
+		assertEquals(list.size(), 1);
+		assertEquals(visited, 4);
+		
+		//----------------------------------------------
+		assertNotNull(node.remove(0, 0, 40, 40, point1));
+		assertNotNull(node.remove(0, 0, 40, 40, point2));
+		assertNotNull(node.remove(0, 0, 40, 40, point3));
+		
+		Point point4 = new Point("search1", 21, 0);
+		Point point5 = new Point("search2", 20, 0);
+		Point point6 = new Point("search3", 0, 20);
+	
+		assertTrue(node.insert(0, 0, 40, 40, point4));
+		assertTrue(node.insert(0, 0, 40, 40, point5));
+		assertTrue(node.insert(0, 0, 40, 40, point6));	
+		
+		DLinkedList<Point> list1 = new DLinkedList<Point>();
+		int visited1 = node.regionsearch(list1, 0, 0, 40, 40, 0, 0, 20, 20);
+		assertEquals(list1.size(), 2);
+		assertEquals(visited1, 4);
+		
+		//----------------------------------------------
+		assertNotNull(node.remove(0, 0, 40, 40, point4));
+		assertNotNull(node.remove(0, 0, 40, 40, point5));
+		assertNotNull(node.remove(0, 0, 40, 40, point6));
+		
+		Point point7 = new Point("search1", 0, 21);
+		Point point8 = new Point("search2", 20, 20);
+		Point point9 = new Point("search3", 21, 21);
+	
+		assertTrue(node.insert(0, 0, 40, 40, point7));
+		assertTrue(node.insert(0, 0, 40, 40, point8));
+		assertTrue(node.insert(0, 0, 40, 40, point9));	
+		
+		DLinkedList<Point> list2 = new DLinkedList<Point>();
+		int visited2 = node.regionsearch(list2, 0, 0, 40, 40, 0, 0, 20, 20);
+		assertEquals(list2.size(), 1);
+		assertEquals(visited2, 4);
 	}
 
 	/**
