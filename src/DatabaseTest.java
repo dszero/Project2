@@ -6,13 +6,15 @@ public class DatabaseTest extends TestCase{
 	
 	
 	private Database database;
+	private BST<Point> bst;
+	private PRQuadTree<Point> quadtree;
 	private File file;
 	
 
 	public void setUp()
 	{
 //		file = new File();
-		database = new Database(file);
+		database = new Database(file, quadtree, bst);
 	}
 	
 	public void testLineSplitting()
