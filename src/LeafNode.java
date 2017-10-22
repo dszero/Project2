@@ -62,12 +62,12 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @param w - current width of  node
 	 * @param h - current height of  node
 	 * @param obj - object to remove
-	 * @return true if removed, false if not found
+	 * @return removed object or null
 	 */
 	@Override
-	public boolean remove(int x, int y,  int w, int h, T obj) {
+	public T remove(int x, int y,  int w, int h, T obj) {
 		if(obj == null) {
-			return false;
+			return null;
 		}
 		
 		return items.remove(obj);

@@ -23,9 +23,9 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param x - current x position of node
 	 * @param y - current y position of node
 	 * @param obj - object to remove
-	 * @return true if removed, false if not found
+	 * @return removed object or null
 	 */
-	public boolean remove(int x, int y, int w, int h, T obj);
+	public T remove(int x, int y, int w, int h, T obj);
 	
 	/**
 	 * Remove object at given coordinates from children leaves

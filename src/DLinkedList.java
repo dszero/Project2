@@ -76,25 +76,25 @@ public class DLinkedList<T> implements Iterable<T>
 	 * @param i - index of object
 	 * @return true if removed, false if not
 	 */
-	public boolean remove(T obj) {
+	public T remove(T obj) {
 		Node currNode = head;
-		boolean found = false;
+		T found = false;
 		
 		int i = 0;
-		while(!found && i < listSize) {
+		while(found == null && i < listSize) {
 			if(currNode == null) {
-				return false;
+				return null;
 			}
 			if(currNode.data().equals(obj)) {
-				found = true;
+				found = currNode.data();
 			}
-			if(!found) {
+			if(found == null) {
 				currNode = currNode.next();
 			}
 			i++;
 		}
-		if(!found) {
-			return false;
+		if(found == null) {
+			return null;
 		}
 		
 		if(listSize == 1) {
@@ -115,7 +115,7 @@ public class DLinkedList<T> implements Iterable<T>
 		}
 		
 		listSize--;
-		return true;
+		return found;
 	}
 	
 
