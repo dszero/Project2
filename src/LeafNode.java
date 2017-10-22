@@ -37,7 +37,16 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return true if inserted, false if it is a duplicate
 	 */
 	@Override
-	public boolean insert(int x, int y, T obj) {
+	public boolean insert(int x, int y,  int w, int h, T obj) {
+		if(obj == null) {
+			return false;
+		}
+		
+		for(T item : items) {
+			if(item.equals(obj)) {
+				return false;
+			}
+		}
 		items.add(obj);
 		return true;
 	}
@@ -49,7 +58,11 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return true if removed, false if not found
 	 */
 	@Override
-	public boolean remove(int x, int y, T obj) {
+	public boolean remove(int x, int y,  int w, int h, T obj) {
+		if(obj == null) {
+			return false;
+		}
+		
 		return items.remove(obj);
 	}
 
@@ -60,7 +73,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @param y - y coordinate of object
 	 */
 	@Override
-	public boolean remove(int x, int y, int xObj, int yObj) {
+	public boolean remove(int x, int y,  int w, int h, int xObj, int yObj) {
 		T objToRemove = null;
 		
 		for(T item : items) {
@@ -81,7 +94,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return reference to object in tree if found, null if not found
 	 */
 	@Override
-	public T find(int x, int y, T obj) {
+	public T find(int x, int y,  int w, int h, T obj) {
 		T objToReturn = null;
 		
 		for(T item : items) {
@@ -101,7 +114,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return a linked list of objects contained in the bounded region
 	 */
 	@Override
-	public DLinkedList<T> regionsearch(int x, int y, int objX, int objY, int objW, int objH) {
+	public DLinkedList<T> regionsearch(int x, int y,  int w, int h, int objX, int objY, int objW, int objH) {
 
 		return null;
 	}
@@ -138,14 +151,14 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * 
 	 * @return this node if it does not need to be decomposed or a decomposed internal node if it does
 	 */
-	public QuadTreeNode decompose(int x, int y) {
+	public QuadTreeNode decompose(int x, int y, int w, int h) {
 		//Check decomposition rule
 		if(items.size() < 4) {
 			return this;
 		}
 		boolean sameLoc = true;
 		for(T i : items) {
-			if(i.compareTo(items.get(0)) != 0) {
+			if(!i.equals2D(items.get(0))) {
 				sameLoc = false;
 			}
 		}
@@ -156,7 +169,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		//decompose
 		InternalNode<T> newNode = new InternalNode<T>();
 		for(T i : items) {
-			newNode.insert(x, y, i);
+			newNode.insert(x, y, w, h, i);
 		}
 		return newNode;
 	}
@@ -168,7 +181,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	}
 
 	@Override
-	public T find(int x, int y, int objX, int objY) {
+	public T find(int x, int y,  int w, int h, int objX, int objY) {
 		T objToReturn = null;
 		
 		for(T item : items) {

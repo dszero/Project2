@@ -17,7 +17,7 @@ public class PRQuadTreeTest extends TestCase {
 	private Point point5;
 	
 	public void setUp() {
-		tree = new PRQuadTree<Point>(0, 0, 1024, 1024);
+		tree = new PRQuadTree<Point>(0, 1024, 0, 1024);
 		
 		point1 = new Point("p1", 20, 30);
 		
@@ -93,7 +93,38 @@ public class PRQuadTreeTest extends TestCase {
 	}
 	
 	public void testRemoveXY() {
+		tree.insert((Point) null);
+		assertFalse(tree.remove(1000000000, 100000000));
 		
+		tree.insert(point1);
+		assertFalse(tree.remove(200, 60));
+		assertTrue(tree.remove(20, 30));
+		tree.insert(point1);
+		
+		tree.insert(point2a);
+		assertFalse(tree.remove(200, 60));
+		assertTrue(tree.remove(20, 30));
+		tree.insert(point1);
+		assertTrue(tree.remove(50, 640));
+		tree.insert(point2a);
+		
+		tree.insert(point2b);
+		tree.insert(point2c);
+		tree.insert(point2d);
+		assertTrue(tree.remove(50, 640));
+		assertTrue(tree.remove(50, 640));
+		tree.insert(point2c);
+		
+		tree.insert(point1);
+		assertTrue(tree.remove(20, 30));
+		assertFalse(tree.remove(20, 30));
+		tree.insert(point2c);
+		
+		tree.insert(point3);
+		tree.insert(point4);
+		
+		assertTrue(tree.remove(200, 60));
+		assertTrue(tree.remove(235, 2));
 	}
 	
 	public void testFind() {
@@ -141,6 +172,25 @@ public class PRQuadTreeTest extends TestCase {
 	}
 	
 	public void testClear() {
+		tree.insert((Point) null);		
+		tree.insert(point1);
+		tree.insert(point1);
+		tree.insert(point2a);
+		tree.insert(point1);
+		tree.insert(point2a);
+		tree.insert(point2b);
+		tree.insert(point2c);
+		tree.insert(point2d);
+		tree.insert(point2c);
+		tree.insert(point1);
+		tree.insert(point2c);
+		tree.insert(point3);
+		tree.insert(point4);	
 		
+		tree.clear();
+		assertNull(tree.find(point1));
+		assertNull(tree.find(point2a));
+		assertNull(tree.find(point2c));
+		assertNull(tree.find(point4));
 	}
 }

@@ -15,7 +15,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param obj - object to insert
 	 * @return true if inserted, false if duplicate
 	 */
-	public boolean insert(int x, int y, T obj);
+	public boolean insert(int x, int y, int w, int h, T obj);
 	
 	/**
 	 * Remove object from QuadTree
@@ -25,7 +25,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param obj - object to remove
 	 * @return true if removed, false if not found
 	 */
-	public boolean remove(int x, int y, T obj);
+	public boolean remove(int x, int y, int w, int h, T obj);
 	
 	/**
 	 * Remove object at given coordinates from children leaves
@@ -36,7 +36,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param objY - y coordinate of object
 	 * @return true if removed, false if not found
 	 */
-	public boolean remove(int x, int y, int objX, int objY);
+	public boolean remove(int x, int y, int w, int h, int objX, int objY);
 	
 	/**
 	 * Find object
@@ -46,7 +46,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param obj - object to find
 	 * @return reference to object in tree if found, null if not found
 	 */
-	public T find(int x, int y, T obj);
+	public T find(int x, int y, int w, int h, T obj);
 	
 	/**
 	 * Find object
@@ -56,7 +56,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param obj - object to find
 	 * @return reference to object in tree if found, null if not found
 	 */
-	public T find(int x, int y, int objX, int objY);
+	public T find(int x, int y, int w, int h, int objX, int objY);
 	
 	/**
 	 * Find all nodes in region bounded by the given square
@@ -65,7 +65,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param y - lower bound square
 	 * @return a linked list of objects contained in the bounded region
 	 */
-	public DLinkedList<T> regionsearch(int x, int y, int objX, int objY, int objW, int objH);
+	public DLinkedList<T> regionsearch(int x, int y, int w, int h, int objX, int objY, int objW, int objH);
 	
 	/**
 	 * Find all objects with duplicate locations

@@ -12,7 +12,10 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @param yMax - maximum y coordinate for items
 	 */
 	public PRQuadTree(int xMin, int xMax, int yMin, int yMax) {
-		
+		this.xMin = xMin;
+		this.xMax = xMax;
+		this.yMin = yMin;
+		this.yMax = yMax;
 	}
 	
 	/**
@@ -26,10 +29,14 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 			return false;
 		}
 		if(root == null) {
-			root = new LeafNode(elem);
+			root = new LeafNode<T>(elem);
 			return true;
 		}
-		return root.insert(centerX(), centerY(), elem);
+		boolean out = root.insert(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
+		if(root.getClass().equals(LeafNode.class)) {
+			root = ((LeafNode<T>) root).decompose(centerX(), centerY(), xMax - xMin, yMax - yMin);
+		}
+		return out;
 	}
 	
 	/**
@@ -42,7 +49,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		if(elem == null || root == null) {
 			return false;
 		}
-		return root.remove(centerX(), centerY(), elem);
+		return root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
 	}
 	
 	/**
@@ -53,10 +60,10 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @return true if removed false if not
 	 */
 	public boolean remove(int objX, int objY) {
-		if(xMin > objX  || objX < xMax || yMin > objY  || objY < yMax || root == null) {
+		if(xMin > objX  || objX > xMax || yMin > objY  || objY > yMax || root == null) {
 			return false;
 		}
-		return root.remove(centerX(), centerY(), objX, objY);
+		return root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
 	}
 	
 	/**
@@ -69,7 +76,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		if(elem == null || root == null) {
 			return null;
 		}
-		return root.find(centerX(), centerY(), elem);
+		return root.find(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
 	}
 	
 	/**
@@ -83,7 +90,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 		if(xMin > objX  || objX < xMax || yMin > objY  || objY < yMax || root == null) {
 			return null;
 		}
-		return root.find(centerX(), centerY(), objX, objY);
+		return root.find(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
 	}
 	
 	/**
