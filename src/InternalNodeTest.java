@@ -38,24 +38,24 @@ public class InternalNodeTest extends TestCase {
 	 */
 	public void testRemoveObj() {
 		//test remove on empty node
-		assertFalse(node.remove(511, 511, 1000, 1000, pNull));
-		assertFalse(node.remove(511, 511, 1000, 1000, pNE));
+		assertNull(node.remove(511, 511, 1000, 1000, pNull));
+		assertNull(node.remove(511, 511, 1000, 1000, pNE));
 		
 		//test remove on failed insert
-		assertFalse(node.insert(511, 511, 1000, 1000, pNull));
-		assertFalse(node.remove(511, 511, 1000, 1000, pNull));
+		assertNull(node.insert(511, 511, 1000, 1000, pNull));
+		assertNull(node.remove(511, 511, 1000, 1000, pNull));
 		
 		//Test remove on node
-		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
-		assertTrue(node.remove(511, 511, 1000, 1000, pMid));
+		assertNotNull(node.insert(511, 511, 1000, 1000, pMid));
+		assertNotNull(node.remove(511, 511, 1000, 1000, pMid));
 		
 		//Test insert after remove
-		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
+		assertNotNull(node.insert(511, 511, 1000, 1000, pMid));
 		
 		//Test double insert
-		assertFalse(node.insert(511, 511, 1000, 1000, pMid));
-		assertTrue(node.remove(511, 511, 1000, 1000, pMid));
-		assertFalse(node.remove(511, 511, 1000, 1000, pMid));
+		assertNull(node.insert(511, 511, 1000, 1000, pMid));
+		assertNotNull(node.remove(511, 511, 1000, 1000, pMid));
+		assertNull(node.remove(511, 511, 1000, 1000, pMid));
 	}
 	
 	/**
@@ -63,20 +63,20 @@ public class InternalNodeTest extends TestCase {
 	 */
 	public void testRemoveXY() {
 		//Test remove on empty node
-		assertFalse(node.remove(511, 511, 1000, 1000, 2000, 2000));
-		assertFalse(node.remove(511, 511, 1000, 1000, 510, 520));
+		assertNull(node.remove(511, 511, 1000, 1000, 2000, 2000));
+		assertNull(node.remove(511, 511, 1000, 1000, 510, 520));
 		
 		//Test remove on node
-		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
-		assertTrue(node.remove(511, 511, 1000, 1000, 511, 511));
+		assertFalse(node.insert(511, 511, 1000, 1000, pMid));
+		assertNotNull(node.remove(511, 511, 1000, 1000, 511, 511));
 		
 		//Test insert after remove
 		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
 		
 		//Test double insert
 		assertFalse(node.insert(511, 511, 1000, 1000, pMid));
-		assertTrue(node.remove(511, 511, 1000, 1000, 511, 511));
-		assertFalse(node.remove(511, 511, 1000, 1000, 511, 511));
+		assertNotNull(node.remove(511, 511, 1000, 1000, 511, 511));
+		assertNull(node.remove(511, 511, 1000, 1000, 511, 511));
 	}
 	
 	/**

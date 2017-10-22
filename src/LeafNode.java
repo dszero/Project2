@@ -82,7 +82,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @param h - current height of  node
 	 */
 	@Override
-	public boolean remove(int x, int y,  int w, int h, int xObj, int yObj) {
+	public T remove(int x, int y,  int w, int h, int xObj, int yObj) {
 		T objToRemove = null;
 		
 		for(T item : items) {

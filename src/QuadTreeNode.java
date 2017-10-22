@@ -36,7 +36,7 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @param objY - y coordinate of object
 	 * @return true if removed, false if not found
 	 */
-	public boolean remove(int x, int y, int w, int h, int objX, int objY);
+	public T remove(int x, int y, int w, int h, int objX, int objY);
 	
 	/**
 	 * Find object
@@ -73,15 +73,6 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @return number of nodes visited
 	 */
 	public int regionsearch(DLinkedList<T> results,int x, int y, int w, int h, int objX, int objY, int objW, int objH);
-	
-	/**
-	 * Find node visited to find all nodes in region bounded by the given square
-	 * 
-	 * @param x - upper bound square
-	 * @param y - lower bound square
-	 * @return a linked list of objects contained in the bounded region
-	 */
-	public int regionsearchVisited(int x, int y, int w, int h, int objX, int objY, int objW, int objH);
 	
 	/**
 	 * Find all objects with duplicate locations

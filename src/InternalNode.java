@@ -90,10 +90,10 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return true if removed, false if not found
 	 */
 	@Override
-	public boolean remove(int x, int y, int w, int h, int objX, int objY) {
+	public T remove(int x, int y, int w, int h, int objX, int objY) {
 		Direction dir = getDirection(x, y, objX, objY);
 		QuadTreeNode<T> child = this.getBranch(dir);
-		boolean out = child.remove(getBranchX(x, w, dir), getBranchY(y, h, dir), w / h, h / 2, objX, objY);
+		T out = child.remove(getBranchX(x, w, dir), getBranchY(y, h, dir), w / h, h / 2, objX, objY);
 		
 		if(child.getClass().equals(InternalNode.class)) {
 			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX(x, w, dir), getBranchY(y, h, dir), w, h));

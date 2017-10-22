@@ -45,21 +45,21 @@ public class DLinkedListTest extends TestCase{
 	 *  test the remove method
 	 */
 	public void testRemove() {
-		assertFalse(list.remove("test"));
+		assertNull(list.remove("test"));
 		
 		list.add("test");
-		assertFalse(list.remove("test1"));
-		assertTrue(list.remove("test"));
+		assertNull(list.remove("test1"));
+		assertNotNull(list.remove("test"));
 		assertEquals(list.size(), 0);
 		
 		list.add("test1");
 		list.add("test2");
 		list.add("test3");
-		assertTrue(list.remove("test2"));
+		assertNotNull(list.remove("test2"));
 		assertEquals(list.size(), 2);
 		
 		list.add("test4");
-		assertTrue(list.remove("test4"));
+		assertNotNull(list.remove("test4"));
 		assertEquals(list.size(), 2);
 		
 	}

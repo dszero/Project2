@@ -69,36 +69,36 @@ public class PRQuadTreeTest extends TestCase {
 	 */
 	public void testRemove() {
 		tree.insert((Point) null);
-		assertFalse(tree.remove((Point) null));
+		assertNull(tree.remove((Point) null));
 		
 		tree.insert(point1);
-		assertFalse(tree.remove(point3));
-		assertTrue(tree.remove(point1));
+		assertNull(tree.remove(point3));
+		assertNotNull(tree.remove(point1));
 		tree.insert(point1);
 		
 		tree.insert(point2a);
-		assertFalse(tree.remove(point3));
-		assertTrue(tree.remove(point1));
+		assertNull(tree.remove(point3));
+		assertNotNull(tree.remove(point1));
 		tree.insert(point1);
-		assertTrue(tree.remove(point2a));
+		assertNotNull(tree.remove(point2a));
 		tree.insert(point2a);
 		
 		tree.insert(point2b);
 		tree.insert(point2c);
 		tree.insert(point2d);
-		assertTrue(tree.remove(point2c));
+		assertNotNull(tree.remove(point2c));
 		tree.insert(point2c);
 		
 		tree.insert(point1);
-		assertTrue(tree.remove(point1));
-		assertFalse(tree.remove(point1));
+		assertNotNull(tree.remove(point1));
+		assertNull(tree.remove(point1));
 		tree.insert(point2c);
 		
 		tree.insert(point3);
 		tree.insert(point4);
 		
-		assertTrue(tree.remove(point3));
-		assertTrue(tree.remove(point4));
+		assertNotNull(tree.remove(point3));
+		assertNotNull(tree.remove(point4));
 	}
 	
 	/**
@@ -106,37 +106,37 @@ public class PRQuadTreeTest extends TestCase {
 	 */
 	public void testRemoveXY() {
 		tree.insert((Point) null);
-		assertFalse(tree.remove(1000000000, 100000000));
+		assertNull(tree.remove(1000000000, 100000000));
 		
 		tree.insert(point1);
-		assertFalse(tree.remove(200, 60));
-		assertTrue(tree.remove(20, 30));
+		assertNull(tree.remove(200, 60));
+		assertNotNull(tree.remove(20, 30));
 		tree.insert(point1);
 		
 		tree.insert(point2a);
-		assertFalse(tree.remove(200, 60));
-		assertTrue(tree.remove(20, 30));
+		assertNull(tree.remove(200, 60));
+		assertNotNull(tree.remove(20, 30));
 		tree.insert(point1);
-		assertTrue(tree.remove(50, 640));
+		assertNotNull(tree.remove(50, 640));
 		tree.insert(point2a);
 		
 		tree.insert(point2b);
 		tree.insert(point2c);
 		tree.insert(point2d);
-		assertTrue(tree.remove(50, 640));
-		assertTrue(tree.remove(50, 640));
+		assertNotNull(tree.remove(50, 640));
+		assertNotNull(tree.remove(50, 640));
 		tree.insert(point2c);
 		
 		tree.insert(point1);
-		assertTrue(tree.remove(20, 30));
-		assertFalse(tree.remove(20, 30));
+		assertNotNull(tree.remove(20, 30));
+		assertNull(tree.remove(20, 30));
 		tree.insert(point2c);
 		
 		tree.insert(point3);
 		tree.insert(point4);
 		
-		assertTrue(tree.remove(200, 60));
-		assertTrue(tree.remove(235, 2));
+		assertNotNull(tree.remove(200, 60));
+		assertNotNull(tree.remove(235, 2));
 	}
 	
 	/**

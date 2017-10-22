@@ -78,7 +78,7 @@ public class DLinkedList<T> implements Iterable<T>
 	 */
 	public T remove(T obj) {
 		Node currNode = head;
-		T found = false;
+		T found = null;
 		
 		int i = 0;
 		while(found == null && i < listSize) {

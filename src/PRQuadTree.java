@@ -61,9 +61,9 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @param y - y coordinate of obj to remove
 	 * @return true if removed false if not
 	 */
-	public boolean remove(int objX, int objY) {
+	public T remove(int objX, int objY) {
 		if(xMin > objX  || objX > xMax || yMin > objY  || objY > yMax) {
-			return false;
+			return null;
 		}
 		quadtreeSize--;
 		return root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
