@@ -18,7 +18,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		NE = new LeafNode<T>();
 		SW = new LeafNode<T>();
 		SE = new LeafNode<T>();
-	};
+	}
 
 	/**
 	 * Insert object into children leaves
