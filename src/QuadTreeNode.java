@@ -39,26 +39,6 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	public T remove(int x, int y, int w, int h, int objX, int objY);
 	
 	/**
-	 * Find object
-	 * 
-	 * @param x - current x position of node
-	 * @param y - current y position of node
-	 * @param obj - object to find
-	 * @return reference to object in tree if found, null if not found
-	 */
-	public T find(int x, int y, int w, int h, T obj);
-	
-	/**
-	 * Find object
-	 * 
-	 * @param x - current x position of node
-	 * @param y - current y position of node
-	 * @param obj - object to find
-	 * @return reference to object in tree if found, null if not found
-	 */
-	public T find(int x, int y, int w, int h, int objX, int objY);
-	
-	/**
 	 * Find all nodes in region bounded by the given square
 	 * 
 	 * @param results - linked list to insert items contained in the region

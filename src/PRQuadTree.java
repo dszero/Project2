@@ -99,33 +99,6 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	}
 	
 	/**
-	 * Find item in tree
-	 * 
-	 * @param elem - object to find
-	 * @return object if found, null if not
-	 */
-	public T find(T elem) {
-		if(elem == null) {
-			return null;
-		}
-		return root.find(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
-	}
-	
-	/**
-	 * Find item in tree by x, y coordinates
-
-	 * @param x - x coordinate of obj to find
-	 * @param y - y coordinate of obj to find
-	 * @return object if found, null if not
-	 */
-	public T find(int objX, int objY) {
-		if(xMin > objX  || objX < xMax || yMin > objY  || objY < yMax) {
-			return null;
-		}
-		return root.find(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
-	}
-	
-	/**
 	 * Search for all nodes within the given region in the quadtree
 	 * 
 	 * @param objX
