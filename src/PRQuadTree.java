@@ -94,6 +94,22 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	}
 	
 	/**
+	 * Search for all nodes within the given region in the quadtree
+	 * 
+	 * @param objX
+	 * @param objY
+	 * @param objW
+	 * @param objH
+	 * @return
+	 */
+	public DLinkedList<T> regionsearch(int objX, int objY, int objW, int objH) {
+		if(root == null) {
+			return new DLinkedList<T>();
+		}
+		return root.regionsearch(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY, objW, objH);
+	}
+	
+	/**
 	 * Clear all items from tree
 	 */
 	public void clear() {
@@ -116,6 +132,13 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 */
 	private int centerY() {
 		return yMin + ((yMax - yMin) / 2);
+	}
+	
+	/**
+	 * Dump QuadTree
+	 */
+	public String toString() {
+		
 	}
 
 

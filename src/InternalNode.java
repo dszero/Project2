@@ -122,8 +122,14 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	public DLinkedList<T> regionsearch(int x, int y, int w, int h, 
 			int objX, int objY, int objW, int objH) {
 		if((objX < x && (objX + objW) > x) || (objY < y && (objY + objH) > y)) {
-			//TODO: search region
-			return null;
+			DLinkedList<T> children = this.allChildren();
+			DLinkedList<T> inRegion = new DLinkedList();
+			for(T child : children) {
+				if(child.compare2D(objX, objY) == Direction.SE && child.compare2D(objX + objW, objY + objY) == Direction.NW) {
+					inRegion.add(child);
+				}
+			}
+			return inRegion;
 		}
 		Direction dir = getDirection(x, y, objX, objY);
 		QuadTreeNode<T> child = this.getBranch(dir);

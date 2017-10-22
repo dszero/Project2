@@ -33,6 +33,10 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	/**
 	 * Insert object into leaf node or split into multiple leaves
 	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to insert
 	 * @return true if inserted, false if it is a duplicate
 	 */
@@ -53,7 +57,10 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 
 	/**
 	 * Remove object from leaf node
-	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to remove
 	 * @return true if removed, false if not found
 	 */
@@ -69,8 +76,10 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	/**
 	 * Remove object at given coordinates from leaf node
 	 * 
-	 * @param x - x coordinate of object
-	 * @param y - y coordinate of object
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 */
 	@Override
 	public boolean remove(int x, int y,  int w, int h, int xObj, int yObj) {
@@ -90,6 +99,8 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to find
 	 * @return reference to object in tree if found, null if not found
 	 */
@@ -109,8 +120,14 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	/**
 	 * Find all nodes in region bounded by the given square
 	 * 
-	 * @param x - upper bound square
-	 * @param y - lower bound square
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
+	 * @param objX - upper bound of square
+	 * @param objY - lower bound of square
+	 * @param objW - width of region
+	 * @param objH - height of region
 	 * @return a linked list of objects contained in the bounded region
 	 */
 	@Override
@@ -148,7 +165,10 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	
 	/**
 	 * If the leaf does not meet the decomposition rule, decompose it
-	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @return this node if it does not need to be decomposed or a decomposed internal node if it does
 	 */
 	public QuadTreeNode decompose(int x, int y, int w, int h) {
@@ -174,12 +194,21 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		return newNode;
 	}
 
+	/**
+	 * Return all children nodes
+	 * 
+	 * @return linked list of nodes
+	 */
 	@Override
 	public DLinkedList<T> allChildren() {
-		// TODO Auto-generated method stub
-		return null;
+		return items;
 	}
 
+	/**
+	 * Find object in node with given x and y
+	 * 
+	 * @return object if found and null if not
+	 */
 	@Override
 	public T find(int x, int y,  int w, int h, int objX, int objY) {
 		T objToReturn = null;
