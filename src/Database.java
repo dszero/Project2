@@ -182,7 +182,7 @@ public class Database
 		System.out.println(quadtreeDump);
 		System.out.println("QuadTree Size: " + (quadtreeDump.
 								split("Node").length - 1) + 
-							"QuadTree Nodes Printed.");
+							" QuadTree Nodes Printed.");
 	
 	}
 	
@@ -270,7 +270,7 @@ public class Database
 			Point point = info.element;
 			if (point.getName().equals(name))
 			{
-				String pointInfo = name + ", " + point.getX() + ", "
+				String pointInfo = "(" + name + ", " + point.getX() + ", "
 									+ point.getY() + ")";
 				System.out.println("Point Found: " + pointInfo);
 				size++;
