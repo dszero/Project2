@@ -112,7 +112,7 @@ public class Database
 		String[] splitted = null;
 		if (!line.trim().equals(""))
 		{
-			splitted = line.split("\\s+");
+			splitted = line.trim().split("\\s+");
 		}
 		return splitted;
 	}

@@ -240,7 +240,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 			return tabs + "Node at " + (x - w/2) + ", " + (y - h/2) + ", " + w + ": Empty\n";
 		}
 		
-		String itemDump = tabs + "Node at " + x + ", " + y + ", " + w + ":\n";
+		String itemDump = tabs + "Node at " + (x - w/2) + ", " + (y - h/2) + ", " + w + ":\n";
 		tabs += "  ";
 		for(T item : items) {
 			itemDump += tabs + item.toString() + "\n";

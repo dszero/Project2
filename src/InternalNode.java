@@ -126,7 +126,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 				(y + (h / 2)) < objY) {
 			return 0;
 		}
-		int visited = 0;
+		int visited = 1;
 		for(Direction dir : Direction.values()) {
 			visited += getBranch(dir).regionsearch(results, 
 					getBranchX(x, w, dir), getBranchY(y, h, dir), w, h, 
