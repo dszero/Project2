@@ -354,7 +354,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 			tabs += "  ";
 		}
 		
-		return tabs + "Node at " + x + ", " + y + ", " + w + ": Internal\n" +
+		return tabs + "Node at " + (x - w/2) + ", " + (y - h/2) + ", " + w + ": Internal\n" +
 				NW.toString(getBranchX(x, w, Direction.NW), getBranchY(y, h, Direction.NW), w / 2, h / 2, d + 1) +
 				NE.toString(getBranchX(x, w, Direction.NE), getBranchY(y, h, Direction.NE), w / 2, h / 2, d + 1) + 
 				SW.toString(getBranchX(x, w, Direction.SW), getBranchY(y, h, Direction.SW), w / 2, h / 2, d + 1) +
