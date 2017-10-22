@@ -25,6 +25,8 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to insert
 	 * @return true if inserted, false if duplicate
 	 */
@@ -54,6 +56,8 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to remove
 	 * @return true if removed, false if not found
 	 */
@@ -79,8 +83,10 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
-	 * @param x - x coordinate of object
-	 * @param y - y coordinate of object
+	 * @param w - current width of  node
+	 * @param h - current height of  node
+	 * @param objX - x coordinate of object
+	 * @param objY - y coordinate of object
 	 * @return true if removed, false if not found
 	 */
 	@Override
@@ -101,6 +107,8 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to find
 	 * @return reference to object in tree if found, null if not found
 	 */
@@ -114,28 +122,34 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	/**
 	 * Find all nodes in region bounded by the given square
 	 * 
-	 * @param x - upper bound square
-	 * @param y - lower bound square
-	 * @return a linked list of objects contained in the bounded region
+	 * @param results - linked list to insert items contained in the region
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
+	 * @param objX - upper bound of square
+	 * @param objY - lower bound of square
+	 * @param objW - width of region
+	 * @param objH - height of region
+	 * @return number of nodes visited
 	 */
 	@Override
-	public DLinkedList<T> regionsearch(int x, int y, int w, int h, 
+	public int regionsearch(DLinkedList<T> results, int x, int y, int w, int h, 
 			int objX, int objY, int objW, int objH) {
-		if((objX < x && (objX + objW) > x) || (objY < y && (objY + objH) > y)) {
-			DLinkedList<T> children = this.allChildren();
-			DLinkedList<T> inRegion = new DLinkedList();
-			for(T child : children) {
-				if(child.compare2D(objX, objY) == Direction.SE && child.compare2D(objX + objW, objY + objY) == Direction.NW) {
-					inRegion.add(child);
-				}
-			}
-			return inRegion;
+		//if region outside of node
+		if((x - (w / 2)) > objX + objW || 
+				(x + (w / 2)) < objX || 
+				(y - (h / 2)) > objY + objH  ||
+				(y + (h / 2)) < objY) {
+			return 0;
 		}
-		Direction dir = getDirection(x, y, objX, objY);
-		QuadTreeNode<T> child = this.getBranch(dir);
-		return child.regionsearch(
-				getBranchX(x, w, dir), getBranchY(y, h, dir), w/h, h/2, 
-				objX, objY, objW, objH);
+		int visited = 0;
+		for(Direction dir : Direction.values()) {
+			visited += getBranch(dir).regionsearch(results, 
+					getBranchX(x, w, dir), getBranchY(y, h, dir), w, h, 
+					objX, objY, objW, objH);
+		}
+		return visited;
 	}
 
 
@@ -191,9 +205,10 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	}
 	
 	/**
-	 * Return the branch corresponding to the given direction
+	 * Set the branch corresponding to the given direction to the given node
 	 * 
 	 * @param direc - direction to search in
+	 * @param obj - node to set branch to
 	 * @return branch corresponding to direction
 	 */
 	private boolean setBranch(Direction direc, QuadTreeNode<T> obj) {
@@ -220,6 +235,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * Get the x mid-point of the given branch
 	 * 
 	 * @param x - current x mid-point
+	 * @param w - current width
 	 * @param dir - direction of branch
 	 * @return eastern midpoint if direction is east,
 	 * otherwise western midpoint
@@ -240,6 +256,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * Get the y mid-point of the given branch
 	 * 
 	 * @param y - current y mid-point
+	 * @param h - current height
 	 * @param dir - direction of branch
 	 * @return norther midpoint if direction is north,
 	 * otherwise southern midpoint
@@ -285,9 +302,13 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	}
 	
 	/**
-	 * If the leaf does not meet the decomposition rule, decompose it
+	 * If the leaf does not meet the decomposition rule, combine it
 	 * 
-	 * @return this node if it does not need to be decomposed or a decomposed internal node if it does
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
+	 * @return new child node, either combined or not
 	 */
 	public QuadTreeNode<T> combine(int x, int y, int w, int h) {
 		for(Direction dir : Direction.values()) {
@@ -340,6 +361,8 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to find
 	 * @return reference to object in tree if found, null if not found
 	 */
