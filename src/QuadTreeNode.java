@@ -1,8 +1,8 @@
 /**
  * This is the quadtree node abstract class
  * and will be extended by leaf, internal, and flywieght classes
- *  
- * @author Shan Ding (dszero); David Thames (davidct)
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017
  *
  */
 public interface QuadTreeNode< T extends Comparable2D<? super T> >

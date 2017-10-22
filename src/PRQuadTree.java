@@ -1,4 +1,10 @@
-
+/**
+ * The PRQuadtree class 
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017
+ *
+ * @param <T> generic type
+ */
 public class PRQuadTree < T extends Comparable2D<? super T> > {
 	private QuadTreeNode<T> root;
 	private int xMin, xMax, yMin, yMax;

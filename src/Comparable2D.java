@@ -1,4 +1,10 @@
-
+/**
+ * The interface for comparable2D
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017
+ *
+ * @param <T> generic type
+ */
 public interface Comparable2D<T> extends Comparable<T> {
 	
 	/**

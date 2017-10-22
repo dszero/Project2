@@ -1,7 +1,6 @@
 
 /**
- * This is the leaf node class
- * will implement the prquadtree interface
+ * This is the leaf node class of the quad tree
  * 
  * @author Shan Ding (dszero); David Thames (davidct)
  * @version 10.16.2017

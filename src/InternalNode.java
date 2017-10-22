@@ -1,5 +1,5 @@
 /**
- * 
+ * The internal node class of the quadtree
  * @author Shan Ding (dszero); David Thames (davidct)
  * @version 10.16.2017
  *

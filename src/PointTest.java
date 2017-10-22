@@ -1,5 +1,10 @@
 import junit.framework.TestCase;
-
+/**
+ * Test class for point class
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017
+ *
+ */
 public class PointTest extends TestCase {
 	private Point point;
 	private Point pointE;

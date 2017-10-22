@@ -1,4 +1,9 @@
 import junit.framework.TestCase;
+/**
+ * Test class for prquadtree class
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017
+ */
 
 public class PRQuadTreeTest extends TestCase {
 	

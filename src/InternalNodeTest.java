@@ -1,7 +1,14 @@
 import junit.framework.TestCase;
 
+/**
+ * The test class for internal node
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017
+ */
 public class InternalNodeTest extends TestCase {
-	
+	/**
+	 * initialize
+	 */
 	InternalNode<Point> node;
 	Point pNull;
 	Point pMid;

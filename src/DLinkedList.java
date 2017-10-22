@@ -1,5 +1,12 @@
 import java.util.Iterator;
 
+/**
+ * Doubly linked list will be used to store points in leaf nodes
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017
+ *
+ * @param <T> generic type
+ */
 public class DLinkedList<T> implements Iterable<T>
 {
 	//node insert and remove based on the point object
@@ -30,15 +37,6 @@ public class DLinkedList<T> implements Iterable<T>
 	{
 		return listSize;
 	}
-	
-//	/**
-//	 * get the boolean identicalPoints
-//	 * @return identicalPoints
-//	 */
-//	public boolean getIdenticalPoints()
-//	{
-//		return identicalPoints;
-//	}
 	
 
 	/**
@@ -136,6 +134,9 @@ public class DLinkedList<T> implements Iterable<T>
 		return currNode.data();
 	}
 
+	/**
+	 * create iterator instance
+	 */
 	@Override
 	public Iterator<T> iterator() {
 		return new DLLIterator(head);
@@ -156,11 +157,7 @@ public class DLinkedList<T> implements Iterable<T>
 			this.add(item);
 		}
 		return true;
-	}
-
-	
-
-	
+	}	
 	
 	
 	/**
@@ -192,19 +189,6 @@ public class DLinkedList<T> implements Iterable<T>
 			prev = null;
 			data = obj;
 		}
-
-		// /**
-		// * initialize constructor
-		// * @param next node
-		// * @param prev node
-		// * @param point that is stored in the node
-		// */
-		// public Node(Node next, Node prev, Point point)
-		// {
-		// this.next = next;
-		// this.prev = prev;
-		// this.point = point;
-		// }
 
 		/**
 		 * set the next node
@@ -265,6 +249,12 @@ public class DLinkedList<T> implements Iterable<T>
 
 	}
 	
+	/**
+	 * private class for DLinked list iterator
+	 * @author Shan Ding (dszer); David Thames (davidct)
+	 * @version 10.22.2017
+	 *
+	 */
 	private class DLLIterator implements Iterator<T> {
 		
 		private Node node;

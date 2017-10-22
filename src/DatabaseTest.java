@@ -2,7 +2,11 @@ import java.io.File;
 
 import junit.framework.TestCase;
 
-
+/**
+ * This is the junit testcase for database class
+ * @author Shan Ding (dszer); David Thames (davidct)
+ * @version 10.22.2017 *
+ */
 
 public class DatabaseTest extends TestCase{
 	
@@ -17,7 +21,6 @@ public class DatabaseTest extends TestCase{
 	 */
 	public void setUp()
 	{
-//		file = new File();
 		quadtree = new PRQuadTree<Point>(0, 32, 0, 32);
 		bst = new BST<Point>();
 		database = new Database(file, quadtree, bst);
