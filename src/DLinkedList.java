@@ -10,7 +10,7 @@ public class DLinkedList<T> implements Iterable<T>
 	 */
 	private int listSize; //size of the linked list
 	private Node head, tail;
-	private boolean identicalPoints; //true if all the points in the 
+	//private boolean identicalPoints; //true if all the points in the 
 											//list have the same location coordinates
 	/**
 	 * initialize constructor of linked list
@@ -31,14 +31,14 @@ public class DLinkedList<T> implements Iterable<T>
 		return listSize;
 	}
 	
-	/**
-	 * get the boolean identicalPoints
-	 * @return identicalPoints
-	 */
-	public boolean getIdenticalPoints()
-	{
-		return identicalPoints;
-	}
+//	/**
+//	 * get the boolean identicalPoints
+//	 * @return identicalPoints
+//	 */
+//	public boolean getIdenticalPoints()
+//	{
+//		return identicalPoints;
+//	}
 	
 
 	/**

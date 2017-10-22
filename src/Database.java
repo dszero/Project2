@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -62,44 +63,39 @@ public class Database
 				}
 				else if (line[0].equals("duplicates"))
 				{
-					quadtree.duplicates(); //Duplicate Points:
+					DLinkedList<Point> list = quadtree.duplicates(); //Duplicate Points:
+					System.out.println("Duplicate Points: ");
+					Iterator<Point> iterator = list.iterator();
+					while (iterator.hasNext())
+					{
+						Point point = iterator.next();
+						System.out.println("(" + point.getX() + ", " 
+						                     + point.getY() + ")");  
+					}
+					
+
 				}
 				else if (line[0].equals("dump"))
 				{
-					bst.dump();
-					quadtree.dump();
+					
+					bstDump();
+					
 				}
 				else if (line[0].equals("search"))//search by name
 				{
-					bst.search(line[1]);//Point Found: (r_r, 1, 20)
+					bst.find(line[1]);//Point Found: (r_r, 1, 20)
 					//Point Not Found: r_r
 				}
 				else if (line[0].equals("remove") && line.length == 2)//remove by name
 				{
-					Point point = bst.remove(name);
-					if (point != null)
-					{
-						quadtree.remove(point);//make sure bst and quadtree remove the same point
-					}
-					else
-					{
-						System.out.println("Point Rejected: " + name;
-					}					
+					removeByName(line[1]);				
 				}
 				else if (line[0].equals("remove") && line.length == 3)
 				{
 					int x = Integer.parseInt(line[1]);
 					int y = Integer.parseInt(line[2]);
-					Point point = quadtree.remove(x, y);
-					if (point != null)
-					{
-						bst.remove(point);//make sure bst and quadtree remove the same point
-					}
-					else
-					{
-						System.out.println("Point Rejected: (" 
-											+ x + ", " + y + ")");
-					}
+					
+					removeByCoordinates(x, y);
 					
 				}
 				else //region search
@@ -111,6 +107,7 @@ public class Database
 		scanner.close();
 	}
 	
+
 
 
 	/**
@@ -129,4 +126,80 @@ public class Database
 		}
 		return splitted;
 	}
+	
+	public void bstDump()
+	{
+		System.out.println("BST dump: ");
+		int size = 0;
+		if (!bst.isEmpty())
+		{
+			Iterator<BST<Point>.NodeInfo> bstIterator = bst.iterator(Order.IN);
+			while (bstIterator.hasNext())
+			{
+				BST<Point>.NodeInfo info = bstIterator.next();
+				Point point = info.element;
+				int depth = info.depth;
+				String dep = "Node has depth " + depth 
+								+ ", Value (";
+				String pointInfo = point.getName() + ", " 
+									+ point.getX() + ", " 
+									+ point.getY() + ")";
+				System.out.println(dep + pointInfo);
+				size++;
+			}
+		}
+		else
+		{
+			System.out.println("Node has depth 0, Value (null)");
+		}
+		System.out.println("BST size is: " + size);
+	}
+	
+	
+	
+	public void removeByName(String name)
+	{
+		Point point = bst.find(name);
+		if (point != null)
+		{
+			bst.remove(point);
+			quadtree.remove(point);//make sure bst and quadtree remove the same point
+		}
+		else
+		{
+			System.out.println("Point Rejected: " + name);
+		}	
+	}
+	
+	public void removeByCoordinates(int x, int y)
+	{
+		Point point = quadtree.find(x, y);
+		
+		if (point != null)
+		{
+			bst.remove(point);//make sure bst and quadtree remove the same point
+			quadtree.remove(point);
+		}
+		else
+		{
+			System.out.println("Point Rejected: (" 
+								+ x + ", " + y + ")");
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

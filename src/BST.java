@@ -29,6 +29,7 @@ public class BST<T extends Comparable<? super T>>
             element = elem;
             left = null;
             right = null;
+            
         }
 
         /**
@@ -77,25 +78,7 @@ public class BST<T extends Comparable<? super T>>
         
     }
     
-    /**
-     * Types of iterators
-     */
-    public enum Order {
-        /**
-         * post-order
-         */
-        POST, 
-        
-        /**
-         * pre-order
-         */
-        PRE, 
-        
-        /**
-         * in-order
-         */
-        IN
-    }
+ 
 
     /**
      * iterator to iterate through BST
@@ -247,6 +230,41 @@ public class BST<T extends Comparable<? super T>>
         }
         else if (compareResult > 0) {
             return find(x, sRoot.right);
+        }
+        else {
+            return sRoot.element; // Match
+        }
+    }
+    
+    /**
+     * Find element by name in BST
+     * 
+     * @param name
+     *            - the name of element that needs to find
+     * @return return object if found or null if not found
+     */
+    public T find(String name) {
+        return find(name, root);
+    }
+
+    /**
+     * Find element by name starting from given root node
+     * 
+     * @param x - element to find
+     * @param sRoot - current root node
+     * @return return object if found or null if not found
+     */
+    private T find(String name, BinaryNode sRoot) {
+        if (sRoot == null) {
+            return null;
+        }
+        int compareResult = name.compareTo(((Point) sRoot.element).getName());
+
+        if (compareResult < 0) {
+            return find(name, sRoot.left);
+        }
+        else if (compareResult > 0) {
+            return find(name, sRoot.right);
         }
         else {
             return sRoot.element; // Match
