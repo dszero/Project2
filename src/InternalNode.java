@@ -229,7 +229,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		case NE:
 		case SE:
 		default:
-			return x + (x / 4);	
+			return x + (w / 4);	
 		}
 	}
 	
@@ -246,11 +246,11 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		switch(dir) {
 		case NW:
 		case NE:
-			return y / 2;
+			return y - (h / 4);
 		case SW:
 		case SE:
 		default:
-			return y + (y / 2);	
+			return y + (h / 4);	
 		}
 	}
 	
