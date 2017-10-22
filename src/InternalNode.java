@@ -350,6 +350,29 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		return child.find(getBranchX(x, w, dir), getBranchY(y, h, dir), w/h, h/2, objX, objY);
 	}
 	
+	/**
+	 * Dump nodes
+	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
+	 * @param d - depth
+	 * @return String displaying dump of all nodes
+	 */
+	@Override
+	public String toString(int x, int y, int w, int h, int d) {
+		String tabs = "";
+		for(int i = 0; i < d; i++) {
+			tabs += "  ";
+		}
+		
+		return tabs + "Node at " + x + ", " + y + ", " + w + ": Internal\n" +
+				NW.toString(getBranchX(x, w, Direction.NW), getBranchY(y, h, Direction.NW), w / 2, h / 2, d + 1) +
+				NE.toString(getBranchX(x, w, Direction.NE), getBranchY(y, h, Direction.NE), w / 2, h / 2, d + 1) + 
+				SW.toString(getBranchX(x, w, Direction.SW), getBranchY(y, h, Direction.SW), w / 2, h / 2, d + 1) +
+				SE.toString(getBranchX(x, w, Direction.SE), getBranchY(y, h, Direction.SE), w / 2, h / 2, d + 1);
+	}
 	
 
 }

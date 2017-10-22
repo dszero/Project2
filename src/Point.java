@@ -118,6 +118,10 @@ public class Point implements Comparable2D<Point> {
 	public boolean equals2D(Point o) {
 		return o.compareX(x) == 0 && o.compareY(y) == 0;
 	}
+	
+	public String toString() {
+		return "(" + name + ", " + x + ", " + y + ")";
+	}
 
 }
 

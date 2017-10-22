@@ -221,4 +221,33 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		
 		return objToReturn;
 	}
+
+	/**
+	 * Dump nodes
+	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
+	 * @param d - depth
+	 * @return String displaying dump of all nodes
+	 */
+	@Override
+	public String toString(int x, int y, int w, int h, int d) {
+		String tabs = "";
+		for(int i = 0; i < d; i++) {
+			tabs += "  ";
+		}
+		if(items.size() == 0) {
+			return tabs + "Node at " + x + ", " + y + ", " + w + ": Empty\n";
+		}
+		
+		String itemDump = tabs + "Node at " + x + ", " + y + ", " + w + ":\n";
+		tabs += "  ";
+		for(T item : items) {
+			itemDump += tabs + item.toString() + "\n";
+		}
+		
+		return itemDump;
+	}
 }

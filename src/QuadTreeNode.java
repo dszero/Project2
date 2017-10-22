@@ -87,5 +87,17 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * @return all objects contained under this node as a linked list
 	 */
 	public DLinkedList<T> allChildren();
+	
+	/**
+	 * Dump nodes
+	 * 
+	 * @param x - current x position of node
+	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
+	 * @param d - depth
+	 * @return String displaying dump of all nodes
+	 */
+	public String toString(int x, int y, int w, int h, int d);
 
 }

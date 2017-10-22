@@ -186,6 +186,7 @@ public class PRQuadTreeTest extends TestCase {
 		tree.insert(point2c);
 		tree.insert(point3);
 		tree.insert(point4);	
+		System.out.println(tree.toString());
 		
 		tree.clear();
 		assertNull(tree.find(point1));
