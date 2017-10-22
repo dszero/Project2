@@ -154,7 +154,7 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 */
 	public String toString() {
 		String string = root.toString(centerX(), centerY(), xMax - xMin, yMax - yMin, 0);
-		string = string.substring(0, string.length() - 2);
+		string = string.substring(0, string.length() - 1);
 		return string;
 	}
 	
