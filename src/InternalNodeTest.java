@@ -98,6 +98,33 @@ public class InternalNodeTest extends TestCase {
 	 */
 	public void testRegionsearch() {
 		
+		Point a = new Point("a", 10, 600);
+		Point a1 = new Point("a1", 100, 600);
+		Point a2 = new Point("a2", 100, 600);
+		Point a3 = new Point("a3", 100, 600);
+		Point b = new Point("b", 400, 600);
+		Point c = new Point("c", 10, 900);
+		Point d = new Point("d", 400, 900);
+		Point e = new Point("e", 10, 300);
+		Point f = new Point("f", 400, 300);
+		Point g = new Point("g", 600, 300);
+		Point h = new Point("h", 900, 300);
+		
+		node.insert(511, 511, 1000, 1000, a);
+		node.insert(511, 511, 1000, 1000, a1);
+		node.insert(511, 511, 1000, 1000, a2);
+		node.insert(511, 511, 1000, 1000, a3);
+		node.insert(511, 511, 1000, 1000, b);
+		node.insert(511, 511, 1000, 1000, c);
+		node.insert(511, 511, 1000, 1000, d);
+		node.insert(511, 511, 1000, 1000, e);
+		node.insert(511, 511, 1000, 1000, f);
+		node.insert(511, 511, 1000, 1000, g);
+		node.insert(511, 511, 1000, 1000, h);
+		
+		DLinkedList<Point> list = new DLinkedList<Point>();
+		assertEquals(node.regionsearch(list, 511, 511, 1000, 1000, -2, -2, 700, 1100), 13);
+		assertEquals(list.size(), 10);
 	}
 
 	/**
@@ -117,5 +144,36 @@ public class InternalNodeTest extends TestCase {
 	 */
 	public void testIsLeaf() {
 		
+	}
+	
+	/**
+	 * Test toString method
+	 */
+	public void testToString() {
+		Point a = new Point("a", 10, 600);
+		Point a1 = new Point("a1", 100, 600);
+		Point a2 = new Point("a2", 100, 600);
+		Point a3 = new Point("a3", 100, 600);
+		Point b = new Point("b", 400, 600);
+		Point c = new Point("c", 10, 900);
+		Point d = new Point("d", 400, 900);
+		Point e = new Point("e", 10, 300);
+		Point f = new Point("f", 400, 300);
+		Point g = new Point("g", 600, 300);
+		Point h = new Point("h", 900, 300);
+		
+		node.insert(511, 511, 1000, 1000, a);
+		node.insert(511, 511, 1000, 1000, a1);
+		node.insert(511, 511, 1000, 1000, a2);
+		node.insert(511, 511, 1000, 1000, a3);
+		node.insert(511, 511, 1000, 1000, b);
+		node.insert(511, 511, 1000, 1000, c);
+		node.insert(511, 511, 1000, 1000, d);
+		node.insert(511, 511, 1000, 1000, e);
+		node.insert(511, 511, 1000, 1000, f);
+		node.insert(511, 511, 1000, 1000, g);
+		node.insert(511, 511, 1000, 1000, h);
+		
+		System.out.println(node.toString(511, 511, 1000, 1000, 0));
 	}
 }

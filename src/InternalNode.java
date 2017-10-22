@@ -101,23 +101,6 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		
 		return out;
 	}
-	
-	/**
-	 * Find object
-	 * 
-	 * @param x - current x position of node
-	 * @param y - current y position of node
-	 * @param w - current width of  node
-	 * @param h - current height of  node
-	 * @param obj - object to find
-	 * @return reference to object in tree if found, null if not found
-	 */
-	public T find(int x, int y, int w, int h, T obj) {
-		Direction dir = obj.compare2D(x, y);
-		QuadTreeNode<T> child = this.getBranch(dir);
-		return child.find(getBranchX(x, w, dir), getBranchY(y, h, dir), w/h, h/2, obj);
-	}
-
 
 	/**
 	 * Find all nodes in region bounded by the given square
@@ -225,8 +208,6 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 			case SW:
 				this.SW = obj;
 				break;
-			default:
-				return false;
 		}
 		return true;
 	}
@@ -354,23 +335,6 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		}
 		
 		return list;
-	}
-	
-	/**
-	 * Find object
-	 * 
-	 * @param x - current x position of node
-	 * @param y - current y position of node
-	 * @param w - current width of  node
-	 * @param h - current height of  node
-	 * @param obj - object to find
-	 * @return reference to object in tree if found, null if not found
-	 */
-	@Override
-	public T find(int x, int y,  int w, int h, int objX, int objY) {
-		Direction dir = getDirection(x, y, objX, objY);
-		QuadTreeNode<T> child = this.getBranch(dir);
-		return child.find(getBranchX(x, w, dir), getBranchY(y, h, dir), w/h, h/2, objX, objY);
 	}
 	
 	/**

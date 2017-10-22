@@ -93,28 +93,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		return items.remove(objToRemove);
 	}
 	
-	/**
-	 * Find object
-	 * 
-	 * @param x - current x position of node
-	 * @param y - current y position of node
-	 * @param w - current width of  node
-	 * @param h - current height of  node
-	 * @param obj - object to find
-	 * @return reference to object in tree if found, null if not found
-	 */
-	@Override
-	public T find(int x, int y,  int w, int h, T obj) {
-		T objToReturn = null;
-		
-		for(T item : items) {
-			if(item.equals(obj)) {
-				objToReturn = item;
-			}
-		}
-		
-		return objToReturn;
-	}
+
 
 	/**
 	 * Find all nodes in region bounded by the given square
@@ -239,24 +218,6 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	@Override
 	public DLinkedList<T> allChildren() {
 		return items;
-	}
-
-	/**
-	 * Find object in node with given x and y
-	 * 
-	 * @return object if found and null if not
-	 */
-	@Override
-	public T find(int x, int y,  int w, int h, int objX, int objY) {
-		T objToReturn = null;
-		
-		for(T item : items) {
-			if(item.compareX(objX) == 0 && item.compareY(objY) == 0) {
-				objToReturn = item;
-			}
-		}
-		
-		return objToReturn;
 	}
 
 	/**
