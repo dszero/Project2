@@ -8,8 +8,8 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * Create new PR Quadtree with given bounds
 	 * 
 	 * @param xMin - minimum x coordinate for items
-	 * @param xMax - minimum y coordinate for items
-	 * @param yMin - maximum x coordinate for items
+	 * @param xMax - maximum x coordinate for items
+	 * @param yMin - minimum y coordinate for items
 	 * @param yMax - maximum y coordinate for items
 	 */
 	public PRQuadTree(int xMin, int xMax, int yMin, int yMax) {

@@ -150,7 +150,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		}
 		//if region intersects node
 		for(T item : items) {
-			if(item.compare2D(objX, objY) == Direction.SE && item.compare2D(objX + objW, objY + objY) == Direction.NW) {
+			if(item.compare2D(objX, objY) == Direction.SE && item.compare2D(objX + objW, objY + objH) == Direction.NW) {
 				results.add(item);
 			}
 		}
