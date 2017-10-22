@@ -126,13 +126,18 @@ public class DatabaseTest extends TestCase{
 	 */
 	public void testSearchByName()
 	{
+		database.dump();
+		database.searchByName("Jim");
 		database.insertion("Jim", 5, 7);
 		database.insertion("Joe", 6, 7);
 		database.insertion("Kil", 10, 9);
+		database.insertion("Jim", 10, 9);
 		database.insertion("Jim", 5, 7);
 		database.searchByName("Jim");
 		database.searchByName("pp");
-		assertEquals(4, quadtree.getSize());
+		assertEquals(5, quadtree.getSize());
+		
+		database.dump();
 	}
 
 	
