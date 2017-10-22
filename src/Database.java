@@ -65,8 +65,7 @@ public class Database
 				}
 				else if (line[0].equals("dump"))
 				{
-					
-					bstDump();
+					dump();
 					
 				}
 				else if (line[0].equals("search"))//search by name
@@ -151,8 +150,9 @@ public class Database
 	/**
 	 * print out a list of current bst 
 	 */
-	public void bstDump()
+	public void dump()
 	{
+		//bst dump
 		System.out.println("BST dump: ");
 		int size = 0;
 		if (!bst.isEmpty())
@@ -177,6 +177,10 @@ public class Database
 			System.out.println("Node has depth 0, Value (null)");
 		}
 		System.out.println("BST size is: " + size);
+		
+		//quadtree dump
+		System.out.println("QuadTree Dump: ");
+		System.out.println(quadtree.toString());
 	}
 	
 	
