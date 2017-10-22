@@ -52,7 +52,7 @@ public class Database
 				else if (line[0].equals("duplicates"))
 				{
 					DLinkedList<Point> list = quadtree.duplicates(); //Duplicate Points:
-					System.out.println("Duplicate Points: ");
+					System.out.println("Duplicate Points:");
 					Iterator<Point> iterator = list.iterator();
 					while (iterator.hasNext())
 					{
@@ -177,7 +177,7 @@ public class Database
 		System.out.println("BST size is: " + size);
 		
 		//quad tree dump
-		System.out.println("QuadTree Dump: ");
+		System.out.println("QuadTree Dump:");
 		String quadtreeDump = quadtree.toString();
 		System.out.println(quadtreeDump);
 		System.out.println("QuadTree Size: " + (quadtreeDump.
@@ -217,7 +217,6 @@ public class Database
 		
 		if (point != null)
 		{
-			System.out.println("Here");
 			bst.remove(point);//make sure bst and quadtree remove the same point
 			
 		}
@@ -252,7 +251,7 @@ public class Database
 				                     + point.getY() + ")");  
 			}
 		}
-		System.out.println(visitedNode + " Quadtree Nodes Visited");
+		System.out.println(visitedNode + " QuadTree Nodes Visited");
 	}
 	
 	
