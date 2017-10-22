@@ -141,16 +141,19 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 			return 0;
 		}
 		//if region contains node
-		if((x - (w / 2)) > objX && 
-				(x + (w / 2)) < objX + objW && 
-				(y - (h / 2)) > objY && 
-				(y + (h / 2)) < objY + objH) {
+		if((x - (w / 2)) >= objX && 
+				(x + (w / 2)) <= objX + objW && 
+				(y - (h / 2)) >= objY && 
+				(y + (h / 2)) <= objY + objH) {
 			results.addAll(items);
 			return 1;
 		}
 		//if region intersects node
 		for(T item : items) {
-			if(item.compare2D(objX, objY) == Direction.SE && item.compare2D(objX + objW, objY + objH) == Direction.NW) {
+			if(item.compareX(objX) >= 0 && 
+					item.compareX(objX + objW) <= 0 && 
+					item.compareY(objY) >= 0 && 
+					item.compareY(objY + objH) <= 0) {
 				results.add(item);
 			}
 		}
