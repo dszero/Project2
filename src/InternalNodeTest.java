@@ -133,7 +133,7 @@ public class InternalNodeTest extends TestCase {
 		DLinkedList<Point> list = new DLinkedList<Point>();
 		int visited = node.regionsearch(list, 0, 0, 40, 40, 0, 0, 20, 20);
 		assertEquals(list.size(), 1);
-		assertEquals(visited, 4);
+		assertEquals(visited, 5);
 		
 		//----------------------------------------------
 		assertNotNull(node.remove(0, 0, 40, 40, point1));
@@ -151,7 +151,7 @@ public class InternalNodeTest extends TestCase {
 		DLinkedList<Point> list1 = new DLinkedList<Point>();
 		int visited1 = node.regionsearch(list1, 0, 0, 40, 40, 0, 0, 20, 20);
 		assertEquals(list1.size(), 2);
-		assertEquals(visited1, 4);
+		assertEquals(visited1, 5);
 		
 		//----------------------------------------------
 		assertNotNull(node.remove(0, 0, 40, 40, point4));
@@ -169,7 +169,7 @@ public class InternalNodeTest extends TestCase {
 		DLinkedList<Point> list2 = new DLinkedList<Point>();
 		int visited2 = node.regionsearch(list2, 0, 0, 40, 40, 0, 0, 20, 20);
 		assertEquals(list2.size(), 1);
-		assertEquals(visited2, 4);
+		assertEquals(visited2, 5);
 				
 		
 		
@@ -186,7 +186,7 @@ public class InternalNodeTest extends TestCase {
 		node.insert(511, 511, 1000, 1000, h);
 		
 		DLinkedList<Point> list3 = new DLinkedList<Point>();
-		assertEquals(node.regionsearch(list3, 511, 511, 1000, 1000, -2, -2, 700, 1100), 13);
+		assertEquals(node.regionsearch(list3, 511, 511, 1000, 1000, -2, -2, 700, 1100), 17);
 		assertEquals(list3.size(), 13);
 
 	}
@@ -203,12 +203,7 @@ public class InternalNodeTest extends TestCase {
 		assertEquals(node.duplicates().size(), 1);
 	}
 	
-	/**
-	 * Test the isLeaf method
-	 */
-	public void testIsLeaf() {
-		
-	}
+
 	
 	/**
 	 * Test toString method
