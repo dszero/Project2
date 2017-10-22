@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
 
-public class InternalNodeTest extends TestCase {
+public class LeafNodeTest extends TestCase {
 	
 	InternalNode<Point> node;
 	Point pNull;
@@ -50,7 +50,7 @@ public class InternalNodeTest extends TestCase {
 		assertNotNull(node.remove(511, 511, 1000, 1000, pMid));
 		
 		//Test insert after remove
-		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
+		assertNotNull(node.insert(511, 511, 1000, 1000, pMid));
 		
 		//Test double insert
 		assertFalse(node.insert(511, 511, 1000, 1000, pMid));
