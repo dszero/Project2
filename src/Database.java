@@ -59,8 +59,7 @@ public class Database
 						Point point = iterator.next();
 						System.out.println("(" + point.getX() + ", " 
 						                     + point.getY() + ")");  
-					}
-					
+					}				
 
 				}
 				else if (line[0].equals("dump"))
@@ -178,9 +177,10 @@ public class Database
 		}
 		System.out.println("BST size is: " + size);
 		
-		//quadtree dump
+		//quad tree dump
 		System.out.println("QuadTree Dump: ");
 		System.out.println(quadtree.toString());
+	
 	}
 	
 	
