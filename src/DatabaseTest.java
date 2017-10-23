@@ -89,7 +89,7 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Jim", 5, 7);
 		database.insertion("Joe", 6, 7);
 		database.insertion("Kil", 10, 9);
-		database.insertion("Jim", 5, 8);
+		database.insertion("Jim", 5, 7);
 		database.insertion("name", 5, 11);
 		System.out.println("//-------------------------------------");
 		database.dump();
