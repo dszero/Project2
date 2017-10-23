@@ -57,14 +57,26 @@ public class DatabaseTest extends TestCase{
 		database.insertion("cool3", 32, 5);
 		database.insertion("nice", 0,  0);
 		//database.bstDump();
-		assertEquals(bst.getSize(), 3);
-		assertEquals(quadtree.getSize(), 3);
-		
+		assertEquals(bst.getSize(), 5);
+		assertEquals(quadtree.getSize(), 5);
 		
 		database.insertion("cool", 4, 5);
 		database.dump();
-		assertEquals(bst.getSize(), 4);
-		assertEquals(quadtree.getSize(), 4);
+		assertEquals(bst.getSize(), 6);
+		assertEquals(quadtree.getSize(), 6);
+		
+		//---------------------------------
+		database.insertion("nice", 0,  0);
+		database.insertion("nice", 33,  33); //false
+		database.insertion("nice", 0,  33); //false
+		database.insertion("nice", 33,  0); //false
+		database.insertion("nice", 0,  32);
+		database.insertion("nice", 32,  0);
+		database.insertion("nice", 32,  32);
+		assertEquals(bst.getSize(), 10);
+		assertEquals(quadtree.getSize(), 10);
+		
+		database.insertion("1nice", 0,  0);
 		
 	}
 	
@@ -76,13 +88,15 @@ public class DatabaseTest extends TestCase{
 		database.insertion("Jim", 5, 7);
 		database.insertion("Joe", 6, 7);
 		database.insertion("Kil", 10, 9);
-		database.insertion("Jim", 5, 7);
-		
+		database.insertion("Jim", 5, 8);
+		database.insertion("name", 5, 11);
+		System.out.println("//-------------------------------------");
+		database.dump();
+		System.out.println("//-------------------------------------");
 		database.removeByName("Jim");
 		database.dump();
-		System.out.println(quadtree.toString());
-		assertEquals(bst.getSize(), 3);
-		assertEquals(quadtree.getSize(), 3);
+		assertEquals(bst.getSize(), 4);
+		assertEquals(quadtree.getSize(), 4);
 	}
 	
 	/**
@@ -140,6 +154,29 @@ public class DatabaseTest extends TestCase{
 		database.dump();
 	}
 
+	public void testDuplicates()
+	{
+		//database.duplicates();
+		
+		database.insertion("a", 5, 6); //
+		database.insertion("b", 7, 6); //--
+		database.insertion("c", 5, 6); //
+		database.insertion("d", 9, 6);
+		database.insertion("e", 7, 6); //--
+		database.insertion("f", 0, 6);		
+		database.insertion("g", 1, 6);
+		database.insertion("h", 1, 6);
+		System.out.println("//-------------------------------------");
+		database.dump();
+		System.out.println("//-------------------------------------");
+		database.duplicates();
+		System.out.println("//-------------------------------------");
+		database.dump();
+		System.out.println("//-------------------------------------");
+		assertEquals(bst.getSize(), 8);
+		assertEquals(quadtree.getSize(), 8);
+		
+	}
 	
 	
 	
