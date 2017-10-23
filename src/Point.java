@@ -74,7 +74,7 @@ public class Point implements Comparable2D<Point> {
 				return Direction.SE;
 			}
 		}
-		else { 
+		if(o.compareY(y) > 0) { 
 			if(o.compareX(x) > 0) { 
 				return Direction.NW;
 			}
@@ -82,6 +82,10 @@ public class Point implements Comparable2D<Point> {
 				return Direction.NE;
 			}
 		}
+		if(o.compareX(x) > 0) {
+			return Direction.SW;
+		}
+		return Direction.NE;
 	}
 
 	@Override
@@ -100,18 +104,18 @@ public class Point implements Comparable2D<Point> {
 			if(x < otherX) {
 				return Direction.SW;
 			}
-			else { 
-				return Direction.SE;
-			}
+			return Direction.SE;
 		}
-		else { 
+		if(y < otherY) { 
 			if(x < otherX) { 
 				return Direction.NW;
 			}
-			else {
-				return Direction.NE;
-			}
+			return Direction.NE;
 		}
+		if(x < otherX) {
+			return Direction.SW;
+		}
+		return Direction.NE;
 	}
 
 	@Override
