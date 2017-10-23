@@ -18,6 +18,7 @@ public class Database
 
 	/**
 	 * initialize the constructor of the database
+	 * 
 	 * @param file will be passed in and parsed
 	 * @param quadtree will be passed in from main
 	 * @param bst will be passed in from main
@@ -31,6 +32,7 @@ public class Database
 	
 	/**
 	 * parse file and execute all the valid commands in the files
+	 * 
 	 * @throws FileNotFoundException if file is not found 
 	 */
 	public void parse() throws FileNotFoundException
@@ -235,7 +237,9 @@ public class Database
 	{
 		DLinkedList<Point> list = new DLinkedList<Point>();
 		int visitedNode = quadtree.regionsearch(list, x, y, w, h);
+
 		if (w <= 0 || h <= 0) {
+
 			System.out.println("Invalid Region: (" + x
 					+ ", " + y + ", " + w + ", " + h + ")");
 			return;

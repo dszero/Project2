@@ -32,7 +32,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 */
 	@Override
 	public boolean insert(int x, int y, int w, int h, T obj) {
-		if(obj == null) {
+		if (obj == null) {
 			return false;
 		}
 	 
@@ -43,7 +43,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		
 		out = child.insert(getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2, obj);
 		
-		if(child.getClass().equals(LeafNode.class)) {
+		if (child.getClass().equals(LeafNode.class)) {
 			setBranch(dir, ((LeafNode<T>) child).decompose(getBranchX(x, w, dir), getBranchY(y, w, dir), w / 2, h / 2));
 		}	
 		
@@ -63,7 +63,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 */
 	@Override
 	public T remove(int x, int y, int w, int h, T obj) {
-		if(obj == null) {
+		if (obj == null) {
 			return null;
 		}
 		
@@ -71,7 +71,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		QuadTreeNode<T> child = this.getBranch(dir);
 		T out = child.remove(getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2, obj);
 		
-		if(child.getClass().equals(InternalNode.class)) {
+		if (child.getClass().equals(InternalNode.class)) {
 			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2));
 		}	
 		
@@ -95,7 +95,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		QuadTreeNode<T> child = this.getBranch(dir);
 		T out = child.remove(getBranchX(x, w, dir), getBranchY(y, h, dir), w / h, h / 2, objX, objY);
 		
-		if(child.getClass().equals(InternalNode.class)) {
+		if (child.getClass().equals(InternalNode.class)) {
 			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX(x, w, dir), getBranchY(y, h, dir), w, h));
 		}	
 		
@@ -120,14 +120,14 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	public int regionsearch(DLinkedList<T> results, int x, int y, int w, int h, 
 			int objX, int objY, int objW, int objH) {
 		//if region outside of node
-		if((x - (w / 2)) > objX + objW || 
+		if ((x - (w / 2)) > objX + objW || 
 				(x + (w / 2)) < objX || 
 				(y - (h / 2)) > objY + objH  ||
 				(y + (h / 2)) < objY) {
 			return 0;
 		}
 		int visited = 1;
-		for(Direction dir : Direction.values()) {
+		for (Direction dir : Direction.values()) {
 			visited += getBranch(dir).regionsearch(results, 
 					getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2, 
 					objX, objY, objW, objH);
@@ -170,7 +170,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return branch corresponding to direction
 	 */
 	private QuadTreeNode<T> getBranch(Direction direc) {
-		if(direc == null) {
+		if (direc == null) {
 			return null;
 		}
 		switch(direc){
@@ -264,19 +264,19 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return direction of object from source
 	 */
 	private Direction getDirection(int x, int y, int objX, int objY) {
-		if(objY > y) {
-			if(objX < x) {
+		if (objY > y) {
+			if (objX < x) {
 				return Direction.SW;
 			}
 			return Direction.SE;
 		}
-		if(objY < y) { 
-			if(objX < x) { 
+		if (objY < y) { 
+			if (objX < x) { 
 				return Direction.NW;
 			}
 			return Direction.NE;
 		}
-		if(objX < x) {
+		if (objX < x) {
 			return Direction.SW;
 		}
 		return Direction.NE;
@@ -292,8 +292,8 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return new child node, either combined or not
 	 */
 	public QuadTreeNode<T> combine(int x, int y, int w, int h) {
-		for(Direction dir : Direction.values()) {
-			if(!getBranch(dir).getClass().equals(LeafNode.class)) {
+		for (Direction dir : Direction.values()) {
+			if (!getBranch(dir).getClass().equals(LeafNode.class)) {
 				return this;
 			}
 		}
@@ -303,18 +303,18 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		
 		//Check decomposition rule
 		boolean sameLoc = true;
-		for(T i : items) {
-			if(!i.equals2D(items.get(0))) {
+		for (T i : items) {
+			if (!i.equals2D(items.get(0))) {
 				sameLoc = false;
 			}
 		}
-		if(!sameLoc && items.size() > 3) {
+		if (!sameLoc && items.size() > 3) {
 			return this;
 		}
 		
 		//decompose
 		LeafNode<T> newNode = new LeafNode<T>();
-		for(T i : items) {
+		for (T i : items) {
 			newNode.insert(x, y, w, h, i);
 		}
 		return newNode;
@@ -330,7 +330,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	public DLinkedList<T> allChildren() {
 		DLinkedList<T> list = new DLinkedList<T>();
 		
-		for(Direction dir : Direction.values()) {
+		for (Direction dir : Direction.values()) {
 			list.addAll(getBranch(dir).allChildren());
 		}
 		
@@ -350,7 +350,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	@Override
 	public String toString(int x, int y, int w, int h, int d) {
 		String tabs = "";
-		for(int i = 0; i < d; i++) {
+		for (int i = 0; i < d; i++) {
 			tabs += "  ";
 		}
 		
