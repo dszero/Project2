@@ -19,6 +19,8 @@ public class Database
 	/**
 	 * initialize the constructor of the database
 	 * @param file will be passed in and parsed
+	 * @param quadtree will be passed in from main
+	 * @param bst will be passed in from main
 	 */
 	public Database(File file, PRQuadTree<Point> quadtree, BST<Point> bst)
 	{
@@ -63,7 +65,7 @@ public class Database
 				{
 					searchByName(line[1]);
 				}
-				else if (line[0].equals("remove") && line.length == 2)//remove by name
+				else if (line[0].equals("remove") && line.length == 2)
 				{
 					removeByName(line[1]);				
 				}
@@ -120,7 +122,7 @@ public class Database
 	{
 		
 		boolean isLetter = Character.isLetter(name.charAt(0));
-		String pointInfo = "(" + name + ", " + x + ", " + y +")";
+		String pointInfo = "(" + name + ", " + x + ", " + y + ")";
 		String result = null;
 		
 		//check if inserted point has valid coordinates
@@ -133,7 +135,7 @@ public class Database
 			quadtree.insert(point);
 			result = "Point Inserted: " + pointInfo;
 		}		
-		else//if it is a invalid point
+		else //if it is a invalid point
 		{
 			result = "Point Rejected: " + pointInfo;
 		}
@@ -192,7 +194,7 @@ public class Database
 		if (point != null)
 		{
 			bst.remove(point);
-			quadtree.remove(point);//make sure bst and quadtree remove the same point
+			quadtree.remove(point);
 		}
 		else
 		{
@@ -212,7 +214,7 @@ public class Database
 		
 		if (point != null)
 		{
-			bst.remove(point);//make sure bst and quadtree remove the same point
+			bst.remove(point);
 			
 		}
 		else
@@ -233,7 +235,7 @@ public class Database
 	{
 		DLinkedList<Point> list = new DLinkedList<Point>();
 		int visitedNode = quadtree.regionsearch(list, x, y, w, h);
-		if(w <= 0 || h <= 0) {
+		if (w <= 0 || h <= 0) {
 			System.out.println("Invalid Region: (" + x
 					+ ", " + y + ", " + w + ", " + h + ")");
 			return;
@@ -242,7 +244,7 @@ public class Database
 							+ ", " + y + ", " + w + ", " + h + ")");
 		if (list.size() != 0)
 		{
-			for(Point point : list) 
+			for (Point point : list) 
 			{
 				System.out.println("(" + point.getName() + ", " 
 									+ point.getX() + ", " 

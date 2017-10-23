@@ -8,9 +8,8 @@ import junit.framework.TestCase;
  * @version 10.22.2017 *
  */
 
-public class DatabaseTest extends TestCase{
-	
-	
+public class DatabaseTest extends TestCase 
+{
 	private Database database;
 	private BST<Point> bst;
 	private PRQuadTree<Point> quadtree;
@@ -161,7 +160,11 @@ public class DatabaseTest extends TestCase{
 		
 		database.dump();
 	}
+	
 
+	/**
+	 * test for duplicates method
+	 */
 	public void testDuplicates()
 	{
 		//database.duplicates();

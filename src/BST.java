@@ -393,14 +393,6 @@ public class BST<T extends Comparable<? super T>>
     }
 
     /**
-     * remove all elements from BST
-     */
-    public void clear() {
-        root = null;
-        bstSize = 0;
-    }
-
-    /**
      * get the size of bst
      * @return bstSize
      */

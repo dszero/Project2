@@ -6,7 +6,6 @@
  * @param <T> generic type
  */
 public interface Comparable2D<T> extends Comparable<T> {
-	
 	/**
 	 * compare this objects x position with the given position
 	 * 
@@ -26,7 +25,7 @@ public interface Comparable2D<T> extends Comparable<T> {
 	/**
 	 * Compare x and y coordinates to another 2D comparable object
 	 * 
-	 * @param obj - object to compare with this object
+	 * @param o - object to compare with this object
 	 * @return direction based on x & y of both objects
 	 */
 	Direction compare2D(T o);
