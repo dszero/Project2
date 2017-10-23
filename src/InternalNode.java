@@ -35,7 +35,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		if(obj == null) {
 			return false;
 		}
-		
+	 
 		boolean out = false;
 		
 		Direction dir = obj.compare2D(x, y);
@@ -268,18 +268,18 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 			if(objX < x) {
 				return Direction.SW;
 			}
-			else { 
-				return Direction.SE;
-			}
+			return Direction.SE;
 		}
-		else { 
+		if(objY < y) { 
 			if(objX < x) { 
 				return Direction.NW;
 			}
-			else {
-				return Direction.NE;
-			}
+			return Direction.NE;
 		}
+		if(objX < x) {
+			return Direction.SW;
+		}
+		return Direction.NE;
 	}
 	
 	/**

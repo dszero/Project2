@@ -97,8 +97,15 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 			return null;
 		}
 		//System.out.println("not null");
-		quadtreeSize--;
-		return root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
+		T removed = root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
+		
+		if(removed != null) {
+			quadtreeSize--;
+			if(root.getClass().equals(InternalNode.class)) {
+				root =  ((InternalNode<T>) root).combine(centerX(), centerY(), xMax - xMin, yMax - yMin);
+			}	
+		}
+		return removed;
 	}
 	
 	/**
