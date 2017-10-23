@@ -53,11 +53,11 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @return true if inserted, false if not
 	 */
 	public boolean insert(T elem) {
-		if(elem == null) {
+		if (elem == null) {
 			return false;
 		}
 		boolean out = root.insert(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
-		if(root.getClass().equals(LeafNode.class)) {
+		if (root.getClass().equals(LeafNode.class)) {
 			root = ((LeafNode<T>) root).decompose(centerX(), centerY(), xMax - xMin, yMax - yMin);
 		}
 		quadtreeSize++;
@@ -71,14 +71,14 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @return true if removed, false if not
 	 */
 	public T remove(T elem) {
-		if(elem == null) {
+		if (elem == null) {
 			return null;
 		}
 		T removed = root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, elem);
 		
-		if(removed != null) {
+		if (removed != null) {
 			quadtreeSize--;
-			if(root.getClass().equals(InternalNode.class)) {
+			if (root.getClass().equals(InternalNode.class)) {
 				root =  ((InternalNode<T>) root).combine(centerX(), centerY(), xMax - xMin, yMax - yMin);
 			}	
 		}
@@ -93,15 +93,15 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * @return true if removed false if not
 	 */
 	public T remove(int objX, int objY) {
-		if(xMin > objX  || objX > xMax || yMin > objY  || objY > yMax) {
+		if (xMin > objX  || objX > xMax || yMin > objY  || objY > yMax) {
 			return null;
 		}
 		//System.out.println("not null");
 		T removed = root.remove(centerX(), centerY(), xMax - xMin, yMax - yMin, objX, objY);
 		
-		if(removed != null) {
+		if (removed != null) {
 			quadtreeSize--;
-			if(root.getClass().equals(InternalNode.class)) {
+			if (root.getClass().equals(InternalNode.class)) {
 				root =  ((InternalNode<T>) root).combine(centerX(), centerY(), xMax - xMin, yMax - yMin);
 			}	
 		}

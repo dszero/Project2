@@ -52,7 +52,7 @@ public class Point implements Comparable2D<Point> {
 	}
 	
 	public boolean equals(Object o) {
-		if(o != null && o instanceof Point) {
+		if (o != null && o instanceof Point) {
 			Point oP = (Point) o;
 			return name == oP.getName() && this.equals2D(oP);
 		}
@@ -66,23 +66,23 @@ public class Point implements Comparable2D<Point> {
 
 	@Override
 	public Direction compare2D(Point o) {
-		if(o.compareY(y) < 0) {
-			if(o.compareX(x) > 0) {
+		if (o.compareY(y) < 0) {
+			if (o.compareX(x) > 0) {
 				return Direction.SW;
 			}
 			else { 
 				return Direction.SE;
 			}
 		}
-		if(o.compareY(y) > 0) { 
-			if(o.compareX(x) > 0) { 
+		if (o.compareY(y) > 0) { 
+			if (o.compareX(x) > 0) { 
 				return Direction.NW;
 			}
 			else {
 				return Direction.NE;
 			}
 		}
-		if(o.compareX(x) > 0) {
+		if (o.compareX(x) > 0) {
 			return Direction.SW;
 		}
 		return Direction.NE;
@@ -100,19 +100,19 @@ public class Point implements Comparable2D<Point> {
 
 	@Override
 	public Direction compare2D(int otherX, int otherY) {
-		if(y > otherY) {
-			if(x < otherX) {
+		if (y > otherY) {
+			if (x < otherX) {
 				return Direction.SW;
 			}
 			return Direction.SE;
 		}
-		if(y < otherY) { 
-			if(x < otherX) { 
+		if (y < otherY) { 
+			if (x < otherX) { 
 				return Direction.NW;
 			}
 			return Direction.NE;
 		}
-		if(x < otherX) {
+		if (x < otherX) {
 			return Direction.SW;
 		}
 		return Direction.NE;

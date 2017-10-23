@@ -233,7 +233,7 @@ public class Database
 	{
 		DLinkedList<Point> list = new DLinkedList<Point>();
 		int visitedNode = quadtree.regionsearch(list, x, y, w, h);
-		if(w < 0 || h < 0) {
+		if (w < 0 || h < 0) {
 			System.out.println("Invalid Region: (" + x
 					+ ", " + y + ", " + w + ", " + h + ")");
 			return;

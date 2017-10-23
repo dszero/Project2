@@ -239,18 +239,6 @@ public class BST<T extends Comparable<? super T>>
         }
     }
     
-//    
-//    public DLinkedList<T> nameDuplicates(String name)
-//    {
-//    	DLinkedList<T> list = new DLinkedList<T>();
-//    	T elem = find(name, root);
-//    	while (find(name, root) != null)
-//    	{
-//    		list.add(obj)
-//    	}
-//
-//    }
-    
     /**
      * Find element by name in BST
      * 
@@ -295,9 +283,6 @@ public class BST<T extends Comparable<? super T>>
      * @return true if inserted, false if not inserted
      */
     public boolean insert(T x) {
-//        if(find(x, root) != null) {
-//            return false;
-//        }
         root = insert(x, root);
         bstSize++;
         return true;

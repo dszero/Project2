@@ -41,12 +41,12 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public boolean insert(int x, int y,  int w, int h, T obj) {
-		if(obj == null) {
+		if (obj == null) {
 			return false;
 		}
 		
 //		for(T item : items) {
-//			if(item.equals(obj)) {
+//			if (item.equals(obj)) {
 //				return false;
 //			}
 //		}
@@ -65,7 +65,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	@Override
 	public T remove(int x, int y,  int w, int h, T obj) {
-		if(obj == null) {
+		if (obj == null) {
 			return null;
 		}
 		
@@ -85,7 +85,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		T objToRemove = null;
 		
 		for(T item : items) {
-			if(item.compareX(xObj) == 0 && item.compareY(yObj) == 0) {
+			if (item.compareX(xObj) == 0 && item.compareY(yObj) == 0) {
 				objToRemove = item;
 			}
 		}
@@ -112,14 +112,14 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	@Override
 	public int regionsearch(DLinkedList<T> results, int x, int y,  int w, int h, int objX, int objY, int objW, int objH) {
 		//if region outside of node
-		if((x - (w / 2)) > objX + objW || 
+		if ((x - (w / 2)) > objX + objW || 
 				(x + (w / 2)) < objX || 
 				(y - (h / 2)) > objY + objH  ||
 				(y + (h / 2)) < objY) {
 			return 0;
 		}
 		//if region contains node
-		if((x - (w / 2)) >= objX && 
+		if ((x - (w / 2)) >= objX && 
 				(x + (w / 2)) <= objX + objW && 
 				(y - (h / 2)) >= objY && 
 				(y + (h / 2)) <= objY + objH) {
@@ -128,7 +128,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		}
 		//if region intersects node
 		for(T item : items) {
-			if(item.compareX(objX) >= 0 && 
+			if (item.compareX(objX) >= 0 && 
 					item.compareX(objX + objW) <= 0 && 
 					item.compareY(objY) >= 0 && 
 					item.compareY(objY + objH) <= 0) {
@@ -146,16 +146,16 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	@Override
 	public DLinkedList<T> duplicates() {
 		DLinkedList<T> dup = new DLinkedList<T>();
-		if(items.size() < 4) {
+		if (items.size() < 4) {
 			T found = null; 
 			for(T item1 : items) {
 				int dupCount = 0;
 				for(T item2 : items) {
-					if(item1.equals2D(item2)) {
+					if (item1.equals2D(item2)) {
 						dupCount++;
 					}
 				}
-				if(dupCount > 1 && found == null) {
+				if (dupCount > 1 && found == null) {
 					found = item1;
 				}
 			}
@@ -189,16 +189,16 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 */
 	public QuadTreeNode<T> decompose(int x, int y, int w, int h) {
 		//Check decomposition rule
-		if(items.size() < 4) {
+		if (items.size() < 4) {
 			return this;
 		}
 		boolean sameLoc = true;
 		for(T i : items) {
-			if(!i.equals2D(items.get(0))) {
+			if (!i.equals2D(items.get(0))) {
 				sameLoc = false;
 			}
 		}
-		if(sameLoc) {
+		if (sameLoc) {
 			return this;
 		}
 		
@@ -236,7 +236,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		for(int i = 0; i < d; i++) {
 			tabs += "  ";
 		}
-		if(items.size() == 0) {
+		if (items.size() == 0) {
 			return tabs + "Node at " + (x - w / 2) + ", " + (y - h / 2) + ", " + w + ": Empty\n";
 		}
 		
