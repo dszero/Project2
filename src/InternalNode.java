@@ -5,19 +5,19 @@
  *
  */
 public class InternalNode< T extends Comparable2D<? super T> > implements QuadTreeNode<T> {
-	QuadTreeNode<T> NW;
-	QuadTreeNode<T> NE;
-	QuadTreeNode<T> SW;
-	QuadTreeNode<T> SE;
+	QuadTreeNode<T> nw;
+	QuadTreeNode<T> ne;
+	QuadTreeNode<T> sw;
+	QuadTreeNode<T> se;
 	
 	/**
 	 * Create a new empty internal node with flyweights
 	 */
 	public InternalNode() {
-		NW = new LeafNode<T>();
-		NE = new LeafNode<T>();
-		SW = new LeafNode<T>();
-		SE = new LeafNode<T>();
+		nw = new LeafNode<T>();
+		ne = new LeafNode<T>();
+		sw = new LeafNode<T>();
+		se = new LeafNode<T>();
 	}
 
 	/**
@@ -145,10 +145,10 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	public DLinkedList<T> duplicates() {
 		DLinkedList<T> list = new DLinkedList<T>();
 		
-		list.addAll(this.NW.duplicates());
-		list.addAll(this.NE.duplicates());
-		list.addAll(this.SW.duplicates());
-		list.addAll(this.SE.duplicates());
+		list.addAll(this.nw.duplicates());
+		list.addAll(this.ne.duplicates());
+		list.addAll(this.sw.duplicates());
+		list.addAll(this.se.duplicates());
 		
 		return list;
 	}
@@ -175,13 +175,13 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		}
 		switch(direc){
 			case NW:
-				return NW;
+				return nw;
 			case NE:
-				return NE;
+				return ne;
 			case SE:
-				return SE;
+				return se;
 			case SW:
-				return SW;
+				return sw;
 			default:
 				return null;
 		}
@@ -197,16 +197,16 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	private boolean setBranch(Direction direc, QuadTreeNode<T> obj) {
 		switch(direc){
 			case NW:
-				this.NW = obj;
+				this.nw = obj;
 				break;
 			case NE:
-				this.NE = obj;
+				this.ne = obj;
 				break;
 			case SE:
-				this.SE = obj;
+				this.se = obj;
 				break;
 			case SW:
-				this.SW = obj;
+				this.sw = obj;
 				break;
 		}
 		return true;
@@ -355,9 +355,9 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		}
 		
 		return tabs + "Node at " + (x - w/2) + ", " + (y - h/2) + ", " + w + ": Internal\n" +
-				NW.toString(getBranchX(x, w, Direction.NW)	, getBranchY(y, h, Direction.NW), w / 2, h / 2, d + 1) +
-				NE.toString(getBranchX(x, w, Direction.NE), getBranchY(y, h, Direction.NE), w / 2, h / 2, d + 1) + 
-				SW.toString(getBranchX(x, w, Direction.SW), getBranchY(y, h, Direction.SW), w / 2, h / 2, d + 1) +
-				SE.toString(getBranchX(x, w, Direction.SE), getBranchY(y, h, Direction.SE), w / 2, h / 2, d + 1);
+				nw.toString(getBranchX(x, w, Direction.NW)	, getBranchY(y, h, Direction.NW), w / 2, h / 2, d + 1) +
+				ne.toString(getBranchX(x, w, Direction.NE), getBranchY(y, h, Direction.NE), w / 2, h / 2, d + 1) + 
+				sw.toString(getBranchX(x, w, Direction.SW), getBranchY(y, h, Direction.SW), w / 2, h / 2, d + 1) +
+				se.toString(getBranchX(x, w, Direction.SE), getBranchY(y, h, Direction.SE), w / 2, h / 2, d + 1);
 	}
 }
