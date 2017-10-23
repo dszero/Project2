@@ -66,7 +66,7 @@ public class PointTest extends TestCase {
 	public void testCompareX() {
 		assertTrue(point.compareX(106) < 0);
 		assertTrue(point.compareX(15) > 0);
-		assertTrue(point.compareX(56) == 0);
+		assertEquals(point.compareX(56), 0);
 	}
 	
 	/**
@@ -75,7 +75,7 @@ public class PointTest extends TestCase {
 	public void testCompareY() {
 		assertTrue(point.compareY(106) < 0);
 		assertTrue(point.compareY(15) > 0);
-		assertTrue(point.compareY(34) == 0);
+		assertEquals(point.compareY(34), 0);
 	}
 	
 	/**
