@@ -96,6 +96,7 @@ public class DatabaseTest extends TestCase{
 		database.dump();
 		System.out.println("//-------------------------------------");
 		database.removeByName("Jim");
+		database.removeByName("EGER");
 		database.dump();
 		assertEquals(bst.getSize(), 4);
 		assertEquals(quadtree.getSize(), 4);
@@ -118,6 +119,7 @@ public class DatabaseTest extends TestCase{
 		assertEquals(quadtree.getSize(), 3);
 		
 		database.removeByCoordinates(5,  7);
+		database.removeByCoordinates(76, 56);
 		assertEquals(quadtree.getSize(), 2);
 		database.dump();
 		

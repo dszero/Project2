@@ -45,7 +45,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 			return false;
 		}
 		
-//		for(T item : items) {
+//		for (T item : items) {
 //			if (item.equals(obj)) {
 //				return false;
 //			}
@@ -84,7 +84,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	public T remove(int x, int y,  int w, int h, int xObj, int yObj) {
 		T objToRemove = null;
 		
-		for(T item : items) {
+		for (T item : items) {
 			if (item.compareX(xObj) == 0 && item.compareY(yObj) == 0) {
 				objToRemove = item;
 			}
@@ -127,7 +127,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 			return 1;
 		}
 		//if region intersects node
-		for(T item : items) {
+		for (T item : items) {
 			if (item.compareX(objX) >= 0 && 
 					item.compareX(objX + objW) <= 0 && 
 					item.compareY(objY) >= 0 && 
@@ -148,9 +148,9 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		DLinkedList<T> dup = new DLinkedList<T>();
 		if (items.size() < 4) {
 			T found = null; 
-			for(T item1 : items) {
+			for (T item1 : items) {
 				int dupCount = 0;
-				for(T item2 : items) {
+				for (T item2 : items) {
 					if (item1.equals2D(item2)) {
 						dupCount++;
 					}
@@ -193,7 +193,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 			return this;
 		}
 		boolean sameLoc = true;
-		for(T i : items) {
+		for (T i : items) {
 			if (!i.equals2D(items.get(0))) {
 				sameLoc = false;
 			}
@@ -204,7 +204,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		
 		//decompose
 		InternalNode<T> newNode = new InternalNode<T>();
-		for(T i : items) {
+		for (T i : items) {
 			newNode.insert(x, y, w, h, i);
 		}
 		return newNode;
@@ -233,7 +233,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	@Override
 	public String toString(int x, int y, int w, int h, int d) {
 		String tabs = "";
-		for(int i = 0; i < d; i++) {
+		for (int i = 0; i < d; i++) {
 			tabs += "  ";
 		}
 		if (items.size() == 0) {
@@ -242,7 +242,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 		
 		String itemDump = tabs + "Node at " + (x - w / 2) + ", " + (y - h / 2) + ", " + w + ":\n";
 		//tabs += "  ";
-		for(T item : items) {
+		for (T item : items) {
 			itemDump += tabs + item.toString() + "\n";
 		}
 		
