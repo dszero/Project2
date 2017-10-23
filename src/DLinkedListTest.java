@@ -7,7 +7,8 @@ import junit.framework.TestCase;
  *
  */
 
-public class DLinkedListTest extends TestCase{
+public class DLinkedListTest extends TestCase 
+{
 	/**
 	 * initialize variables
 	 */
@@ -86,7 +87,7 @@ public class DLinkedListTest extends TestCase{
 		list.add("test3");
 
 		int i = 0;
-		for(String item : list) {
+		for (String item : list) {
 			assertEquals(item, list.get(i));
 			i++;
 		}

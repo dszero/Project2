@@ -9,16 +9,13 @@ import java.util.Iterator;
  */
 public class DLinkedList<T> implements Iterable<T>
 {
-	//node insert and remove based on the point object
-	//size
-	//inner node class
 	/**
 	 * initialize the variables
 	 */
 	private int listSize; //size of the linked list
-	private Node head, tail;
-	//private boolean identicalPoints; //true if all the points in the 
-											//list have the same location coordinates
+	private Node head;
+	private Node tail;
+
 	/**
 	 * initialize constructor of linked list
 	 */
@@ -71,7 +68,7 @@ public class DLinkedList<T> implements Iterable<T>
 	/**
 	 * Remove object at given index
 	 * 
-	 * @param i - index of object
+	 * @param obj - object to be removed
 	 * @return true if removed, false if not
 	 */
 	public T remove(T obj) {
@@ -161,8 +158,8 @@ public class DLinkedList<T> implements Iterable<T>
 	
 	
 	/**
-	 * this is an inner node class for doubly linked list which gives the references
-	 * of the list
+	 * this is an inner node class for doubly linked 
+	 * list which gives the references of the list
 	 */
 	private class Node {
 		/**
@@ -172,14 +169,14 @@ public class DLinkedList<T> implements Iterable<T>
 		private Node next;
 		private T data; // The object that will be stored in the node
 
-		/**
-		 * initialize construction for head and tail
-		 */
-		public Node() {
-			next = null;
-			prev = null;
-			data = null;
-		}
+//		/**
+//		 * initialize construction for head and tail
+//		 */
+//		public Node() {
+//			next = null;
+//			prev = null;
+//			data = null;
+//		}
 		
 		/**
 		 * initialize construction for head and tail
@@ -213,7 +210,7 @@ public class DLinkedList<T> implements Iterable<T>
 		/**
 		 * set the point of the node
 		 * 
-		 * @param point1
+		 * @param obj
 		 *            needs to be set
 		 */
 		public void setData(T obj) {
@@ -259,6 +256,10 @@ public class DLinkedList<T> implements Iterable<T>
 		
 		private Node node;
 		
+		/**
+		 * initialize the constructor
+		 * @param newNode start of the Iterator
+		 */
 		public DLLIterator(Node newNode) {
 			node = newNode;
 		}

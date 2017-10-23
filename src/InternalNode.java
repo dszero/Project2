@@ -2,9 +2,10 @@
  * The internal node class of the quadtree
  * @author Shan Ding (dszero); David Thames (davidct)
  * @version 10.16.2017
- *
+ * @param T generic type
  */
-public class InternalNode< T extends Comparable2D<? super T> > implements QuadTreeNode<T> {
+public class InternalNode< T extends Comparable2D<? super T> >
+								implements QuadTreeNode<T> {
 	QuadTreeNode<T> nw;
 	QuadTreeNode<T> ne;
 	QuadTreeNode<T> sw;
