@@ -92,20 +92,20 @@ public class BST<T extends Comparable<? super T>>
         private NodeInfo current;
         private Order type;
 
-        /**
-         * Create new post order iterator
-         */
-        public BstIterator() {
-            if (root == null) {
-                current = null;
-            }
-            else {
-                current = new NodeInfo(root.element, 0);
-            }
-            nodeStack = new Stack<NodeInfo>();
-            type = Order.IN;
-            orderHelper(root, 0);
-        }
+//        /**
+//         * Create new post order iterator
+//         */
+//        public BstIterator() {
+//            if (root == null) {
+//                current = null;
+//            }
+//            else {
+//                current = new NodeInfo(root.element, 0);
+//            }
+//            nodeStack = new Stack<NodeInfo>();
+//            type = Order.IN;
+//            orderHelper(root, 0);
+//        }
 
         /**
          * Create new iterator of type t
@@ -135,23 +135,24 @@ public class BST<T extends Comparable<? super T>>
             if (t == null) {
                 return;
             }
-            switch (type) {
-                case IN:
-                    orderHelper(t.right, depth + 1);
-                    nodeStack.addElement(new NodeInfo(t.element, depth));
-                    orderHelper(t.left, depth + 1);
-                    break;
-                case PRE:
-                    orderHelper(t.right, depth + 1);
-                    orderHelper(t.left, depth + 1);
-                    nodeStack.addElement(new NodeInfo(t.element, depth));
-                    break;
-                default: // POST
-                    nodeStack.addElement(new NodeInfo(t.element, depth));
-                    orderHelper(t.right, depth + 1);
-                    orderHelper(t.left, depth + 1);
-                    break;
-            }
+            orderHelper(t.right, depth + 1);
+            nodeStack.addElement(new NodeInfo(t.element, depth));
+            orderHelper(t.left, depth + 1);
+//            switch (type) {
+//                case IN:
+//                    
+//                    break;
+//                case PRE:
+//                    orderHelper(t.right, depth + 1);
+//                    orderHelper(t.left, depth + 1);
+//                    nodeStack.addElement(new NodeInfo(t.element, depth));
+//                    break;
+//                default: // POST
+//                    nodeStack.addElement(new NodeInfo(t.element, depth));
+//                    orderHelper(t.right, depth + 1);
+//                    orderHelper(t.left, depth + 1);
+//                    break;
+//            }
 
         }
 
@@ -414,7 +415,7 @@ public class BST<T extends Comparable<? super T>>
      */
     @Override
     public Iterator<BST<T>.NodeInfo> iterator() {
-        return new BstIterator();
+        return new BstIterator(Order.IN);
     }
 
     /**

@@ -51,15 +51,7 @@ public class Database
 				}
 				else if (line[0].equals("duplicates"))
 				{
-					DLinkedList<Point> list = quadtree.duplicates(); //Duplicate Points:
-					System.out.println("Duplicate Points:");
-					Iterator<Point> iterator = list.iterator();
-					while (iterator.hasNext())
-					{
-						Point point = iterator.next();
-						System.out.println("(" + point.getX() + ", " 
-						                     + point.getY() + ")");  
-					}				
+					duplicates();			
 
 				}
 				else if (line[0].equals("dump"))
@@ -126,12 +118,15 @@ public class Database
 	 */
 	public void insertion(String name, int x, int y)
 	{
+		
+		boolean isNumber = Character.isDigit(name.charAt(0));
 		String pointInfo = "(" + name + ", " + x + ", " + y +")";
 		String result = null;
+		
 		//check if inserted point has valid coordinates
 		//System.out.println(quadtree.getXMax());
-		if (x >= 0 && y >= 0 && x < quadtree.getXMax() 
-				&& y < quadtree.getYMax())
+		if (!isNumber && x >= 0 && y >= 0 && x <= quadtree.getXMax() 
+				&& y <=  quadtree.getYMax())
 		{
 			Point point = new Point(name, x, y);
 			bst.insert(point);
@@ -288,6 +283,22 @@ public class Database
 			System.out.println("Point Not Found: " + name);
 		}
 		
+	}
+	
+	/**
+	 * check for duplicates, and print out all the duplicates points
+	 */
+	public void duplicates()
+	{
+		DLinkedList<Point> list = quadtree.duplicates(); //Duplicate Points:
+		System.out.println("Duplicate Points:");
+		Iterator<Point> iterator = list.iterator();
+		while (iterator.hasNext())
+		{
+			Point point = iterator.next();
+			System.out.println("(" + point.getX() + ", " 
+			                     + point.getY() + ")");  
+		}	
 	}
 }
 
