@@ -90,7 +90,7 @@ public class BST<T extends Comparable<? super T>>
         public Stack<NodeInfo> nodeStack;
                 
         private NodeInfo current;
-        private Order type;
+        //private Order type;
 
 //        /**
 //         * Create new post order iterator
@@ -121,7 +121,7 @@ public class BST<T extends Comparable<? super T>>
                 current = new NodeInfo(root.element, 0);
             }
             nodeStack = new Stack<NodeInfo>();
-            type = t;
+            //type = t;
             orderHelper(root, 0);
         }
 

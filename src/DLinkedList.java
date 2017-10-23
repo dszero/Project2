@@ -53,7 +53,7 @@ public class DLinkedList<T> implements Iterable<T>
 		Node newNode = new Node(obj);
 		newNode.setData(obj);
 
-		if(head == null) {
+		if (head == null) {
 			head = newNode;
 			tail = newNode;
 			listSize++;
@@ -79,33 +79,33 @@ public class DLinkedList<T> implements Iterable<T>
 		T found = null;
 		
 		int i = 0;
-		while(found == null && i < listSize) {
-			if(currNode == null) {
+		while (found == null && i < listSize) {
+			if (currNode == null) {
 				return null;
 			}
-			if(currNode.data().equals(obj)) {
+			if (currNode.data().equals(obj)) {
 				found = currNode.data();
 			}
-			if(found == null) {
+			if (found == null) {
 				currNode = currNode.next();
 			}
 			i++;
 		}
-		if(found == null) {
+		if (found == null) {
 			return null;
 		}
 		
-		if(listSize == 1) {
+		if (listSize == 1) {
 			head = null;
 			tail = null;
 		}
-		if(currNode.prev() != null) {
+		if (currNode.prev() != null) {
 			currNode.prev().setNext(currNode.next());
 		}
 		else {
 			head = currNode.next();
 		}
-		if(currNode.next() != null) {
+		if (currNode.next() != null) {
 			currNode.next().setPrev(currNode.prev());
 		}
 		else {
@@ -127,7 +127,7 @@ public class DLinkedList<T> implements Iterable<T>
 		Node currNode = head;
 		for(int i = 0; i < index; i++) {
 			currNode = currNode.next();
-			if(currNode == null) {
+			if (currNode == null) {
 				return null;
 			}
 		}
@@ -150,7 +150,7 @@ public class DLinkedList<T> implements Iterable<T>
 	 * @return true if added, false if not
 	 */
 	public boolean addAll(DLinkedList<T> newList) {
-		if(newList == null) {
+		if (newList == null) {
 			return false;
 		}
 		for(T item : newList) {

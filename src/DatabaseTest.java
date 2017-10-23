@@ -49,6 +49,7 @@ public class DatabaseTest extends TestCase{
 	 */
 	public void testInsertion()
 	{
+		database.dump();
 		
 		database.insertion("cool", 4, 5);
 		database.insertion("nice", 6, 4);
@@ -78,7 +79,7 @@ public class DatabaseTest extends TestCase{
 		//------------------------------------
 		database.dump();
 		database.insertion("1nice", 0,  0);
-		
+		database.insertion("_jjjd2", 4, 5);		
 	}
 	
 	/**
@@ -115,6 +116,12 @@ public class DatabaseTest extends TestCase{
 		
 		assertEquals(bst.getSize(), 3);
 		assertEquals(quadtree.getSize(), 3);
+		
+		database.removeByCoordinates(5,  7);
+		assertEquals(quadtree.getSize(), 2);
+		database.dump();
+		
+		//database.insertion("Node", x, y);
 		
 	}
 	
