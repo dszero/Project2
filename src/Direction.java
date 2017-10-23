@@ -5,5 +5,20 @@
  *
  */
 public enum Direction {
-	NW, NE, SW, SE
+	/**
+	 * North west
+	 */
+	NW, 
+	/**
+	 * north east
+	 */
+	NE, 
+	/**
+	 * south west
+	 */
+	SW, 
+	/**
+	 * south east
+	 */
+	SE
 }
