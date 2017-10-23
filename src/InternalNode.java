@@ -127,7 +127,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 			return 0;
 		}
 		int visited = 1;
-		for(Direction dir : Direction.values()) {
+		for (Direction dir : Direction.values()) {
 			visited += getBranch(dir).regionsearch(results, 
 					getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2, 
 					objX, objY, objW, objH);
@@ -292,7 +292,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	 * @return new child node, either combined or not
 	 */
 	public QuadTreeNode<T> combine(int x, int y, int w, int h) {
-		for(Direction dir : Direction.values()) {
+		for (Direction dir : Direction.values()) {
 			if (!getBranch(dir).getClass().equals(LeafNode.class)) {
 				return this;
 			}
@@ -303,7 +303,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		
 		//Check decomposition rule
 		boolean sameLoc = true;
-		for(T i : items) {
+		for (T i : items) {
 			if (!i.equals2D(items.get(0))) {
 				sameLoc = false;
 			}
@@ -314,7 +314,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 		
 		//decompose
 		LeafNode<T> newNode = new LeafNode<T>();
-		for(T i : items) {
+		for (T i : items) {
 			newNode.insert(x, y, w, h, i);
 		}
 		return newNode;
@@ -330,7 +330,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	public DLinkedList<T> allChildren() {
 		DLinkedList<T> list = new DLinkedList<T>();
 		
-		for(Direction dir : Direction.values()) {
+		for (Direction dir : Direction.values()) {
 			list.addAll(getBranch(dir).allChildren());
 		}
 		
@@ -350,7 +350,7 @@ public class InternalNode< T extends Comparable2D<? super T> > implements QuadTr
 	@Override
 	public String toString(int x, int y, int w, int h, int d) {
 		String tabs = "";
-		for(int i = 0; i < d; i++) {
+		for (int i = 0; i < d; i++) {
 			tabs += "  ";
 		}
 		

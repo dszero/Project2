@@ -125,7 +125,7 @@ public class DLinkedList<T> implements Iterable<T>
 	 */
 	public T get(int index) {
 		Node currNode = head;
-		for(int i = 0; i < index; i++) {
+		for (int i = 0; i < index; i++) {
 			currNode = currNode.next();
 			if (currNode == null) {
 				return null;
@@ -153,7 +153,7 @@ public class DLinkedList<T> implements Iterable<T>
 		if (newList == null) {
 			return false;
 		}
-		for(T item : newList) {
+		for (T item : newList) {
 			this.add(item);
 		}
 		return true;

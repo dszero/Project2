@@ -18,6 +18,7 @@ public class Database
 
 	/**
 	 * initialize the constructor of the database
+	 * 
 	 * @param file will be passed in and parsed
 	 */
 	public Database(File file, PRQuadTree<Point> quadtree, BST<Point> bst)
@@ -29,6 +30,7 @@ public class Database
 	
 	/**
 	 * parse file and execute all the valid commands in the files
+	 * 
 	 * @throws FileNotFoundException if file is not found 
 	 */
 	public void parse() throws FileNotFoundException
