@@ -4,10 +4,11 @@
  * 
  * @author Shan Ding (dszero); David Thames (davidct)
  * @version 10.16.2017
- *
+ * @param T generic type
  */
-public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNode<T>{
-	
+public class LeafNode<T extends Comparable2D<? super T>> 
+							implements QuadTreeNode<T>
+{
 	private DLinkedList<T> items;
 	
 	/**
@@ -21,7 +22,7 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	/**
 	 * Create leaf node containing one object
 	 * 
-	 * @param point
+	 * @param  obj in leaf node
 	 */
 	public LeafNode(T obj)
 	{
@@ -110,7 +111,8 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @return number of nodes visited
 	 */
 	@Override
-	public int regionsearch(DLinkedList<T> results, int x, int y,  int w, int h, int objX, int objY, int objW, int objH) {
+	public int regionsearch(DLinkedList<T> results, int x, int y,  int w, 
+							int h, int objX, int objY, int objW, int objH) {
 		//if region outside of node
 		if ((x - (w / 2)) > objX + objW || 
 				(x + (w / 2)) < objX || 
@@ -185,7 +187,8 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 	 * @param y - current y position of node
 	 * @param w - current width of  node
 	 * @param h - current height of  node
-	 * @return this node if it does not need to be decomposed or a decomposed internal node if it does
+	 * @return this node if it does not need to be decomposed or a decomposed 
+	 * 				internal node if it does
 	 */
 	public QuadTreeNode<T> decompose(int x, int y, int w, int h) {
 		//Check decomposition rule

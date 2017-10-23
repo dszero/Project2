@@ -6,11 +6,11 @@ import java.io.FileNotFoundException;
  * @version 10.22.2017
  */
 
-public class Point1 {
-	
+public class Point1
+{
 	/**
 	 * main class
-	 * @param fileName name of the commands file
+	 * @param args input arguments
 	 * @throws FileNotFoundException
 	 * 					throws an exception if a file 
 	 * 					with the file name is not found
@@ -21,7 +21,8 @@ public class Point1 {
 		{
 			File file = new File(args[0]);
 			BST<Point> bst = new BST<Point>();
-			PRQuadTree<Point> quadtree = new PRQuadTree<Point>(0, 1024, 0, 1024);
+			PRQuadTree<Point> quadtree = new PRQuadTree<Point>
+												(0, 1024, 0, 1024);
 			Database database = new Database(file, quadtree, bst);
 			database.parse();
 		}

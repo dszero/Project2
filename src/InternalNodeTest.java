@@ -12,10 +12,10 @@ public class InternalNodeTest extends TestCase {
 	private InternalNode<Point> node;
 	private Point pNull;
 	private Point pMid;
-	private Point pNW;
+	//private Point pNW;
 	private Point pNE;
-	private Point pSW;
-	private Point pSE;
+	//private Point pSW;
+	//private Point pSE;
 	private Point pDup1;
 	private Point pDup2;
 	private Point pDup3;
@@ -39,10 +39,10 @@ public class InternalNodeTest extends TestCase {
 		node = new InternalNode<Point>();
 		pNull = null;
 		pMid = new Point("Mid", 511, 511);
-		pNW = new Point("NW", 500, 520);
+		//pNW = new Point("NW", 500, 520);
 		pNE = new Point("NE", 520, 520);
-		pSW = new Point("SW", 500, 500);
-		pSE = new Point("SE", 520, 500);
+		//pSW = new Point("SW", 500, 500);
+	   	//pSE = new Point("SE", 520, 500);
 		
 		pDup1 = new Point("Dup1", 510, 510);
 		pDup2 = new Point("Dup2", 510, 510);
@@ -186,7 +186,8 @@ public class InternalNodeTest extends TestCase {
 		node.insert(511, 511, 1000, 1000, h);
 		
 		DLinkedList<Point> list3 = new DLinkedList<Point>();
-		assertEquals(node.regionsearch(list3, 511, 511, 1000, 1000, -2, -2, 700, 1100), 17);
+		assertEquals(node.regionsearch(list3, 511, 511, 1000, 
+								1000, -2, -2, 700, 1100), 17);
 		assertEquals(list3.size(), 13);
 
 	}
@@ -209,17 +210,17 @@ public class InternalNodeTest extends TestCase {
 	 * Test toString method
 	 */
 	public void testToString() {
-		Point a = new Point("a", 10, 600);
-		Point a1 = new Point("a1", 100, 600);
-		Point a2 = new Point("a2", 100, 600);
-		Point a3 = new Point("a3", 100, 600);
-		Point b = new Point("b", 400, 600);
-		Point c = new Point("c", 10, 900);
-		Point d = new Point("d", 400, 900);
-		Point e = new Point("e", 10, 300);
-		Point f = new Point("f", 400, 300);
-		Point g = new Point("g", 600, 300);
-		Point h = new Point("h", 900, 300);
+		Point a = new Point("da", 10, 600);
+		Point a1 = new Point("da1", 100, 600);
+		Point a2 = new Point("da2", 100, 600);
+		Point a3 = new Point("da3", 100, 600);
+		Point b = new Point("db", 400, 600);
+		Point c = new Point("dc", 10, 900);
+		Point d = new Point("dd", 400, 900);
+		Point e = new Point("de", 10, 300);
+		Point f = new Point("df", 400, 300);
+		Point g = new Point("dg", 600, 300);
+		Point h = new Point("dh", 900, 300);
 		
 		node.insert(511, 511, 1000, 1000, a);
 		node.insert(511, 511, 1000, 1000, a1);
@@ -231,8 +232,9 @@ public class InternalNodeTest extends TestCase {
 		node.insert(511, 511, 1000, 1000, e);
 		node.insert(511, 511, 1000, 1000, f);
 		node.insert(511, 511, 1000, 1000, g);
-		node.insert(511, 511, 1000, 1000, h);
 		
+		
+		assertTrue(node.insert(511, 511, 1000, 1000, h));
 		System.out.println(node.toString(511, 511, 1000, 1000, 0));
 	}
 }

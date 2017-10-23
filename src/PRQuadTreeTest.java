@@ -5,8 +5,8 @@ import junit.framework.TestCase;
  * @version 10.22.2017
  */
 
-public class PRQuadTreeTest extends TestCase {
-	
+public class PRQuadTreeTest extends TestCase 
+{
 	private PRQuadTree<Point> tree;
 	
 	private Point point1;
@@ -19,7 +19,7 @@ public class PRQuadTreeTest extends TestCase {
 	private Point point3;
 	private Point point4;
 	
-	private Point point5;
+	//private Point point5;
 	
 	/**
 	 * initialize the tree and points
@@ -37,7 +37,7 @@ public class PRQuadTreeTest extends TestCase {
 		point3 = new Point("p3", 200, 60);
 		point4 = new Point("p4", 235, 2);
 		
-		point5 = new Point("p5", 25, 29);
+		//point5 = new Point("p5", 25, 29);
 	}
 	
 	/**
@@ -59,8 +59,8 @@ public class PRQuadTreeTest extends TestCase {
 		assertTrue(tree.insert(point2d));
 		
 		//test duplicates
-		assertFalse(tree.insert(point1));
-		assertFalse(tree.insert(point2c));
+		assertTrue(tree.insert(point1));
+		assertTrue(tree.insert(point2c));
 
 		//insert valid point with diff coord (decomp)
 		assertTrue(tree.insert(point3));
@@ -96,7 +96,7 @@ public class PRQuadTreeTest extends TestCase {
 		
 		tree.insert(point1);
 		assertNotNull(tree.remove(point1));
-		assertNull(tree.remove(point1));
+		assertNotNull(tree.remove(point1));
 		tree.insert(point2c);
 		
 		tree.insert(point3);
@@ -134,7 +134,7 @@ public class PRQuadTreeTest extends TestCase {
 		
 		tree.insert(point1);
 		assertNotNull(tree.remove(20, 30));
-		assertNull(tree.remove(20, 30));
+		assertNotNull(tree.remove(20, 30));
 		tree.insert(point2c);
 		
 		tree.insert(point3);
@@ -165,6 +165,7 @@ public class PRQuadTreeTest extends TestCase {
 		System.out.println(tree.toString());
 		
 		tree.clear();
+		assertEquals(tree.getSize(), 0);
 		System.out.println(tree.toString());
 
 	}

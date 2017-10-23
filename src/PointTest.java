@@ -5,7 +5,8 @@ import junit.framework.TestCase;
  * @version 10.22.2017
  *
  */
-public class PointTest extends TestCase {
+public class PointTest extends TestCase 
+{
 	private Point point;
 	private Point pointE;
 	private Point pointNE1;

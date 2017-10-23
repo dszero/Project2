@@ -42,10 +42,12 @@ public class InternalNode<T extends Comparable2D<? super T>>
 		Direction dir = obj.compare2D(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
 		
-		out = child.insert(getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2, obj);
+		out = child.insert(getBranchX(x, w, dir), getBranchY
+											(y, h, dir), w / 2, h / 2, obj);
 		
 		if (child.getClass().equals(LeafNode.class)) {
-			setBranch(dir, ((LeafNode<T>) child).decompose(getBranchX(x, w, dir), getBranchY(y, w, dir), w / 2, h / 2));
+			setBranch(dir, ((LeafNode<T>) child).decompose(getBranchX
+								(x, w, dir), getBranchY(y, w, dir), w / 2, h / 2));
 		}	
 		
 		return out;
@@ -70,10 +72,12 @@ public class InternalNode<T extends Comparable2D<? super T>>
 		
 		Direction dir = obj.compare2D(x, y);
 		QuadTreeNode<T> child = this.getBranch(dir);
-		T out = child.remove(getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2, obj);
+		T out = child.remove(getBranchX(x, w, dir), getBranchY
+										(y, h, dir), w / 2, h / 2, obj);
 		
 		if (child.getClass().equals(InternalNode.class)) {
-			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2));
+			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX
+						(x, w, dir), getBranchY(y, h, dir), w / 2, h / 2));
 		}	
 		
 		return out;
@@ -94,10 +98,12 @@ public class InternalNode<T extends Comparable2D<? super T>>
 	public T remove(int x, int y, int w, int h, int objX, int objY) {
 		Direction dir = getDirection(x, y, objX, objY);
 		QuadTreeNode<T> child = this.getBranch(dir);
-		T out = child.remove(getBranchX(x, w, dir), getBranchY(y, h, dir), w / h, h / 2, objX, objY);
+		T out = child.remove(getBranchX(x, w, dir), getBranchY(y, h, dir),
+												w / h, h / 2, objX, objY);
 		
 		if (child.getClass().equals(InternalNode.class)) {
-			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX(x, w, dir), getBranchY(y, h, dir), w, h));
+			setBranch(dir, ((InternalNode<T>) child).combine(getBranchX
+								(x, w, dir), getBranchY(y, h, dir), w, h));
 		}	
 		
 		return out;
@@ -256,7 +262,8 @@ public class InternalNode<T extends Comparable2D<? super T>>
 	}
 	
 	/**
-	 * Get the quadrant object coordinates are located in relative to the source coordinates
+	 * Get the quadrant object coordinates are located in 
+	 * relative to the source coordinates
 	 * 
 	 * @param x - source x position 
 	 * @param y - source y position
@@ -355,10 +362,15 @@ public class InternalNode<T extends Comparable2D<? super T>>
 			tabs += "  ";
 		}
 		
-		return tabs + "Node at " + (x - w/2) + ", " + (y - h/2) + ", " + w + ": Internal\n" +
-				NW.toString(getBranchX(x, w, Direction.NW)	, getBranchY(y, h, Direction.NW), w / 2, h / 2, d + 1) +
-				NE.toString(getBranchX(x, w, Direction.NE), getBranchY(y, h, Direction.NE), w / 2, h / 2, d + 1) + 
-				SW.toString(getBranchX(x, w, Direction.SW), getBranchY(y, h, Direction.SW), w / 2, h / 2, d + 1) +
-				SE.toString(getBranchX(x, w, Direction.SE), getBranchY(y, h, Direction.SE), w / 2, h / 2, d + 1);
+		return tabs + "Node at " + (x - w/2) + ", " + (y - h/2) + ", " 
+										+ w + ": Internal\n" +
+				NW.toString(getBranchX(x, w, Direction.NW)	, getBranchY
+									(y, h, Direction.NW), w / 2, h / 2, d + 1) +
+				NE.toString(getBranchX(x, w, Direction.NE), getBranchY
+									(y, h, Direction.NE), w / 2, h / 2, d + 1) + 
+				SW.toString(getBranchX(x, w, Direction.SW), getBranchY
+									(y, h, Direction.SW), w / 2, h / 2, d + 1) +
+				SE.toString(getBranchX(x, w, Direction.SE), getBranchY
+									(y, h, Direction.SE), w / 2, h / 2, d + 1);
 	}
 }
