@@ -119,13 +119,13 @@ public class Database
 	public void insertion(String name, int x, int y)
 	{
 		
-		boolean isNumber = Character.isDigit(name.charAt(0));
+		boolean isLetter = Character.isLetter(name.charAt(0));
 		String pointInfo = "(" + name + ", " + x + ", " + y +")";
 		String result = null;
 		
 		//check if inserted point has valid coordinates
 		//System.out.println(quadtree.getXMax());
-		if (!isNumber && x >= 0 && y >= 0 && x <= quadtree.getXMax() 
+		if (isLetter && x >= 0 && y >= 0 && x <= quadtree.getXMax() 
 				&& y <=  quadtree.getYMax())
 		{
 			Point point = new Point(name, x, y);
@@ -176,7 +176,7 @@ public class Database
 		String quadtreeDump = quadtree.toString();
 		System.out.println(quadtreeDump);
 		System.out.println("QuadTree Size: " + (quadtreeDump.
-								split("Node").length - 1) + 
+								split("Node at").length - 1) + 
 							" QuadTree Nodes Printed.");
 	
 	}
@@ -233,7 +233,7 @@ public class Database
 	{
 		DLinkedList<Point> list = new DLinkedList<Point>();
 		int visitedNode = quadtree.regionsearch(list, x, y, w, h);
-		if(w < 0 || h < 0) {
+		if(w <= 0 || h <= 0) {
 			System.out.println("Invalid Region: (" + x
 					+ ", " + y + ", " + w + ", " + h + ")");
 			return;
@@ -242,10 +242,8 @@ public class Database
 							+ ", " + y + ", " + w + ", " + h + ")");
 		if (list.size() != 0)
 		{
-			Iterator<Point> iterator = list.iterator();
-			while (iterator.hasNext())
+			for(Point point : list) 
 			{
-				Point point = iterator.next();
 				System.out.println("(" + point.getName() + ", " 
 									+ point.getX() + ", " 
 				                     + point.getY() + ")");  
