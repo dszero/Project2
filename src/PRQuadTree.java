@@ -88,8 +88,8 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	/**
 	 * Remove object as given x, y coordinates
 	 * 
-	 * @param x - x coordinate of obj to remove
-	 * @param y - y coordinate of obj to remove
+	 * @param objX - x coordinate of obj to remove
+	 * @param objY - y coordinate of obj to remove
 	 * @return true if removed false if not
 	 */
 	public T remove(int objX, int objY) {
@@ -111,10 +111,10 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	/**
 	 * Search for all nodes within the given region in the quadtree
 	 * 
-	 * @param objX
-	 * @param objY
-	 * @param objW
-	 * @param objH
+	 * @param objX - upper bound of square
+	 * @param objY - lower bound of square
+	 * @param objW - width of region
+	 * @param objH - height of region
 	 * @return
 	 */
 	public int regionsearch(DLinkedList<T> results, int objX, int objY, int objW, int objH) {
@@ -160,7 +160,8 @@ public class PRQuadTree < T extends Comparable2D<? super T> > {
 	 * Dump QuadTree
 	 */
 	public String toString() {
-		String string = root.toString(centerX(), centerY(), xMax - xMin, yMax - yMin, 0);
+		String string = root.toString(centerX(), centerY(), 
+				xMax - xMin, yMax - yMin, 0);
 		string = string.substring(0, string.length() - 1);
 		return string;
 	}
