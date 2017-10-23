@@ -68,7 +68,7 @@ public class InternalNodeTest extends TestCase {
 	public void testInsert() {
 		assertFalse(node.insert(511, 511, 1000, 1000, pNull));
 		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
-		assertFalse(node.insert(511, 511, 1000, 1000, pMid));
+		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
 	}
 	
 	/**
@@ -91,9 +91,9 @@ public class InternalNodeTest extends TestCase {
 		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
 		
 		//Test double insert
-		assertFalse(node.insert(511, 511, 1000, 1000, pMid));
+		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
 		assertNotNull(node.remove(511, 511, 1000, 1000, pMid));
-		assertNull(node.remove(511, 511, 1000, 1000, pMid));
+		assertNotNull(node.remove(511, 511, 1000, 1000, pMid));
 	}
 	
 	/**
@@ -112,9 +112,9 @@ public class InternalNodeTest extends TestCase {
 		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
 		
 		//Test double insert
-		assertFalse(node.insert(511, 511, 1000, 1000, pMid));
+		assertTrue(node.insert(511, 511, 1000, 1000, pMid));
 		assertNotNull(node.remove(511, 511, 1000, 1000, 511, 511));
-		assertNull(node.remove(511, 511, 1000, 1000, 511, 511));
+		assertNotNull(node.remove(511, 511, 1000, 1000, 511, 511));
 	}
 	
 	/**

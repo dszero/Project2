@@ -45,11 +45,11 @@ public class LeafNode< T extends Comparable2D<? super T> > implements QuadTreeNo
 			return false;
 		}
 		
-		for(T item : items) {
-			if(item.equals(obj)) {
-				return false;
-			}
-		}
+//		for(T item : items) {
+//			if(item.equals(obj)) {
+//				return false;
+//			}
+//		}
 		items.add(obj);
 		return true;
 	}
