@@ -9,28 +9,28 @@ public class InternalNodeTest extends TestCase {
 	/**
 	 * initialize
 	 */
-	InternalNode<Point> node;
-	Point pNull;
-	Point pMid;
-	Point pNW;
-	Point pNE;
-	Point pSW;
-	Point pSE;
-	Point pDup1;
-	Point pDup2;
-	Point pDup3;
-	
-	Point a;
-	Point a1;
-	Point a2;
-	Point a3;
-	Point b;
-	Point c;
-	Point d;
-	Point e;
-	Point f;
-	Point g;
-	Point h;
+	private InternalNode<Point> node;
+	private Point pNull;
+	private Point pMid;
+	private Point pNW;
+	private Point pNE;
+	private Point pSW;
+	private Point pSE;
+	private Point pDup1;
+	private Point pDup2;
+	private Point pDup3;
+
+	private Point a;
+	private Point a1;
+	private Point a2;
+	private Point a3;
+	private Point b;
+	private Point c;
+	private Point d;
+	private Point e;
+	private Point f;
+	private Point g;
+	private Point h;
 	
 	/**
 	 * Set up the internal node and test points
