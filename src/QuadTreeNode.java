@@ -5,13 +5,15 @@
  * @version 10.22.2017
  *
  */
-public interface QuadTreeNode< T extends Comparable2D<? super T> >
+public interface QuadTreeNode < T extends Comparable2D < ? super T > >
 {
 	/**
 	 * Insert object into QuadTree
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to insert
 	 * @return true if inserted, false if duplicate
 	 */
@@ -22,6 +24,8 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param obj - object to remove
 	 * @return removed object or null
 	 */
@@ -32,6 +36,8 @@ public interface QuadTreeNode< T extends Comparable2D<? super T> >
 	 * 
 	 * @param x - current x position of node
 	 * @param y - current y position of node
+	 * @param w - current width of  node
+	 * @param h - current height of  node
 	 * @param objX - x coordinate of object
 	 * @param objY - y coordinate of object
 	 * @return true if removed, false if not found
